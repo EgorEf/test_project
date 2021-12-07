@@ -15,7 +15,6 @@
     "@types/react": "^16.14.21",
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.20",
-    "axios": "^0.24.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -28,7 +27,7 @@
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
     "createDb": "cp ./localServer/dbTemplate.json ./localServer/db.json",
-    "serve": "npm run createDb | npx json-server -w ./localServer/db.json --port 3001",
+    "serve": "npm run createDb | npx json-server -w ./localServer/db.json --port 3001 -d 1000",
     "start": "npm run serve | craco --openssl-legacy-provider start",
     "build": "craco build",
     "test": "craco test",
