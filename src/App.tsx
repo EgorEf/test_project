@@ -1,11 +1,11 @@
 import React from 'react';
-import LoginPage from './components/LoginPage';
+import { AuthPage } from './pages/authPage/AuthPage';
 import Container from '@mui/material/Container';
 
 function App() {
   return (
     <Container sx={{height: '100vh'}} disableGutters>
-      <LoginPage />
+      <AuthPage />
     </Container>
   );
 }
