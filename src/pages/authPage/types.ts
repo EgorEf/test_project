@@ -1,13 +1,10 @@
-export interface RequestData {
+export interface LoginState {
   email: string,
   password: string
-};
-
-export interface LoginRequest extends RequestData {
   isRemember: boolean
 };
 
-export interface ResponseData extends RequestData {
+export interface ResponseData extends LoginState {
   id: number,
   role: String;
 };
