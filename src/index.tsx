@@ -6,14 +6,17 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import App from './App';
-import { store } from './app/store';
+import { store, persistor } from './app/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
