@@ -4,36 +4,43 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import type { LoginRequest, RequestData } from '../pages/authPage/types';
+import type { LoginState, RequestData } from '../pages/authPage/types';
 import { useLoginMutation } from '../services/authApi';
+import { persistor } from '../app/store';
+
+const marginBottom = { mb: 3 };
+
+const handlePersistor = (isRemember: boolean) => {
+  if (!isRemember) return persistor.pause();
+  return persistor.persist();
+};
 
 export const AuthForm = () => {
   const [loginState, setFieldValue] = useState({
     email: '',
     password: '',
     isRemember: false
-  } as LoginRequest);
+  } as LoginState);
 
   const [getAuthUser, { isError, isLoading }] = useLoginMutation();
 
   const handleChange = (event: any) => {
     const { target: { value, name, checked } } = event;
-    const currentValue = (name === 'remember') ? checked : value;
+    const currentValue = (name === 'isRemember') ? checked : value;
     setFieldValue((prevState) => ({ ...prevState, [name]: currentValue }));
   };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    const { email, password } = loginState;
+    const { email, password, isRemember } = loginState;
     const requestData: RequestData = { email, password };
-    try {
-      getAuthUser(requestData).unwrap();
-    } catch(e) {
-      console.log(e, 'ERROR');
-    }
-  };
 
-  const marginBottom = { mb: 3 };
+    handlePersistor(isRemember);
+
+    getAuthUser(requestData)
+      .unwrap()
+      .catch((e) => console.log(e, 'Error'));
+  };
 
   return (
     <Stack component="form" sx={{width: 1}} onSubmit={handleSubmit}>
@@ -61,8 +68,8 @@ export const AuthForm = () => {
         required
       />
       <FormControlLabel
-        id="remember"
-        name="remember"
+        id="isRemember"
+        name="isRemember"
         control={<Checkbox />}
         onChange={handleChange}
         checked={loginState.isRemember}
