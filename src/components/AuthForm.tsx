@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,6 +17,9 @@ const handlePersistor = (isRemember: boolean) => {
 };
 
 export const AuthForm = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [loginState, setFieldValue] = useState({
     email: '',
     password: '',
@@ -30,7 +34,7 @@ export const AuthForm = () => {
     setFieldValue((prevState) => ({ ...prevState, [name]: currentValue }));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     const { email, password, isRemember } = loginState;
     const requestData: RequestData = { email, password };
@@ -39,6 +43,10 @@ export const AuthForm = () => {
 
     getAuthUser(requestData)
       .unwrap()
+      .then(() => {
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true })
+      })
       .catch((e) => console.log(e, 'Error'));
   };
 
