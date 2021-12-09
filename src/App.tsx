@@ -1,19 +1,21 @@
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
 import Container from '@mui/material/Container';
 import { AuthPage } from './pages/authPage/AuthPage';
-import { PrivatePage } from './pages/PrivatePage';
+import { ProtectedRouter } from './components/ProtectedRouter';
 
 function App() {
   return (
     <Container sx={{height: '100vh'}} disableGutters>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<AuthPage />} />
-          <Route path="/" element={<PrivatePage />} />
+          <Route path="/" element={<Navigate to="deposit" replace />} />
+          <Route path="login" element={<AuthPage />} />
+          <Route path="deposit" element={<ProtectedRouter />} />
         </Routes>
       </BrowserRouter>
     </Container>
