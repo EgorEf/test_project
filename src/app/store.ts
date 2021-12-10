@@ -1,4 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 import {
   persistReducer,
   persistStore,
@@ -7,7 +8,7 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER,
+  REGISTER
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from '../pages/authPage/authSlice';
@@ -27,21 +28,21 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middlewareHandler = (getDefaultMiddleware: any) => {
+const middlewareHandler = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => {
   const middlewareList = [
     ...getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
     }),
-    authApi.middleware,
+    authApi.middleware
   ];
   return middlewareList;
 };
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => middlewareHandler(getDefaultMiddleware),
+  middleware: (getDefaultMiddleware) => middlewareHandler(getDefaultMiddleware)
 });
 
 export const persistor = persistStore(store);

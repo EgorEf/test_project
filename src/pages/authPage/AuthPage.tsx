@@ -11,13 +11,11 @@ const FormContainer = styled('div')`
   width: '100%',
 `;
 
-export const AuthPage = () => {
-  return (
-    <Container maxWidth="xs" sx={{pt: 30}}>
-      <Typography variant="h5" align="center" mb={3}>Вход</Typography>
-      <FormContainer>
-        <AuthForm />
-      </FormContainer>
-    </Container>
-  );
-};
+export const AuthPage = () => (
+  <Container maxWidth="xs" sx={{ pt: 30 }}>
+    <Typography variant="h5" align="center" mb={3}>Вход</Typography>
+    <FormContainer>
+      <AuthForm />
+    </FormContainer>
+  </Container>
+);

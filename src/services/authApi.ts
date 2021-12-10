@@ -11,16 +11,16 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: ({ email, password }) => ({
-        url: `users`,
+        url: 'users',
         params: { email, password },
         validateStatus: (response, result) => (response.status === 200 && result.length !== 0)
       }),
       transformResponse: (response: ResponseData[]):ResponseData => {
         const [responseData] = response;
         return responseData;
-      },
-    }),
-  }),
+      }
+    })
+  })
 });
 
 export const { useLoginMutation } = authApi;

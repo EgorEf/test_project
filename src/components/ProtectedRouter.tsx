@@ -1,4 +1,4 @@
-import { useLocation, Navigate } from "react-router-dom";
+import { useLocation, Navigate } from 'react-router-dom';
 import { DepositCalculator } from '../pages/clientPages/depositCalculator/DepositCalculator';
 import { DepositOrders } from '../pages/adminPages/depositOrders/DepositOrders';
 import { selectCurrentUser } from '../pages/authPage/authSlice';
@@ -11,5 +11,5 @@ export const ProtectedRouter = () => {
   if (!user) return <Navigate to="/login" state={{ from: location }} />;
 
   if (user.role === 'admin') return <DepositOrders />;
-  return <DepositCalculator />
+  return <DepositCalculator />;
 };

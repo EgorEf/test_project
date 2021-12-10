@@ -1,5 +1,3 @@
-export const DepositOrders = () => {
-  return (
-    <h1>Список депозитных заявок (админка)</h1>
-  );
-};
+export const DepositOrders = () => (
+  <h1>Список депозитных заявок (админка)</h1>
+);

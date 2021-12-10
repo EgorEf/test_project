@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { SyntheticEvent, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -28,13 +28,13 @@ export const AuthForm = () => {
 
   const [getAuthUser, { isError, isLoading }] = useLoginMutation();
 
-  const handleChange = (event: any) => {
-    const { target: { value, name, checked } } = event;
+  const handleChange = ({ target }: SyntheticEvent) => {
+    const { value, name, checked } = target as HTMLInputElement;
     const currentValue = (name === 'isRemember') ? checked : value;
     setFieldValue((prevState) => ({ ...prevState, [name]: currentValue }));
   };
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
     const { email, password, isRemember } = loginState;
     const requestData: RequestData = { email, password };
@@ -44,14 +44,17 @@ export const AuthForm = () => {
     getAuthUser(requestData)
       .unwrap()
       .then(() => {
-        const from = location.state?.from?.pathname || "/";
-        navigate(from, { replace: true })
+        const from = location.state?.from?.pathname || '/';
+        navigate(from, { replace: true });
       })
-      .catch((e) => console.log(e, 'Error'));
+      .catch((e) => (
+        // eslint-disable-next-line no-console
+        console.error(e, 'Error')
+      ));
   };
 
   return (
-    <Stack component="form" sx={{width: 1}} onSubmit={handleSubmit}>
+    <Stack component="form" sx={{ width: 1 }} onSubmit={handleSubmit}>
       <TextField
         id="email"
         name="email"

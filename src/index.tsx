@@ -5,10 +5,10 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import App from './App';
-import { store, persistor } from './app/store';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
+import { App } from './App';
+import { store, persistor } from './app/store';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

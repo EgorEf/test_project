@@ -1,7 +1,3 @@
-
-
-export const DepositApplication = () => {
-  return (
-    <h1>Депозитная заявка</h1>
-  );
-};
+export const DepositApplication = () => (
+  <h1>Депозитная заявка</h1>
+);

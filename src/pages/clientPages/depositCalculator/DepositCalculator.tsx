@@ -1,5 +1,3 @@
-export const DepositCalculator = () => {
-  return (
-    <h1>Депозитный калькулятор</h1>
-  );
-};
+export const DepositCalculator = () => (
+  <h1>Депозитный калькулятор</h1>
+);
