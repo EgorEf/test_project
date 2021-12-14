@@ -5,9 +5,9 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import type { LoginState, RequestData } from '../pages/authPage/types';
-import { useLoginMutation } from '../services/authApi';
-import { persistor } from '../app/store';
+import type { LoginState, RequestData, ReturnTypeFunc } from '../../../app/types';
+import { useLoginMutation } from '../../../services/authApi';
+import { persistor } from '../../../app/store';
 
 const marginBottom = { mb: 3 };
 
@@ -16,7 +16,7 @@ const handlePersistor = (isRemember: boolean) => {
   return persistor.persist();
 };
 
-export const AuthForm = () => {
+export const AuthForm = (): ReturnTypeFunc => {
   const navigate = useNavigate();
   const location = useLocation();
 
