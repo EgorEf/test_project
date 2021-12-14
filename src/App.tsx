@@ -1,5 +1,5 @@
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route
 } from 'react-router-dom';
@@ -12,10 +12,10 @@ import { ReturnTypeFunc } from './app/types';
 
 export const App = (): ReturnTypeFunc => (
   <Container sx={{ height: '100vh' }} disableGutters>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={(
             <ProtectedRouter>
               <Home />
@@ -25,6 +25,6 @@ export const App = (): ReturnTypeFunc => (
         <Route path="login" element={<AuthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </Container>
 );
