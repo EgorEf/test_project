@@ -11,7 +11,7 @@ import {
   REGISTER
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from '../pages/authPage/authSlice';
+import authReducer from '../pages/AuthPage/authSlice';
 import { authApi } from '../services/authApi';
 
 const persistConfig = {
