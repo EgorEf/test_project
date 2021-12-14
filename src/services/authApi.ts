@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { ResponseData } from '../pages/authPage/types';
+import type { ResponseData } from '../app/types';
 
 const baseUrl = (process.env.NODE_ENV === 'development')
   ? 'http://localhost:3001/'

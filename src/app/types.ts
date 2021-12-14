@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 export interface RequestData {
   email: string,
   password: string
@@ -12,6 +14,10 @@ export interface ResponseData extends RequestData {
   role: string
 }
 
+export type User = ResponseData | null;
+
 export type UserState = {
-  user: ResponseData | null
+  user: User
 };
+
+export type ReturnTypeFunc = ReactElement | null;

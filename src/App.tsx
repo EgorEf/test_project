@@ -7,6 +7,7 @@ import {
 import Container from '@mui/material/Container';
 import { AuthPage } from './pages/authPage/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
+import { ReturnTypeFunc } from './app/types';
 
 export const App = () => (
   <Container sx={{ height: '100vh' }} disableGutters>

@@ -3,6 +3,7 @@ import { DepositCalculator } from '../pages/clientPages/depositCalculator/Deposi
 import { DepositOrders } from '../pages/adminPages/depositOrders/DepositOrders';
 import { selectCurrentUser } from '../pages/authPage/authSlice';
 import { useAppSelector as useSelector } from '../app/hooks';
+import { ReturnTypeFunc } from '../app/types';
 
 export const ProtectedRouter = () => {
   const user = useSelector(selectCurrentUser);
