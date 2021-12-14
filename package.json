@@ -1,6 +1,7 @@
 {
   "name": "test_project",
   "version": "0.1.0",
+  "homepage": "https://egoref.github.io/test_project/",
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.5.1",
@@ -31,7 +32,7 @@
     "createDb": "cp ./localServer/dbTemplate.json ./localServer/db.json",
     "serve": "npm run createDb | npx json-server -w ./localServer/db.json --port 3001 -d 1000",
     "start": "npm run serve | craco --openssl-legacy-provider start",
-    "build": "craco build",
+    "build": "craco --openssl-legacy-provider build",
     "deploy": "npm run build && gh-pages -d build",
     "test": "craco test",
     "eject": "react-scripts eject"
