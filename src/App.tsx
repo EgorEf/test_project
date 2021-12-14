@@ -15,7 +15,7 @@ export const App = () => (
       <Routes>
         <Route path="/" element={<Navigate to="deposit" replace />} />
         <Route path="login" element={<AuthPage />} />
-        <Route path="deposit" element={<ProtectedRouter />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </Container>
