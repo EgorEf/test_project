@@ -3,7 +3,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import { AuthPage } from './pages/AuthPage/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
 import { Home } from './pages/HomePage/Home';
@@ -11,7 +11,7 @@ import { NotFound } from './pages/NotFoundPage/NotFound';
 import { ReturnTypeFunc } from './app/types';
 
 export const App = (): ReturnTypeFunc => (
-  <Container sx={{ height: '100vh' }} disableGutters>
+  <Box sx={{ height: '100vh' }}>
     <HashRouter>
       <Routes>
         <Route
@@ -26,5 +26,5 @@ export const App = (): ReturnTypeFunc => (
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
-  </Container>
+  </Box>
 );
