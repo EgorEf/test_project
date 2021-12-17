@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ChangeEvent } from 'react';
 
 export interface RequestData {
   email: string,
@@ -21,3 +21,10 @@ export type UserState = {
 };
 
 export type ReturnTypeFunc = ReactElement | null;
+
+export type PropsType = {
+  value?: string | number,
+  handleChange?: (e: ChangeEvent) => void,
+  currencySymbol?: string,
+  optionValues?: { [key: string]: boolean }
+};
