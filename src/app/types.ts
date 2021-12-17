@@ -22,9 +22,15 @@ export type UserState = {
 
 export type ReturnTypeFunc = ReactElement | null;
 
+export type OptionValuesType = {
+  isEarlyRepayment: boolean,
+  isPartial: boolean,
+  isCapitalization: boolean
+};
+
 export type PropsType = {
   value?: string | number,
   handleChange?: (e: ChangeEvent) => void,
   currencySymbol?: string,
-  optionValues?: { [key: string]: boolean }
+  optionValues?: OptionValuesType
 };
