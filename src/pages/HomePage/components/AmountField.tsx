@@ -18,7 +18,7 @@ export const AmountField = ({
       onChange={handleChange}
       placeholder="Введите сумму депозита"
       sx={{ mt: '9px' }}
-      startAdornment={(
+      endAdornment={(
         <InputAdornment position="start">
           {currencySymbol}
         </InputAdornment>
