@@ -86,6 +86,7 @@ export const TermField = ({
         type="number"
         value={localState.value}
         placeholder="Введите срок депозита"
+        sx={{ maxWidth: '300px' }}
         endAdornment={(
           <InputAdornment position="start">
             {getAdornment(localState.value)}
