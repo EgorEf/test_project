@@ -3,9 +3,9 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import Radio from '@mui/material/Radio';
+import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
 import { ReturnTypeFunc } from '../../../app/types';
 
 type MappedObjType = {
@@ -81,12 +81,12 @@ export const TermField = ({
         <FormControlLabel value="mounth" control={<Radio />} label="Месяцы" />
         <FormControlLabel value="year" control={<Radio />} label="Годы" />
       </RadioGroup>
-      <OutlinedInput
+      <OutlinedInputWithoutArrows
         name="term"
         type="number"
         value={localState.value}
+        inputProps={{ min: 0 }}
         placeholder="Введите срок депозита"
-        sx={{ maxWidth: '300px' }}
         endAdornment={(
           <InputAdornment position="start">
             {getAdornment(localState.value)}

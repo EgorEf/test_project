@@ -1,7 +1,7 @@
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
+import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
 import { ReturnTypeFunc, PropsType } from '../../../app/types';
 
 export const AmountField = ({
@@ -11,13 +11,14 @@ export const AmountField = ({
 }: PropsType): ReturnTypeFunc => (
   <FormControl>
     <FormLabel component="legend">Сумма</FormLabel>
-    <OutlinedInput
+    <OutlinedInputWithoutArrows
       name="amount"
       type="number"
       value={value}
       onChange={handleChange}
       placeholder="Введите сумму депозита"
-      sx={{ mt: '9px', maxWidth: '300px' }}
+      inputProps={{ min: 0 }}
+      sx={{ mt: '9px' }}
       endAdornment={(
         <InputAdornment position="start">
           {currencySymbol}
