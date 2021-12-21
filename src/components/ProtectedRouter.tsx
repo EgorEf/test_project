@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
-import { selectCurrentUser } from '../pages/AuthPage/authSlice';
+import { selectCurrentUser } from '../pages/Auth/authSlice';
 import { useAppSelector as useSelector } from '../app/hooks';
 import { ReturnTypeFunc } from '../app/types';
 
