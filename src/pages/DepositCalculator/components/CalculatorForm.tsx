@@ -7,9 +7,19 @@ import { AmountField } from './AmountField';
 import { TermField } from './TermField';
 import { ReturnTypeFunc } from '../../../app/types';
 import { OptionFields } from './OptionFields';
+import { useGetProductsMutation } from '../../../services/productsApi';
 
 type MappedObjWithSymbols = {
   [key: string]: string;
+};
+
+type ProductRequest = {
+  currency: string,
+  amount: number,
+  term: number,
+  isEarlyRepayment: boolean,
+  isPartial: boolean,
+  isCapitalization: boolean
 };
 
 const mappedSymbolsByCurrency: MappedObjWithSymbols = {
@@ -27,10 +37,13 @@ const initialValues = {
 };
 
 export const CalculatorForm = (): ReturnTypeFunc => {
+  const [getProducts] = useGetProductsMutation();
+
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values));
+      const product: ProductRequest = values;
+      getProducts(product);
     }
   });
 
