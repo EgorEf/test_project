@@ -1,6 +1,7 @@
+import { useMemo } from 'react';
 import { useFormik } from 'formik';
+import debounce from 'lodash.debounce';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import { CurrencyField } from './СurrencyField';
 import { AmountField } from './AmountField';
 import { TermField } from './TermField';
@@ -29,7 +30,7 @@ export const CalculatorForm = (): ReturnTypeFunc => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      console.log(JSON.stringify(values));
     }
   });
 
@@ -37,11 +38,21 @@ export const CalculatorForm = (): ReturnTypeFunc => {
     values,
     handleChange,
     handleSubmit,
-    setFieldValue
+    setFieldValue,
+    submitForm
   } = formik;
 
+  const handleFormChange = () => {
+    submitForm();
+  };
+
+  const debouncedChangeHandler = useMemo(
+    () => debounce(handleFormChange, 1000),
+    []
+  );
+
   return (
-    <Stack component="form" spacing={3} onSubmit={handleSubmit}>
+    <Stack component="form" spacing={3} onSubmit={handleSubmit} onChange={debouncedChangeHandler}>
       <CurrencyField value={values.currency} handleChange={handleChange} />
       <AmountField
         value={values.amount}
@@ -57,7 +68,6 @@ export const CalculatorForm = (): ReturnTypeFunc => {
           isCapitalization: values.isCapitalization
         }}
       />
-      <Button variant="text" type="submit">CheckForm</Button>
     </Stack>
   );
 };
