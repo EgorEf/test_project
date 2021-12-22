@@ -12,5 +12,66 @@
       "password": "user",
       "role": "user"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Имя1",
+      "currency": "rub",
+      "period": [30, 1095],
+      "periodStep": 30,
+      "initialRate": 2.5,
+      "isEarlyRepayment": true,
+      "isPartial": true,
+      "isCapitalization": false
+    },
+    {
+      "id": 2,
+      "name": "Имя2",
+      "currency": "rub",
+      "period": [180, 730],
+      "periodStep": 30,
+      "initialRate": 2.8,
+      "rateStep": 0.1,
+      "isEarlyRepayment": true,
+      "isPartial": true,
+      "isCapitalization": true
+    },
+    {
+      "id": 3,
+      "name": "Имя3",
+      "currency": "rub",
+      "period": [30, 365],
+      "periodStep": 30,
+      "initialRate": 2.3,
+      "rateStep": 0.9,
+      "isEarlyRepayment": false,
+      "isPartial": false,
+      "isCapitalization": true
+    },
+    {
+      "id": 4,
+      "name": "Имя4",
+      "currency": "rub",
+      "period": [30, 180],
+      "periodStep": 30,
+      "initialRate": 2,
+      "rateStep": 0.95,
+      "isEarlyRepayment": false,
+      "isPartial": false,
+      "isCapitalization": false
+    },
+    {
+      "id": 5,
+      "name": "Имя5",
+      "currency": "usd",
+      "period": [30, 1095],
+      "periodStep": 30,
+      "initialRate": 2.6,
+      "rateStep": 1.05,
+      "isEarlyRepayment": false,
+      "isPartial": false,
+      "isCapitalization": false
+    }
   ]
 }
