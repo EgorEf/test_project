@@ -1,14 +1,9 @@
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
 import type { ReturnTypeFunc } from '../../app/types';
 import { CalculatorForm } from './components/CalculatorForm';
-
-const Block = styled('div')`
-  border: 1px solid black;
-  height: 100%;
-`;
+import { Products } from './components/Products';
 
 export const DepositCalculator = (): ReturnTypeFunc => (
   <Box>
@@ -25,7 +20,7 @@ export const DepositCalculator = (): ReturnTypeFunc => (
         <CalculatorForm />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <Block />
+        <Products />
       </Grid>
     </Grid>
   </Box>
