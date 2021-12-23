@@ -1,9 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { ResponseData } from '../app/types';
-
-const baseUrl = (process.env.NODE_ENV === 'development')
-  ? 'http://localhost:3001/'
-  : 'https://my-json-server.typicode.com/EgorEf/fake-server/';
+import { baseUrl } from '../routes/routes';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
