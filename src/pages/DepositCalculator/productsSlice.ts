@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { productsApi } from '../../services/productsApi';
 import type { RootState } from '../../app/store';
+import type { Product } from '../../app/types';
 
-const initialState = {
-  products: []
+type TState = {
+  items: Array<Product>
+};
+
+const initialState: TState = {
+  items: []
 };
 
 export const productsSlice = createSlice({
@@ -12,15 +17,14 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
-      productsApi.endpoints.products.matchFulfilled,
+      productsApi.endpoints.getProducts.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
-        return state;
+        state.items = payload;
       }
     );
   }
 });
 
-export const selectProducts = (state: RootState) => state.products.products;
+export const selectProducts = (state: RootState): Product[] => state.products.items;
 
 export default productsSlice.reducer;
