@@ -1,53 +1,37 @@
-import { createApi, fetchBaseQuery, FetchBaseQueryMeta } from '@reduxjs/toolkit/query/react';
-import type { ProductRequest } from '../app/types';
-
-const baseUrl = (process.env.NODE_ENV === 'development')
-  ? 'http://localhost:3001/'
-  : 'https://my-json-server.typicode.com/EgorEf/fake-server/';
-
-type ProductResponse = {
-  id: 1,
-  name: string,
-  currency: string,
-  period: Array<[number]>,
-  periodStep: number,
-  initialRate: number,
-  isEarlyRepayment: boolean,
-  isPartial: boolean,
-  isCapitalization: boolean
-};
-
-function defaultTransformResponse(
-  baseQueryReturnValue: unknown,
-  meta: unknown,
-  arg: unknown
-) {
-  return baseQueryReturnValue;
-}
+import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
+import { getPreparedDataProducts } from './prepareDataProducts';
+import { baseUrl } from '../routes/routes';
+import type { ProductResponse } from '../app/types';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getProducts: builder.mutation({
-      query: ({
-        currency,
-        isEarlyRepayment,
-        isPartial,
-        isCapitalization
-      }) => ({
-        url: 'products',
-        params: {
+      async queryFn(requestParams, queryApi, extraOptions, fetchWithBQ) {
+        const {
           currency,
           isEarlyRepayment,
           isPartial,
           isCapitalization
-        },
-        validateStatus: (response, result) => (response.status === 200 && result.length !== 0)
-      }),
-      transformResponse: (products, meta) => {
-        console.log({ products, meta }, 'het');
-        return products;
+        } = requestParams;
+
+        const response = await fetchWithBQ({
+          url: 'products',
+          params: {
+            currency,
+            'options.isEarlyRepayment': isEarlyRepayment,
+            'options.isPartial': isPartial,
+            'options.isCapitalization': isCapitalization
+          }
+        });
+
+        if (!response.data) return { error: response.error as FetchBaseQueryError };
+
+        const { data } = response as { data: ProductResponse[] };
+        return {
+          data: getPreparedDataProducts(data, requestParams)
+        } as { data: Array<ProductResponse> };
       }
     })
   })
