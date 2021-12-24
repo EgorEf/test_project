@@ -5,21 +5,12 @@ import Stack from '@mui/material/Stack';
 import { CurrencyField } from './СurrencyField';
 import { AmountField } from './AmountField';
 import { TermField } from './TermField';
-import { ReturnTypeFunc } from '../../../app/types';
+import { ReturnTypeFunc, ProductRequest } from '../../../app/types';
 import { OptionFields } from './OptionFields';
 import { useGetProductsMutation } from '../../../services/productsApi';
 
 type MappedObjWithSymbols = {
   [key: string]: string;
-};
-
-type ProductRequest = {
-  currency: string,
-  amount: number,
-  term: number,
-  isEarlyRepayment: boolean,
-  isPartial: boolean,
-  isCapitalization: boolean
 };
 
 const mappedSymbolsByCurrency: MappedObjWithSymbols = {
@@ -43,7 +34,9 @@ export const CalculatorForm = (): ReturnTypeFunc => {
     initialValues,
     onSubmit: (values) => {
       const product: ProductRequest = values;
-      getProducts(product);
+      getProducts(product)
+        .unwrap()
+        .catch((e) => console.log(e));
     }
   });
 
@@ -60,7 +53,7 @@ export const CalculatorForm = (): ReturnTypeFunc => {
   };
 
   const debouncedChangeHandler = useMemo(
-    () => debounce(handleFormChange, 1000),
+    () => debounce(handleFormChange, 500),
     []
   );
 
