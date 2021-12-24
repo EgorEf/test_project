@@ -16,62 +16,78 @@
   "products": [
     {
       "id": 1,
-      "name": "Имя1",
+      "name": "Универсальный",
       "currency": "rub",
+      "minAmount": 100000,
       "period": [30, 1095],
       "periodStep": 30,
-      "initialRate": 2.5,
-      "isEarlyRepayment": true,
-      "isPartial": true,
-      "isCapitalization": false
+      "rate": 2.5,
+      "rateStep": 0.11,
+      "options": {
+        "isEarlyRepayment": true,
+        "isPartial": true,
+        "isCapitalization": false
+      }
     },
     {
       "id": 2,
-      "name": "Имя2",
+      "name": "Средний",
       "currency": "rub",
+      "minAmount": 50000,
       "period": [180, 730],
       "periodStep": 30,
-      "initialRate": 2.8,
+      "rate": 2.8,
       "rateStep": 0.1,
-      "isEarlyRepayment": true,
-      "isPartial": true,
-      "isCapitalization": true
+      "options": {
+        "isEarlyRepayment": true,
+        "isPartial": true,
+        "isCapitalization": true
+      }
     },
     {
       "id": 3,
-      "name": "Имя3",
+      "name": "До года",
       "currency": "rub",
+      "minAmount": 50000,
       "period": [30, 365],
       "periodStep": 30,
-      "initialRate": 2.3,
-      "rateStep": 0.9,
-      "isEarlyRepayment": false,
-      "isPartial": false,
-      "isCapitalization": true
+      "rate": 2.3,
+      "rateStep": 0.09,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": true
+      }
     },
     {
       "id": 4,
-      "name": "Имя4",
+      "name": "Короткий",
       "currency": "rub",
+      "minAmount": 30000,
       "period": [30, 180],
       "periodStep": 30,
-      "initialRate": 2,
+      "rate": 2,
       "rateStep": 0.95,
-      "isEarlyRepayment": false,
-      "isPartial": false,
-      "isCapitalization": false
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": false
+      }
     },
     {
       "id": 5,
-      "name": "Имя5",
+      "name": "Долларовый",
       "currency": "usd",
+      "minAmount": 500,
       "period": [30, 1095],
       "periodStep": 30,
-      "initialRate": 2.6,
-      "rateStep": 1.05,
-      "isEarlyRepayment": false,
-      "isPartial": false,
-      "isCapitalization": false
+      "rate": 2.6,
+      "rateStep": 0.15,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": true
+      }
     }
   ]
 }
