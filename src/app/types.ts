@@ -34,3 +34,44 @@ export type PropsType = {
   currencySymbol?: string,
   optionValues?: OptionValuesType
 };
+
+export type Options = {
+  isEarlyRepayment: boolean,
+  isPartial: boolean,
+  isCapitalization: boolean
+};
+
+export type ProductResponse = {
+  id: 1,
+  name: string,
+  currency: string,
+  minAmount: number,
+  period: Array<number>,
+  periodStep: number,
+  rate: number,
+  rateStep: number,
+  options: Options
+};
+
+export type ProductRequest = {
+  currency: string,
+  amount: number,
+  term: number,
+  isEarlyRepayment: boolean,
+  isPartial: boolean,
+  isCapitalization: boolean
+};
+
+export type Product = {
+  id: 1,
+  name: string,
+  currency: string,
+  period: Array<number>,
+  rate: number,
+  income?: number,
+  options: {
+    isEarlyRepayment: boolean,
+    isPartial: boolean,
+    isCapitalization: boolean
+  }
+};
