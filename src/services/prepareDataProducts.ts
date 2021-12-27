@@ -5,6 +5,10 @@ import {
   Product
 } from '../app/types';
 
+const getFixedNum = (num: number, numbersAfterPoint: number): number => (
+  Number(num.toFixed(numbersAfterPoint))
+);
+
 const getRateByTerm = (
   startPeriod: number,
   periodStep: number,
