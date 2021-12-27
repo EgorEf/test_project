@@ -83,6 +83,7 @@ export const TermField = ({
 
   const getAdornment = mappedIntervalNamesByLanguages[localState.timeInterval];
   const max = mappedMaxValueByTimeInterval[localState.timeInterval];
+  const currentValue = (localState.value === 0) ? '' : localState.value;
 
   return (
     <FormControl component="fieldset">
@@ -95,9 +96,9 @@ export const TermField = ({
       <OutlinedInputWithoutArrows
         name="term"
         type="number"
-        value={localState.value}
+        value={currentValue}
         inputProps={{ min: 0, max }}
-        placeholder="Введите срок депозита"
+        placeholder="0"
         endAdornment={(
           <InputAdornment position="start">
             {getAdornment(localState.value)}
