@@ -1,46 +1,26 @@
 import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
-import { CardHeader } from '@mui/material';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { ProductCard } from './ProductCard';
+import { HelpText } from './HelpText';
 import { selectProducts } from '../productsSlice';
 import { useAppSelector as useSelector } from '../../../app/hooks';
-import { ReturnTypeFunc } from '../../../app/types';
+import { ReturnTypeFunc, Product } from '../../../app/types';
 
 export const Products = (): ReturnTypeFunc => {
   const accessedProducts = useSelector(selectProducts);
 
-  const renderCardProduct = (product: any) => {
-    const {
-      id,
-      name,
-      currency,
-      income,
-      rate
-    } = product;
+  const renderProductCard = (product: Product) => (
+    <ProductCard key={product.id} productData={product} />
+  );
 
-    return (
-      <Card key={id} variant="outlined">
-        <CardHeader title={name} titleTypographyProps={{ variant: 'h5' }}>
-          {name}
-        </CardHeader>
-        <CardContent>
-          <Typography variant="body1">{`Валюта: ${currency}`}</Typography>
-          <Typography variant="body1">{`Ставка годовых: ${rate}`}</Typography>
-          <Typography variant="body1">{`Доход: ${income}`}</Typography>
-        </CardContent>
-        <CardActions sx={{ pl: '16px', pb: '16px' }}>
-          <Button variant="contained">Оформить</Button>
-        </CardActions>
-      </Card>
-    );
-  };
+  if (!accessedProducts) return null;
 
   return (
-    <Stack>
-      {accessedProducts.map(renderCardProduct)}
+    <Stack spacing={2}>
+      {
+        (accessedProducts.length === 0)
+          ? <HelpText />
+          : accessedProducts.map(renderProductCard)
+      }
     </Stack>
   );
 };
