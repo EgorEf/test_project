@@ -4,11 +4,11 @@ import type { RootState } from '../../app/store';
 import type { Product } from '../../app/types';
 
 type TState = {
-  items: Array<Product>
+  items: Array<Product> | null
 };
 
 const initialState: TState = {
-  items: []
+  items: null
 };
 
 export const productsSlice = createSlice({
@@ -25,6 +25,6 @@ export const productsSlice = createSlice({
   }
 });
 
-export const selectProducts = (state: RootState): Product[] => state.products.items;
+export const selectProducts = (state: RootState): Product[] | null => state.products.items;
 
 export default productsSlice.reducer;
