@@ -17,61 +17,77 @@
     {
       "id": 1,
       "name": "Универсальный",
-      "description": "Описание..",
+      "description": "Со сроком привлечения до года / больше года.",
       "currency": "rub",
-      "minAmount": 100000,
-      "period": [30, 1095],
+      "minAmount": 500000,
+      "period": [180, 1095],
       "periodStep": 30,
-      "rate": 2.5,
-      "rateStep": 0.11,
+      "rate": 5.20,
+      "rateStep": 0.08,
       "options": {
-        "isEarlyRepayment": true,
-        "isPartial": true,
+        "isEarlyRepayment": false,
+        "isPartial": false,
         "isCapitalization": false
       }
     },
     {
       "id": 2,
-      "name": "Средний",
-      "description": "Описание..",
+      "name": "Долгосрочный",
+      "description": "С возможностью частичного расторжения",
       "currency": "rub",
-      "minAmount": 50000,
-      "period": [180, 730],
+      "minAmount": 1e6,
+      "period": [365, 1095],
       "periodStep": 30,
-      "rate": 2.8,
-      "rateStep": 0.1,
+      "rate": 5.80,
+      "rateStep": 0.04,
       "options": {
         "isEarlyRepayment": true,
-        "isPartial": true,
-        "isCapitalization": true
+        "isPartial": false,
+        "isCapitalization": false
       }
     },
     {
       "id": 3,
-      "name": "До года",
-      "description": "Описание..",
+      "name": "Премиальный",
+      "description": "С возможностью частичного снятия и пополнения и досрочным расторжением",
       "currency": "rub",
-      "minAmount": 50000,
-      "period": [30, 365],
+      "minAmount": 5e6,
+      "period": [30, 1095],
       "periodStep": 30,
-      "rate": 2.3,
+      "rate": 6.30,
       "rateStep": 0.09,
       "options": {
-        "isEarlyRepayment": false,
-        "isPartial": false,
-        "isCapitalization": true
+        "isEarlyRepayment": true,
+        "isPartial": true,
+        "isCapitalization": false
       }
     },
     {
       "id": 4,
-      "name": "Короткий",
-      "description": "Описание..",
+      "name": "Народный",
+      "description": "С минимальной суммой от 10000 руб и возможностью частичного снятия и пополнения.",
       "currency": "rub",
-      "minAmount": 30000,
-      "period": [30, 180],
+      "minAmount": 10000,
+      "period": [30, 365],
       "periodStep": 30,
-      "rate": 2,
-      "rateStep": 0.95,
+      "rate": 5.90,
+      "rateStep": 0.08,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": true,
+        "isCapitalization": false
+      }
+    },
+    {
+      "id": 5,
+      "name": "Надежный",
+      "description": "В долларах",
+      "currency": "usd",
+      "minAmount": 1000,
+      "period": [30, 1095],
+      "periodStep": 30,
+      "rate": 2.50,
+      "rateStep": 0.05,
       "options": {
         "isEarlyRepayment": false,
         "isPartial": false,
@@ -79,15 +95,15 @@
       }
     },
     {
-      "id": 5,
-      "name": "Долларовый",
-      "description": "Описание..",
+      "id": 6,
+      "name": "Надежный +",
+      "description": "В долларах с ежемесячной капитализацией",
       "currency": "usd",
-      "minAmount": 500,
+      "minAmount": 1500,
       "period": [30, 1095],
       "periodStep": 30,
-      "rate": 2.6,
-      "rateStep": 0.15,
+      "rate": 2.50,
+      "rateStep": 0.06,
       "options": {
         "isEarlyRepayment": false,
         "isPartial": false,
@@ -95,19 +111,83 @@
       }
     },
     {
-      "id": 6,
+      "id": 7,
       "name": "Овернайт",
       "description": "Размещение на 1 рабочий день",
       "currency": "rub",
       "minAmount": 1e6,
       "period": [1, 1],
       "periodStep": 30,
-      "rate": 1.2,
+      "rate": 3.20,
       "rateStep": 0,
       "options": {
         "isEarlyRepayment": false,
         "isPartial": false,
         "isCapitalization": false
+      }
+    },
+    {
+      "id": 8,
+      "name": "Гибкий",
+      "description": "С возможностью частичного снятия и пополнения",
+      "currency": "rub",
+      "minAmount": 200000,
+      "period": [60, 365],
+      "periodStep": 30,
+      "rate": 5.50,
+      "rateStep": 0.07,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": true,
+        "isCapitalization": false
+      }
+    },
+    {
+      "id": 9,
+      "name": "Фиксированный",
+      "description": "С возможностью досрочного расторжения",
+      "currency": "rub",
+      "minAmount": 500000,
+      "period": [60, 360],
+      "periodStep": 30,
+      "rate": 5.50,
+      "rateStep": 0.85,
+      "options": {
+        "isEarlyRepayment": true,
+        "isPartial": false,
+        "isCapitalization": false
+      }
+    },
+    {
+      "id": 10,
+      "name": "Авансовый",
+      "description": "Выплата процентов авансом за весь срок.",
+      "currency": "rub",
+      "minAmount": 500000,
+      "period": [14, 365],
+      "periodStep": 30,
+      "rate": 5.00,
+      "rateStep": 0.07,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": false
+      }
+    },
+    {
+      "id": 11,
+      "name": "Максимум",
+      "description": "С ежемесячной капитализацией",
+      "currency": "rub",
+      "minAmount": 1000000,
+      "period": [180, 1095],
+      "periodStep": 30,
+      "rate": 5.10,
+      "rateStep": 0.08,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": true
       }
     }
   ]
