@@ -9,17 +9,22 @@ export const DepositCalculator = (): ReturnTypeFunc => (
   <Box>
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography variant="h5">Депозитный калькулятор</Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography variant="subtitle1" mt={2} sx={{ color: 'text.secondary' }}>
-          Введите параметры и подберите подходящий продукт.
-        </Typography>
+        <Typography variant="h4">Депозитный калькулятор</Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
+        <Box mb={3}>
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+            Введите параметры и подберите подходящий продукт.
+          </Typography>
+        </Box>
         <CalculatorForm />
       </Grid>
       <Grid item xs={12} sm={6}>
+        <Box mb={3}>
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+            Список доступных продуктов:
+          </Typography>
+        </Box>
         <Products />
       </Grid>
     </Grid>
