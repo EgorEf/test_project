@@ -12,6 +12,10 @@ type MappedObjType = {
   [key: string]: (arg: number) => string | number;
 };
 
+type MappedObjTypeWithNumberValues = {
+  [key: string]: number
+};
+
 type PropsType = {
   changeFormikFieldValue: (name: string, value: number | string) => void
 };
@@ -49,6 +53,12 @@ const mappedNameIntervalToAction: MappedObjType = {
   year: (number) => number * 365
 };
 
+const mappedMaxValueByTimeInterval: MappedObjTypeWithNumberValues = {
+  day: 1095,
+  mounth: 36,
+  year: 3
+};
+
 export const TermField = ({
   changeFormikFieldValue
 }: PropsType): ReturnTypeFunc => {
@@ -72,6 +82,7 @@ export const TermField = ({
   };
 
   const getAdornment = mappedIntervalNamesByLanguages[localState.timeInterval];
+  const max = mappedMaxValueByTimeInterval[localState.timeInterval];
 
   return (
     <FormControl component="fieldset">
@@ -85,7 +96,7 @@ export const TermField = ({
         name="term"
         type="number"
         value={localState.value}
-        inputProps={{ min: 0 }}
+        inputProps={{ min: 0, max }}
         placeholder="Введите срок депозита"
         endAdornment={(
           <InputAdornment position="start">
