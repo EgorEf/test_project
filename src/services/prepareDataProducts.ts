@@ -38,7 +38,7 @@ const getConfigurabledRateByOptions = (rate: number, options: Options) => {
 };
 
 const filterByMinAmount = (amount: number) => ({ minAmount }: ProductResponse) => (
-  amount > minAmount
+  amount >= minAmount
 );
 
 const filterByEntryInPeriod = (term: number) => (
