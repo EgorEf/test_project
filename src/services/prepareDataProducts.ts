@@ -18,8 +18,8 @@ const getRateByTerm = (
 ): number => {
   const steps = Math.floor((term - startPeriod) / periodStep);
   const additionalRate = steps * rateStep;
-  const additionalRateFixed = Number(additionalRate.toFixed(2));
-  return rate + additionalRateFixed;
+  const resultRate = rate + additionalRate;
+  return getFixedNum(resultRate, 2);
 };
 
 const getConfigurabledRateByOptions = (rate: number, options: Options) => {
@@ -34,7 +34,8 @@ const getConfigurabledRateByOptions = (rate: number, options: Options) => {
     negativeRateSum += 0.35;
   }
 
-  return rate - negativeRateSum;
+  const resultRate = rate - negativeRateSum;
+  return getFixedNum(resultRate, 2);
 };
 
 const filterByMinAmount = (amount: number) => ({ minAmount }: ProductResponse) => (
@@ -75,7 +76,7 @@ const getIncomeForProduct = (amount: number, term: number) => (
     const income = (isCapitalization)
       ? getIncomeWithMonthlyCapitalization(amount, term, rate)
       : getIncomeForSimpleDeposit(amount, rate, term);
-    const incomeFixed = Number(income.toFixed(1));
+    const incomeFixed = getFixedNum(income, 2);
     return { ...product, income: incomeFixed };
   }
 );
