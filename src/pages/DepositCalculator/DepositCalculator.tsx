@@ -11,7 +11,7 @@ export const DepositCalculator = (): ReturnTypeFunc => (
       <Grid item xs={12}>
         <Typography variant="h4">Депозитный калькулятор</Typography>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={5}>
         <Box mb={3}>
           <Typography variant="h6" sx={{ color: 'text.secondary' }}>
             Введите параметры и подберите подходящий продукт.
@@ -19,7 +19,7 @@ export const DepositCalculator = (): ReturnTypeFunc => (
         </Box>
         <CalculatorForm />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={7}>
         <Box mb={3}>
           <Typography variant="h6" sx={{ color: 'text.secondary' }}>
             Список доступных продуктов:
