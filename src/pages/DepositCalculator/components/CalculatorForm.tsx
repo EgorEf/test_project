@@ -9,15 +9,6 @@ import { ReturnTypeFunc, ProductRequest } from '../../../app/types';
 import { OptionFields } from './OptionFields';
 import { useGetProductsMutation } from '../../../services/productsApi';
 
-type MappedObjWithSymbols = {
-  [key: string]: string;
-};
-
-const mappedSymbolsByCurrency: MappedObjWithSymbols = {
-  rub: '₽',
-  usd: '$'
-};
-
 const initialValues = {
   currency: 'rub',
   amount: 0,
@@ -62,7 +53,7 @@ export const CalculatorForm = (): ReturnTypeFunc => {
       <CurrencyField value={values.currency} handleChange={handleChange} />
       <AmountField
         value={values.amount}
-        currencySymbol={mappedSymbolsByCurrency[values.currency]}
+        currency={values.currency}
         handleChange={handleChange}
       />
       <TermField changeFormikFieldValue={setFieldValue} />
