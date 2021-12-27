@@ -3,13 +3,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import Switch from '@mui/material/Switch';
-import type { PropsType, ReturnTypeFunc, OptionValuesType } from '../../../app/types';
+import type { PropsType, ReturnTypeFunc, Options } from '../../../app/types';
 
 export const OptionFields = ({
   handleChange,
-  optionValues
+  value
 }: PropsType): ReturnTypeFunc => {
-  const { isEarlyRepayment, isPartial, isCapitalization } = optionValues as OptionValuesType;
+  const { isEarlyRepayment, isPartial, isCapitalization } = value as Options;
 
   return (
     <FormControl>

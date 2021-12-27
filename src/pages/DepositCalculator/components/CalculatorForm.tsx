@@ -68,7 +68,7 @@ export const CalculatorForm = (): ReturnTypeFunc => {
       <TermField changeFormikFieldValue={setFieldValue} />
       <OptionFields
         handleChange={handleChange}
-        optionValues={{
+        value={{
           isEarlyRepayment: values.isEarlyRepayment,
           isPartial: values.isPartial,
           isCapitalization: values.isCapitalization
