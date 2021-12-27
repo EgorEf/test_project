@@ -17,6 +17,7 @@
     {
       "id": 1,
       "name": "Универсальный",
+      "description": "Описание..",
       "currency": "rub",
       "minAmount": 100000,
       "period": [30, 1095],
@@ -32,6 +33,7 @@
     {
       "id": 2,
       "name": "Средний",
+      "description": "Описание..",
       "currency": "rub",
       "minAmount": 50000,
       "period": [180, 730],
@@ -47,6 +49,7 @@
     {
       "id": 3,
       "name": "До года",
+      "description": "Описание..",
       "currency": "rub",
       "minAmount": 50000,
       "period": [30, 365],
@@ -62,6 +65,7 @@
     {
       "id": 4,
       "name": "Короткий",
+      "description": "Описание..",
       "currency": "rub",
       "minAmount": 30000,
       "period": [30, 180],
@@ -77,6 +81,7 @@
     {
       "id": 5,
       "name": "Долларовый",
+      "description": "Описание..",
       "currency": "usd",
       "minAmount": 500,
       "period": [30, 1095],
@@ -87,6 +92,22 @@
         "isEarlyRepayment": false,
         "isPartial": false,
         "isCapitalization": true
+      }
+    },
+    {
+      "id": 6,
+      "name": "Овернайт",
+      "description": "Размещение на 1 рабочий день",
+      "currency": "rub",
+      "minAmount": 1e6,
+      "period": [1, 1],
+      "periodStep": 30,
+      "rate": 1.2,
+      "rateStep": 0,
+      "options": {
+        "isEarlyRepayment": false,
+        "isPartial": false,
+        "isCapitalization": false
       }
     }
   ]

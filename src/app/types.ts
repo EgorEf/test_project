@@ -36,6 +36,7 @@ export type PropsType = {
 export type ProductResponse = {
   id: 1,
   name: string,
+  description: string,
   currency: string,
   minAmount: number,
   period: Array<number>,
@@ -57,6 +58,7 @@ export type ProductRequest = {
 export type Product = {
   id: 1,
   name: string,
+  description: string,
   currency: string,
   period: Array<number>,
   rate: number,
