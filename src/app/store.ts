@@ -20,7 +20,7 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: [authApi.reducerPath, productsApi.reducerPath]
+  blacklist: [authApi.reducerPath, productsApi.reducerPath, 'products']
 };
 
 const rootReducer = combineReducers({
