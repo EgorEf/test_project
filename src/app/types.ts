@@ -55,17 +55,17 @@ export type ProductRequest = {
   isCapitalization: boolean
 };
 
-export type Product = {
+export type ProductBase = {
   id: 1,
   name: string,
   description: string,
   currency: string,
   period: Array<number>,
   rate: number,
-  income?: number,
   options: {
     isEarlyRepayment: boolean,
     isPartial: boolean,
     isCapitalization: boolean
   }
 };
+export type Product = ProductBase & { income: number }

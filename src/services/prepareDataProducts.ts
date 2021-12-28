@@ -2,6 +2,7 @@ import {
   ProductRequest,
   Options,
   ProductResponse,
+  ProductBase,
   Product
 } from '../app/types';
 
@@ -71,7 +72,7 @@ const getIncomeWithMonthlyCapitalization = (amount: number, term: number, rate: 
 };
 
 const getIncomeForProduct = (amount: number, term: number) => (
-  (product: Product) => {
+  (product: ProductBase): Product => {
     const { rate, options: { isCapitalization } } = product;
     const income = (isCapitalization)
       ? getIncomeWithMonthlyCapitalization(amount, term, rate)
@@ -81,7 +82,7 @@ const getIncomeForProduct = (amount: number, term: number) => (
   }
 );
 
-const clearFieldsInProduct = (product: ProductResponse): Product => {
+const clearFieldsInProduct = (product: ProductResponse): ProductBase => {
   const {
     periodStep,
     rateStep,
