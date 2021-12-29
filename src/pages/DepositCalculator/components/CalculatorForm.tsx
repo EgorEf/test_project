@@ -7,7 +7,6 @@ import { AmountField } from './AmountField';
 import { TermField } from './TermField';
 import { ReturnTypeFunc, ProductRequest } from '../../../app/types';
 import { OptionFields } from './OptionFields';
-import { useGetProductsMutation } from '../../../services/productsApi';
 
 const initialValues = {
   currency: 'rub',
@@ -18,16 +17,20 @@ const initialValues = {
   isCapitalization: false
 };
 
-export const CalculatorForm = (): ReturnTypeFunc => {
-  const [getProducts] = useGetProductsMutation();
+type PropType = {
+  getProducts: any
+};
 
+export const CalculatorForm = ({ getProducts }: PropType): ReturnTypeFunc => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
       const product: ProductRequest = values;
-      getProducts(product)
-        .unwrap()
-        .catch((e) => console.log(e));
+      try {
+        getProducts(product).unwrap();
+      } catch (e) {
+        console.log(e);
+      }
     }
   });
 
