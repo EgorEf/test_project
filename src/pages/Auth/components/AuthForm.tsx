@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import type { LoginState, RequestData, ReturnTypeFunc } from '../../../app/types';
-import { useLoginMutation } from '../../../services/authApi';
+import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
 
 const marginBottom = { mb: 3 };
@@ -26,7 +26,7 @@ export const AuthForm = (): ReturnTypeFunc => {
     isRemember: false
   } as LoginState);
 
-  const [getAuthUser, { isError, isLoading }] = useLoginMutation();
+  const [getAuthUser, { isError, isLoading }] = useLazyLoginQuery();
 
   const handleChange = ({ target }: SyntheticEvent) => {
     const { value, name, checked } = target as HTMLInputElement;
