@@ -7,7 +7,7 @@ export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getProducts: builder.mutation({
+    getProducts: builder.query({
       async queryFn(requestParams, queryApi, extraOptions, fetchWithBQ) {
         const {
           currency,
@@ -37,4 +37,4 @@ export const productsApi = createApi({
   })
 });
 
-export const { useGetProductsMutation } = productsApi;
+export const { useLazyGetProductsQuery } = productsApi;
