@@ -1,6 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -10,6 +12,11 @@ import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
 
 const marginBottom = { mb: 3 };
+
+const ButtonBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+`;
 
 const handlePersistor = (isRemember: boolean) => {
   if (!isRemember) return persistor.pause();
@@ -87,9 +94,11 @@ export const AuthForm = (): ReturnTypeFunc => {
         label="Запомнить меня"
         sx={marginBottom}
       />
-      <Button variant="contained" type="submit" disabled={isLoading}>
-        Войти
-      </Button>
+      <ButtonBox>
+        <Button variant="contained" type="submit" disabled={isLoading} sx={{ width: '180px' }}>
+          Войти
+        </Button>
+      </ButtonBox>
     </Stack>
   );
 };
