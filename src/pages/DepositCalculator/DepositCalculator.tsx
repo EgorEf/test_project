@@ -4,29 +4,39 @@ import Typography from '@mui/material/Typography';
 import type { ReturnTypeFunc } from '../../app/types';
 import { CalculatorForm } from './components/CalculatorForm';
 import { Products } from './components/Products';
+import { Loader } from './components/Loader';
+import { useLazyGetProductsQuery } from '../../services/productsApi';
 
-export const DepositCalculator = (): ReturnTypeFunc => (
-  <Box>
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant="h4">Депозитный калькулятор</Typography>
+export const DepositCalculator = (): ReturnTypeFunc => {
+  const [getProducts, { isFetching }] = useLazyGetProductsQuery();
+
+  return (
+    <Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Депозитный калькулятор</Typography>
+        </Grid>
+        <Grid item xs={12} sm={5}>
+          <Box mb={3}>
+            <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+              Введите параметры и подберите подходящий продукт.
+            </Typography>
+          </Box>
+          <CalculatorForm getProducts={getProducts} />
+        </Grid>
+        <Grid item xs={12} sm={7}>
+          <Box mb={3}>
+            <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+              Список доступных продуктов:
+            </Typography>
+          </Box>
+          {
+            isFetching
+              ? <Loader />
+              : <Products />
+          }
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={5}>
-        <Box mb={3}>
-          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-            Введите параметры и подберите подходящий продукт.
-          </Typography>
-        </Box>
-        <CalculatorForm />
-      </Grid>
-      <Grid item xs={12} sm={7}>
-        <Box mb={3}>
-          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-            Список доступных продуктов:
-          </Typography>
-        </Box>
-        <Products />
-      </Grid>
-    </Grid>
-  </Box>
-);
+    </Box>
+  );
+};
