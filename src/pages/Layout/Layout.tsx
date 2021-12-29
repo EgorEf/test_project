@@ -14,7 +14,7 @@ const MainBox = styled(Box)({
 const MainContent = styled(Box)({
   height: '100%',
   background: '#FFFFFF',
-  padding: '20px',
+  padding: '30px',
   margin: '15px',
   borderRadius: '15px',
   boxShadow: '0px 0px 8px 4px rgba(0, 0, 0, 0.06)'
