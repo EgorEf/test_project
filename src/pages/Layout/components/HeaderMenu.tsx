@@ -29,7 +29,7 @@ type MappedObjType = {
 const pages: MappedObjType = {
   user: [
     { path: 'depositCalculator', name: 'Депозитный калькулятор' },
-    { path: 'depositApplication', name: 'Депозитная заявка' }
+    { path: 'depositList', name: 'Список депозитных заявок' }
   ],
   admin: [
     { path: 'depositList', name: 'Список депозитных заявок' }
