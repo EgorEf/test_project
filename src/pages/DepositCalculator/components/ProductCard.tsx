@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -9,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { getDepositApplicationPath } from '../../../routes/routes';
 import { ReturnTypeFunc, Product } from '../../../app/types';
 
 type PropType = {
@@ -44,6 +46,7 @@ const getRateView = (rate: number): string => `${rate} %`;
 
 export const ProductCard = ({ productData }: PropType): ReturnTypeFunc => {
   const {
+    id,
     name,
     description,
     currency,
@@ -51,6 +54,13 @@ export const ProductCard = ({ productData }: PropType): ReturnTypeFunc => {
     period,
     income
   } = productData;
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    const path = getDepositApplicationPath(id);
+    navigate(path);
+  };
 
   return (
     <CustomCard sx={{ p: '20px' }}>
@@ -77,7 +87,7 @@ export const ProductCard = ({ productData }: PropType): ReturnTypeFunc => {
             </Box>
           </Stack>
           <CardActions sx={{ px: '0px' }}>
-            <Button variant="contained">Перейти к оформлению</Button>
+            <Button variant="contained" onClick={handleClick}>Перейти к оформлению</Button>
           </CardActions>
         </Stack>
       </CustomCardContent>
