@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { productsApi } from '../../services/productsApi';
+import { logOut } from '../Auth/authSlice';
 import type { RootState } from '../../app/store';
 import type { Product } from '../../app/types';
 
@@ -16,6 +17,12 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(
+      logOut,
+      (state) => {
+        state.items = null;
+      }
+    );
     builder.addMatcher(
       productsApi.endpoints.getProducts.matchFulfilled,
       (state, { payload }) => {
