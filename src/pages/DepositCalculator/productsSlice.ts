@@ -27,4 +27,12 @@ export const productsSlice = createSlice({
 
 export const selectProducts = (state: RootState): Product[] | null => state.products.items;
 
+export const selectProduct = (currentId: number) => (
+  { products: { items } }: RootState
+): Product | null => {
+  if (!items) return null;
+  const product = items.find(({ id }) => currentId === id) || null;
+  return product;
+};
+
 export default productsSlice.reducer;
