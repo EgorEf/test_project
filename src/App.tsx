@@ -43,7 +43,8 @@ export const App = (): ReturnTypeFunc => {
                   <>
                     <Route index element={<Navigate to="depositCalculator" replace />} />
                     <Route path="depositCalculator" element={<DepositCalculator />} />
-                    <Route path="depositApplication" element={<DepositApplication />} />
+                    <Route path="depositList" element={<DepositList />} />
+                    <Route path="depositApplication/:applicationId" element={<DepositApplication />} />
                   </>
                 )
             }
