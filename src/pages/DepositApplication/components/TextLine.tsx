@@ -10,7 +10,7 @@ type PropsType = {
 
 export const TextLine = ({ name, value }: PropsType): ReturnTypeFunc => (
   <Stack direction="row" spacing={3} py={1}>
-    <Typography variant="body2" minWidth={25} maxWidth={70} color={grey[600]}>{name}</Typography>
+    <Typography variant="body2" minWidth="25%" maxWidth="60%" color={grey[600]}>{name}</Typography>
     <Typography variant="body2">{value}</Typography>
   </Stack>
 );
