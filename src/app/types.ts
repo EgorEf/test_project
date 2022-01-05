@@ -9,9 +9,15 @@ export interface LoginState extends RequestData {
   isRemember: boolean
 }
 
+export type UserInfo = {
+  name: string,
+  taxNumber: string
+} | null;
+
 export interface ResponseData extends RequestData {
   id: number,
-  role: string
+  role: string,
+  info: UserInfo
 }
 
 export type User = ResponseData | null;
