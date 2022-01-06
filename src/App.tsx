@@ -45,6 +45,7 @@ export const App = (): ReturnTypeFunc => {
                     <Route path="depositCalculator" element={<DepositCalculator />} />
                     <Route path="depositList" element={<DepositList />} />
                     <Route path="depositApplication/:applicationId" element={<DepositApplication />} />
+                    <Route path="depositApplication/new/:productId" element={<DepositApplication />} />
                   </>
                 )
             }
