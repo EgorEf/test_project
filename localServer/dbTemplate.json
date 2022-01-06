@@ -18,6 +18,20 @@
       "role": "user"
     }
   ],
+  "bills": [
+    {
+      "id": 1,
+      "userId": 2,
+      "currency": "rub",
+      "numBill": "407.01.810.5.4243.1234567"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "currency": "usd",
+      "numBill": "407.01.840.0.4204.1234568"
+    }
+  ],
   "products": [
     {
       "id": 1,
