@@ -40,7 +40,7 @@ export type PropsType = {
 };
 
 export type ProductResponse = {
-  id: 1,
+  id: number,
   name: string,
   description: string,
   currency: string,
@@ -62,16 +62,13 @@ export type ProductRequest = {
 };
 
 export type ProductBase = {
-  id: 1,
+  id: number,
   name: string,
   description: string,
   currency: string,
   period: Array<number>,
   rate: number,
-  options: {
-    isEarlyRepayment: boolean,
-    isPartial: boolean,
-    isCapitalization: boolean
-  }
+  options: Options
 };
+
 export type Product = ProductBase & { income: number }
