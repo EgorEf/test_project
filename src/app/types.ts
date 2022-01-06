@@ -72,3 +72,20 @@ export type ProductBase = {
 };
 
 export type Product = ProductBase & { income: number }
+
+export type TApplication = {
+  id: number,
+  userId: number,
+  name: string,
+  description: string,
+  billNum: number | null,
+  status: 'draft' | 'inProcessing' | 'open',
+  currency: string,
+  rate: number,
+  income: number,
+  options: Options
+};
+
+export type StatusPropType = {
+  status: string
+};
