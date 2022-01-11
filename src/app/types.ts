@@ -73,6 +73,8 @@ export type ProductBase = {
 
 export type Product = ProductBase & { income: number }
 
+export type TApplicationStatus = 'draft' | 'inProcessing' | 'open';
+
 export type TApplication = {
   id: number,
   userId: number,
