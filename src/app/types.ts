@@ -89,5 +89,7 @@ export type TApplication = {
 };
 
 export type StatusPropType = {
-  status: string
+  status: TApplicationStatus
+};
+
 };
