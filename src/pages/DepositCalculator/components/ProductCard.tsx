@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
-import { getDepositApplicationPath } from '../../../routes/routes';
+import { getNewDepositApplicationPath } from '../../../routes/routes';
 import { ReturnTypeFunc, Product } from '../../../app/types';
 
 type PropType = {
@@ -58,7 +58,7 @@ export const ProductCard = ({ productData }: PropType): ReturnTypeFunc => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    const path = getDepositApplicationPath(id);
+    const path = getNewDepositApplicationPath(id);
     navigate(path);
   };
 
