@@ -1,7 +1,12 @@
 import { SyntheticEvent, useState, useEffect } from 'react';
-import { useParams, useLocation, Navigate } from 'react-router-dom';
+import {
+  useParams,
+  useLocation,
+  useNavigate,
+  Navigate
+} from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { useGetApplication, useAppSelector } from '../../app/hooks';
+import { useGetApplication, useAppSelector as useSelector } from '../../app/hooks';
 import { selectProduct } from '../DepositCalculator/productsSlice';
 import { selectCurrentUser } from '../Auth/authSlice';
 import { ReturnTypeFunc, TApplication } from '../../app/types';
@@ -19,9 +24,10 @@ import {
 
 export const DepositApplication = (): ReturnTypeFunc => {
   const { applicationId, productId } = useParams();
+  const navigate = useNavigate();
   const location = useLocation();
-  const currentUser = useAppSelector(selectCurrentUser);
-  const selectedProduct = useAppSelector(selectProduct(Number(productId)));
+  const currentUser = useSelector(selectCurrentUser);
+  const selectedProduct = useSelector(selectProduct(Number(productId)));
   const isNew = (productId && !applicationId);
 
   const [application, setApplication] = useState<TApplication | null | undefined>(null);
@@ -62,15 +68,14 @@ export const DepositApplication = (): ReturnTypeFunc => {
 
     if (submitAction === 'save' || isNew) {
       await addNewApplication(application).unwrap();
-      // navigate
     }
 
     if (submitAction === 'send') {
       const updatedApplication: TApplication = { ...application, status: 'inProcessing' };
       await updateApplication(updatedApplication).unwrap();
       setApplication(updatedApplication);
-      // navigate
     }
+    navigate('/depositList');
   };
 
   const isDisabledButton = !billNum || isLoadingAdding || isLoadingUpdate;
