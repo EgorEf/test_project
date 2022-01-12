@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import type { ReturnTypeFunc } from '../../app/types';
+import { PageHeader } from '../../components/PageHeader';
 import { CalculatorForm } from './components/CalculatorForm';
 import { Products } from './components/Products';
 import { Loader } from './components/Loader';
@@ -14,7 +15,7 @@ export const DepositCalculator = (): ReturnTypeFunc => {
     <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h4">Депозитный калькулятор</Typography>
+          <PageHeader text="Депозитный калькулятор" />
         </Grid>
         <Grid item xs={12} sm={5}>
           <Box mb={3}>
