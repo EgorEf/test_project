@@ -13,11 +13,11 @@ export const ClientInfo = (): ReturnTypeFunc => {
   if (!info) return null;
 
   return (
-    <Box>
+    <Box mt={2}>
       <Typography variant="h6">
         Информация о клиенте
       </Typography>
-      <Box sx={{ mt: '5px' }}>
+      <Box>
         <TextLine name="Наименование клиента" value={info.name} />
         <TextLine name="ИНН" value={info.taxNumber} />
       </Box>
