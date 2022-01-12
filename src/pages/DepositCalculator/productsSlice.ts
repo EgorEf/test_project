@@ -4,11 +4,11 @@ import { logOut } from '../Auth/authSlice';
 import type { RootState } from '../../app/store';
 import type { Product } from '../../app/types';
 
-type TState = {
+type ProductState = {
   items: Array<Product> | null
 };
 
-const initialState: TState = {
+const initialState: ProductState = {
   items: null
 };
 
