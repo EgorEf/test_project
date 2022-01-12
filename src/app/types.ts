@@ -20,10 +20,10 @@ export interface ResponseData extends RequestData {
   info: UserInfo
 }
 
-export type User = ResponseData | null;
+export type User = ResponseData;
 
 export type UserState = {
-  user: User
+  user: User | null
 };
 
 export type ReturnTypeFunc = ReactElement | null;
