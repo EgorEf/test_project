@@ -28,7 +28,7 @@ export const OptionsInfo = ({ options }: PropType): ReturnTypeFunc => {
   const preparedOptions = getPreparedOptions(options);
 
   return (
-    <Box>
+    <Box mt={2}>
       <Typography variant="h6">
         Дополнительные опции
       </Typography>
