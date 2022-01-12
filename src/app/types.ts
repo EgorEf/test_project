@@ -80,6 +80,7 @@ export type TApplication = {
   userId: number,
   name: string,
   description: string,
+  createdAt: string,
   billNum: string | null,
   status: TApplicationStatus,
   currency: string,
