@@ -42,14 +42,15 @@ export const useGetApplication = (
     userId: currentUser.id,
     name,
     description,
-    createdAt: applicationDate.getCreatedAtString(),
-    closedAt: applicationDate.getClosedAtString(),
+    createdAt: applicationDate.getCreatedAtStrInHumanView(),
+    closedAt: applicationDate.getClosedAtStrInHumanView(),
     amount,
     billNum: null,
     status: 'draft',
     currency,
     rate,
     income,
+    term,
     options
   };
 

@@ -88,6 +88,7 @@ export type TApplication = {
   rate: number,
   amount: number,
   income: number,
+  term: number,
   options: Options
 };
 
