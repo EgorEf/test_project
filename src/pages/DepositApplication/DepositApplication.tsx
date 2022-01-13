@@ -83,7 +83,7 @@ export const DepositApplication = (): ReturnTypeFunc => {
   const isDisabledButton = !billNum || isLoadingAdding || isLoadingUpdate;
 
   return (
-    <Box component="form" onSubmit={handleSubmit}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ overflowY: 'auto' }}>
       <NavigationLinkBack />
       <Header status={status} />
       <MainInfo applicationData={application} />
