@@ -71,7 +71,7 @@ export type ProductBase = {
   options: Options
 };
 
-export type Product = ProductBase & { income: number }
+export type Product = ProductBase & { income: number, amount: number, term: number };
 
 export type TApplicationStatus = 'draft' | 'inProcessing' | 'open';
 

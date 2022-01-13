@@ -6,6 +6,8 @@ import {
   Product
 } from '../app/types';
 
+type ProductBaseWithIncome = ProductBase & { income: number };
+
 const getFixedNum = (num: number, numbersAfterPoint: number): number => (
   Number(num.toFixed(numbersAfterPoint))
 );
@@ -72,7 +74,7 @@ const getIncomeWithMonthlyCapitalization = (amount: number, term: number, rate: 
 };
 
 const getIncomeForProduct = (amount: number, term: number) => (
-  (product: ProductBase): Product => {
+  (product: ProductBase): ProductBaseWithIncome => {
     const { rate, options: { isCapitalization } } = product;
     const income = (isCapitalization)
       ? getIncomeWithMonthlyCapitalization(amount, term, rate)
@@ -92,6 +94,10 @@ const clearFieldsInProduct = (product: ProductResponse): ProductBase => {
   return preparedProduct;
 };
 
+const addFieldsInProduct = (amount: number, term: number) => (
+  (product: ProductBaseWithIncome): Product => ({ ...product, amount, term })
+);
+
 export const getPreparedDataProducts = (
   products: ProductResponse[],
   { amount, term }: ProductRequest
@@ -102,4 +108,5 @@ export const getPreparedDataProducts = (
     .map(getRateForProduct(term))
     .map(clearFieldsInProduct)
     .map(getIncomeForProduct(amount, term))
+    .map(addFieldsInProduct(amount, term))
 );
