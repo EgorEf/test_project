@@ -26,8 +26,10 @@ export const DepositApplication = (): ReturnTypeFunc => {
   const { applicationId, productId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
   const currentUser = useSelector(selectCurrentUser);
   const selectedProduct = useSelector(selectProduct(Number(productId)));
+
   const isNew = (productId && !applicationId);
 
   const [application, setApplication] = useState<TApplication | null | undefined>(null);
