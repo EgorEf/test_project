@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TextLine } from './TextLine';
 import { ReturnTypeFunc, TApplication } from '../../../app/types';
+import { getCurrencySymbol } from '../../../helpers/currencySymbols';
 
 type PropType = {
   applicationData: TApplication
@@ -10,10 +11,18 @@ type PropType = {
 export const MainInfo = ({ applicationData }: PropType): ReturnTypeFunc => {
   const {
     name,
+    createdAt,
+    closedAt,
     description,
+    amount,
+    currency,
+    income,
     rate
   } = applicationData;
   const rateValue = `${rate} %`;
+  const currencySymbol = getCurrencySymbol(currency);
+  const amountValue = `${amount} ${currencySymbol}`;
+  const incomeValue = `${income} ${currencySymbol}`;
 
   return (
     <Box mt={2}>
@@ -24,7 +33,10 @@ export const MainInfo = ({ applicationData }: PropType): ReturnTypeFunc => {
         {description}
       </Typography>
       <Box sx={{ mt: '5px' }}>
-        <TextLine name="Срок" value="" />
+        <TextLine name="Дата открытия" value={createdAt} />
+        <TextLine name="Дата закрытия" value={closedAt} />
+        <TextLine name="Сумма" value={amountValue} />
+        <TextLine name="Доход" value={incomeValue} />
         <TextLine name="Ставка, годовых" value={rateValue} />
       </Box>
     </Box>
