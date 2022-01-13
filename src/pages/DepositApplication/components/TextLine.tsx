@@ -5,7 +5,7 @@ import type { ReturnTypeFunc } from '../../../app/types';
 
 type PropsType = {
   name: string,
-  value: string
+  value: string | number
 };
 
 export const TextLine = ({ name, value }: PropsType): ReturnTypeFunc => (
