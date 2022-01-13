@@ -81,10 +81,12 @@ export type TApplication = {
   name: string,
   description: string,
   createdAt: string,
+  closedAt: string,
   billNum: string | null,
   status: TApplicationStatus,
   currency: string,
   rate: number,
+  amount: number,
   income: number,
   options: Options
 };
