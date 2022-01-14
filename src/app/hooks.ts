@@ -56,3 +56,16 @@ export const useGetApplication = (
 
   return applicationTemplate;
 };
+
+export const useGetApplications = (
+  userRole: string,
+  userId: number
+): TApplication[] | undefined => {
+  if (userRole === 'admin') {
+    const { data: allApplications } = useGetAllApplicationsQuery();
+    return allApplications;
+  }
+  const { data: userApplications } = useGetApplicationsByUserIdQuery(userId);
+  return userApplications;
+};
+
