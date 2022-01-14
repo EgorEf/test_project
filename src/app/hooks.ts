@@ -1,6 +1,11 @@
+import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import uniqueId from 'lodash.uniqueid';
-import { useGetApplicationByIdQuery } from '../services/applicationsApi';
+import {
+  useGetApplicationByIdQuery,
+  useGetAllApplicationsQuery,
+  useGetApplicationsByUserIdQuery
+} from '../services/applicationsApi';
 import { TApplication, Product, User } from './types';
 import type { RootState, AppDispatch } from './store';
 import { ApplicationDate } from '../helpers/ApplicationDate';
@@ -69,3 +74,27 @@ export const useGetApplications = (
   return userApplications;
 };
 
+type MappedObj = {
+  [key: string]: TApplication[] | null
+};
+
+export const useGetFilteredApplications = (
+  tab: string,
+  applications: TApplication[] | undefined
+): TApplication[] | null => {
+  const memoizedStateRef = useRef<MappedObj>({
+    all: null,
+    draft: null,
+    inProcessing: null,
+    open: null
+  });
+
+  if (!applications) return [];
+  if (!memoizedStateRef.current[tab]) {
+    memoizedStateRef.current[tab] = (tab === 'all')
+      ? applications
+      : applications.filter(({ status }) => status === tab);
+  }
+
+  return memoizedStateRef.current[tab];
+};
