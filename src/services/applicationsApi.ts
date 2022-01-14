@@ -6,6 +6,9 @@ export const applicationsApi = createApi({
   reducerPath: 'applicationsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
+    getAllApplications: builder.query<TApplication[], void>({
+      query: () => 'applications'
+    }),
     getApplicationById: builder.query({
       query: (id) => ({
         url: 'applications',
@@ -15,6 +18,12 @@ export const applicationsApi = createApi({
         const [application] = response;
         return application;
       }
+    }),
+    getApplicationsByUserId: builder.query({
+      query: (userId) => ({
+        url: 'applications',
+        params: { userId }
+      })
     }),
     newApplication: builder.mutation({
       query: (application) => ({
@@ -34,6 +43,8 @@ export const applicationsApi = createApi({
 });
 
 export const {
+  useGetAllApplicationsQuery,
+  useGetApplicationsByUserIdQuery,
   useGetApplicationByIdQuery,
   useNewApplicationMutation,
   useUpdateApplicationMutation
