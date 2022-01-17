@@ -1,14 +1,13 @@
-import { ReactElement } from 'react';
+import { ReactElement, FC } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { selectCurrentUser } from '../pages/Auth/authSlice';
 import { useAppSelector as useSelector } from '../app/hooks';
-import { ReturnTypeFunc } from '../app/types';
 
-type InputParams = {
+type PropType = {
   children: ReactElement | null
 };
 
-export const ProtectedRouter = ({ children }: InputParams): ReturnTypeFunc => {
+export const ProtectedRouter: FC<PropType> = ({ children }) => {
   const user = useSelector(selectCurrentUser);
   const location = useLocation();
 

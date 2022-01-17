@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   HashRouter,
   Routes,
@@ -7,7 +8,6 @@ import {
 import Box from '@mui/material/Box';
 import { selectCurrentUser } from './pages/Auth/authSlice';
 import { useAppSelector as useSelector } from './app/hooks';
-import { ReturnTypeFunc } from './app/types';
 import { AuthPage } from './pages/Auth/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
 import { Layout } from './pages/Layout/Layout';
@@ -16,7 +16,7 @@ import { DepositCalculator } from './pages/DepositCalculator/DepositCalculator';
 import { DepositApplication } from './pages/DepositApplication/DepositApplication';
 import { DepositList } from './pages/DepositList/DepositList';
 
-export const App = (): ReturnTypeFunc => {
+export const App: FC = () => {
   const user = useSelector(selectCurrentUser);
 
   return (
