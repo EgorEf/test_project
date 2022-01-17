@@ -11,6 +11,13 @@ import { TAuthRequest, TAuthState } from '../../../app/types/authTypes';
 import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
 
+type TTarget = {
+  target: {
+    name: string,
+    value: string
+  }
+};
+
 const marginBottom = { mb: 3 };
 
 const ButtonBox = styled(Box)`
@@ -35,10 +42,14 @@ export const AuthForm: FC = () => {
 
   const [getAuthUser, { isError, isLoading }] = useLazyLoginQuery();
 
-  const handleChange = ({ target }: SyntheticEvent) => {
-    const { value, name, checked } = target as HTMLInputElement;
-    const currentValue = (name === 'isRemember') ? checked : value;
-    setAuth((prevState) => ({ ...prevState, [name]: currentValue }));
+  const handleChange = ({ target }: TTarget) => {
+    const { value, name } = target;
+    setAuth((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleChangeCheckbox = () => {
+    const { isRemember } = authState;
+    setAuth((prevState) => ({ ...prevState, isRemember: !isRemember }));
   };
 
   const handleSubmit = (event: SyntheticEvent) => {
@@ -89,7 +100,7 @@ export const AuthForm: FC = () => {
         id="isRemember"
         name="isRemember"
         control={<Checkbox />}
-        onChange={handleChange}
+        onChange={handleChangeCheckbox}
         checked={authState.isRemember}
         label="Запомнить меня"
         sx={marginBottom}
