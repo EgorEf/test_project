@@ -10,10 +10,17 @@ import { TApplication, Product } from './types';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { ApplicationDate } from '../helpers/ApplicationDate';
+import { selectCurrentUser } from '../pages/Auth/authSlice';
+import { selectProduct } from '../pages/DepositCalculator/productsSlice';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const useGetCurrentUser = (): TUser | null => useAppSelector(selectCurrentUser);
+export const useGetSelectedProduct = (productId: number): Product | null => (
+  useSelector(selectProduct(Number(productId)))
+);
 
 export const useGetApplication = (
   applicationId: number,
