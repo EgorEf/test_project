@@ -1,9 +1,4 @@
-import {
-  FC,
-  SyntheticEvent,
-  useState,
-  useEffect
-} from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   useParams,
   useLocation,
@@ -11,9 +6,14 @@ import {
   Navigate
 } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { useGetApplication, useAppSelector as useSelector } from '../../app/hooks';
-import { selectProduct } from '../DepositCalculator/productsSlice';
-import { selectCurrentUser } from '../Auth/authSlice';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Status } from '../../app/enums';
+import {
+  useGetApplication,
+  useGetCurrentUser,
+  useGetSelectedProduct
+} from '../../app/hooks';
 import { TApplication } from '../../app/types';
 import { NavigationLinkBack } from './components/NavigationLinkBack';
 import { Header } from './components/Header';
@@ -21,7 +21,6 @@ import { MainInfo } from './components/MainInfo';
 import { OptionsInfo } from './components/OptionsInfo';
 import { BillInfo } from './components/BillInfo';
 import { ClientInfo } from './components/ClientInfo';
-import { ButtonsBlock } from './components/ButtonsBlock';
 import {
   useNewApplicationMutation,
   useUpdateApplicationMutation
@@ -32,13 +31,12 @@ export const DepositApplication: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currentUser = useSelector(selectCurrentUser);
-  const selectedProduct = useSelector(selectProduct(Number(productId)));
+  const currentUser = useGetCurrentUser();
+  const selectedProduct = useGetSelectedProduct(Number(productId));
 
   const isNew = (productId && !applicationId);
 
-  const [application, setApplication] = useState<TApplication | null | undefined>(null);
-  const [submitAction, setSubmitAction] = useState(null);
+  const [application, setApplication] = useState<TApplication | null | undefined>(undefined);
 
   useEffect(() => {
     const applicationTemplate = useGetApplication(
@@ -70,25 +68,27 @@ export const DepositApplication: FC = () => {
     userId
   }: TApplication = application;
 
-  const handleSubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
+  const saveApplication = async () => {
+    await addNewApplication(application).unwrap();
+    navigate('/depositList');
+  };
 
-    if (submitAction === 'save' || isNew) {
-      await addNewApplication(application).unwrap();
-    }
+  const sendApplication = async () => {
+    const updatedApplication = { ...application, status: 'inProcessing' };
 
-    if (submitAction === 'send') {
-      const updatedApplication: TApplication = { ...application, status: 'inProcessing' };
+    if (isNew) {
+      await addNewApplication(updatedApplication).unwrap();
+    } else {
       await updateApplication(updatedApplication).unwrap();
-      setApplication(updatedApplication);
     }
+
     navigate('/depositList');
   };
 
   const isDisabledButton = !billNum || isLoadingAdding || isLoadingUpdate;
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ overflowY: 'auto' }}>
+    <Box component="form" sx={{ overflowY: 'auto' }}>
       <NavigationLinkBack />
       <Header status={status} />
       <MainInfo applicationData={application} />
@@ -101,11 +101,12 @@ export const DepositApplication: FC = () => {
         setApplication={setApplication}
       />
       <ClientInfo />
-      <ButtonsBlock
-        status={status}
-        setSubmitAction={setSubmitAction}
-        isDisabled={isDisabledButton}
-      />
+      <Stack direction="row" spacing={4} mt={5}>
+        {isNew && <Button variant="outlined" onClick={saveApplication} disabled={isDisabledButton}>Сохранить</Button>}
+        {(status === Status.DRAFT) && (
+          <Button variant="contained" onClick={sendApplication} disabled={isDisabledButton}>Отправить</Button>
+        )}
+      </Stack>
     </Box>
   );
 };
