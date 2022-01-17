@@ -7,6 +7,7 @@ import {
 } from '../services/applicationsApi';
 import { TUser } from './types/authTypes';
 import { TApplication, Product } from './types';
+import { Role } from './enums';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { ApplicationDate } from '../helpers/ApplicationDate';
@@ -72,7 +73,7 @@ export const useGetApplications = (
   userRole: string,
   userId: number
 ): TApplication[] | undefined => {
-  if (userRole === 'admin') {
+  if (userRole === Role.ADMIN) {
     const { data: allApplications } = useGetAllApplicationsQuery();
     return allApplications;
   }
