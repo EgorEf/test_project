@@ -1,8 +1,8 @@
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
-import { ReturnTypeFunc } from '../../../app/types';
 
 type PropType = {
   path: string,
@@ -17,7 +17,7 @@ const CustomLink = styled(NavLink)({
   }
 });
 
-export const CustomNavLink = ({ path, name }: PropType): ReturnTypeFunc => (
+export const CustomNavLink: FC<PropType> = ({ path, name }) => (
   <CustomLink to={path}>
     <Typography variant="button">{name}</Typography>
   </CustomLink>
