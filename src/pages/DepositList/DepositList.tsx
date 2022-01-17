@@ -1,5 +1,5 @@
-import { ReturnTypeFunc } from '../../app/types';
+import { FC } from 'react';
 
-export const DepositList = (): ReturnTypeFunc => (
+export const DepositList: FC = () => (
   <h1>Список депозитных заявок</h1>
 );
