@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TUser } from '../app/types';
+import { TUser } from '../app/types/authTypes';
 import { baseUrl } from '../routes/routes';
 
 export const authApi = createApi({
@@ -12,7 +12,7 @@ export const authApi = createApi({
         params: { email, password },
         validateStatus: (response, result) => (response.status === 200 && result.length !== 0)
       }),
-      transformResponse: (response: TUser[]): TUser => {
+      transformResponse: (response: TUser[]) => {
         const [responseData] = response;
         return responseData;
       }

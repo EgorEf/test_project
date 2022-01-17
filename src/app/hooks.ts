@@ -5,7 +5,8 @@ import {
   useGetAllApplicationsQuery,
   useGetApplicationsByUserIdQuery
 } from '../services/applicationsApi';
-import { TApplication, Product, TUser } from './types';
+import { TUser } from './types/authTypes';
+import { TApplication, Product } from './types';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { ApplicationDate } from '../helpers/ApplicationDate';

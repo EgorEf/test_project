@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import type { LoginState, RequestData } from '../../../app/types';
+import { TAuthRequest, TAuthState } from '../../../app/types/authTypes';
 import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
 
@@ -27,24 +27,24 @@ export const AuthForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [loginState, setFieldValue] = useState({
+  const [authState, setAuth] = useState<TAuthState>({
     email: '',
     password: '',
     isRemember: false
-  } as LoginState);
+  });
 
   const [getAuthUser, { isError, isLoading }] = useLazyLoginQuery();
 
   const handleChange = ({ target }: SyntheticEvent) => {
     const { value, name, checked } = target as HTMLInputElement;
     const currentValue = (name === 'isRemember') ? checked : value;
-    setFieldValue((prevState) => ({ ...prevState, [name]: currentValue }));
+    setAuth((prevState) => ({ ...prevState, [name]: currentValue }));
   };
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    const { email, password, isRemember } = loginState;
-    const requestData: RequestData = { email, password };
+    const { email, password, isRemember } = authState;
+    const requestData: TAuthRequest = { email, password };
 
     handlePersistor(isRemember);
 
@@ -90,7 +90,7 @@ export const AuthForm: FC = () => {
         name="isRemember"
         control={<Checkbox />}
         onChange={handleChange}
-        checked={loginState.isRemember}
+        checked={authState.isRemember}
         label="Запомнить меня"
         sx={marginBottom}
       />
