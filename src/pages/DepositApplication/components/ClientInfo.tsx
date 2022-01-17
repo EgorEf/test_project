@@ -1,11 +1,11 @@
+import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TextLine } from './TextLine';
 import { useAppSelector as useSelector } from '../../../app/hooks';
 import { selectCurrentUser } from '../../Auth/authSlice';
-import type { ReturnTypeFunc } from '../../../app/types';
 
-export const ClientInfo = (): ReturnTypeFunc => {
+export const ClientInfo: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   if (!currentUser) return null;
 

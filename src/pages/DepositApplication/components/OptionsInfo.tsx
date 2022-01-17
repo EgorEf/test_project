@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import type { Options, ReturnTypeFunc } from '../../../app/types';
+import type { Options } from '../../../app/types';
 import { TextLine } from './TextLine';
 
 type PropType = { options: Options };
@@ -24,7 +25,7 @@ const getPreparedOptions = (options: Options) => {
   });
 };
 
-export const OptionsInfo = ({ options }: PropType): ReturnTypeFunc => {
+export const OptionsInfo: FC<PropType> = ({ options }) => {
   const preparedOptions = getPreparedOptions(options);
 
   return (

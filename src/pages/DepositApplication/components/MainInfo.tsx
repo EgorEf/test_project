@@ -1,14 +1,15 @@
+import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TextLine } from './TextLine';
-import { ReturnTypeFunc, TApplication } from '../../../app/types';
+import { TApplication } from '../../../app/types';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
 
 type PropType = {
   applicationData: TApplication
 };
 
-export const MainInfo = ({ applicationData }: PropType): ReturnTypeFunc => {
+export const MainInfo: FC<PropType> = ({ applicationData }) => {
   const {
     name,
     createdAt,

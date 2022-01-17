@@ -1,4 +1,9 @@
-import { SyntheticEvent, useState, useEffect } from 'react';
+import {
+  FC,
+  SyntheticEvent,
+  useState,
+  useEffect
+} from 'react';
 import {
   useParams,
   useLocation,
@@ -9,7 +14,7 @@ import Box from '@mui/material/Box';
 import { useGetApplication, useAppSelector as useSelector } from '../../app/hooks';
 import { selectProduct } from '../DepositCalculator/productsSlice';
 import { selectCurrentUser } from '../Auth/authSlice';
-import { ReturnTypeFunc, TApplication } from '../../app/types';
+import { TApplication } from '../../app/types';
 import { NavigationLinkBack } from './components/NavigationLinkBack';
 import { Header } from './components/Header';
 import { MainInfo } from './components/MainInfo';
@@ -22,7 +27,7 @@ import {
   useUpdateApplicationMutation
 } from '../../services/applicationsApi';
 
-export const DepositApplication = (): ReturnTypeFunc => {
+export const DepositApplication: FC = () => {
   const { applicationId, productId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
