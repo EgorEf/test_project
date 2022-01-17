@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -6,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { PageSubtitle } from '../../../components/PageSubtitle';
 import { TextLine } from './TextLine';
 import {
-  ReturnTypeFunc,
   TApplication,
   TBill,
   TApplicationStatus
@@ -21,13 +21,13 @@ type PropType = {
   setApplication: any
 };
 
-export const BillInfo = ({
+export const BillInfo: FC<PropType> = ({
   status,
   userId,
   currency,
   billNum,
   setApplication
-}: PropType): ReturnTypeFunc => {
+}) => {
   const { data } = useGetBillsQuery({ userId, currency });
 
   const renderItem = ({ id, numBill }: TBill) => (

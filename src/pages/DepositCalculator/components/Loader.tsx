@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { ReturnTypeFunc } from '../../../app/types';
 
 const loaderBoxStyle = {
   display: 'flex',
@@ -9,7 +9,7 @@ const loaderBoxStyle = {
   height: '100%'
 };
 
-export const Loader = (): ReturnTypeFunc => (
+export const Loader: FC = () => (
   <Box sx={loaderBoxStyle}>
     <CircularProgress />
   </Box>

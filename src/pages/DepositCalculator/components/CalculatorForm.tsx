@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
+import { useMemo, FC } from 'react';
 import { useFormik } from 'formik';
 import debounce from 'lodash.debounce';
 import Stack from '@mui/material/Stack';
 import { CurrencyField } from './СurrencyField';
 import { AmountField } from './AmountField';
 import { TermField } from './TermField';
-import { ReturnTypeFunc, ProductRequest } from '../../../app/types';
+import { ProductRequest } from '../../../app/types';
 import { OptionFields } from './OptionFields';
 
 const initialValues = {
@@ -21,7 +21,7 @@ type PropType = {
   getProducts: any
 };
 
-export const CalculatorForm = ({ getProducts }: PropType): ReturnTypeFunc => {
+export const CalculatorForm: FC<PropType> = ({ getProducts }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {

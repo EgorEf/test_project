@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import type { LoginState, RequestData, ReturnTypeFunc } from '../../../app/types';
+import type { LoginState, RequestData } from '../../../app/types';
 import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
 
@@ -23,7 +23,7 @@ const handlePersistor = (isRemember: boolean) => {
   return persistor.persist();
 };
 
-export const AuthForm = (): ReturnTypeFunc => {
+export const AuthForm: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 

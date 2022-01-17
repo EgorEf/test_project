@@ -1,4 +1,4 @@
-import { ReactElement, ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 
 export interface RequestData {
   email: string,
@@ -25,8 +25,6 @@ export type User = ResponseData;
 export type UserState = {
   user: User | null
 };
-
-export type ReturnTypeFunc = ReactElement | null;
 
 export type Options = {
   isEarlyRepayment: boolean,

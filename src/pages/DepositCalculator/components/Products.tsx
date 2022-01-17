@@ -1,11 +1,12 @@
+import { FC } from 'react';
 import Stack from '@mui/material/Stack';
 import { ProductCard } from './ProductCard';
 import { HelpText } from './HelpText';
 import { selectProducts } from '../productsSlice';
 import { useAppSelector as useSelector } from '../../../app/hooks';
-import { ReturnTypeFunc, Product } from '../../../app/types';
+import { Product } from '../../../app/types';
 
-export const Products = (): ReturnTypeFunc => {
+export const Products: FC = () => {
   const accessedProducts = useSelector(selectProducts);
 
   const renderProductCard = (product: Product) => (

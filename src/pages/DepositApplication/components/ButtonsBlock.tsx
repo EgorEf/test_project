@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { ReturnTypeFunc, TApplicationStatus } from '../../../app/types';
+import { TApplicationStatus } from '../../../app/types';
 
 type TButton = 'save' | 'send';
 
@@ -10,7 +11,7 @@ type PropType = {
   isDisabled: boolean
 };
 
-export const ButtonsBlock = ({ status, setSubmitAction, isDisabled }: PropType): ReturnTypeFunc => {
+export const ButtonsBlock: FC<PropType> = ({ status, setSubmitAction, isDisabled }) => {
   const handleClick = (type: TButton) => () => setSubmitAction(type);
   return (
     <Stack direction="row" spacing={4} mt={5}>

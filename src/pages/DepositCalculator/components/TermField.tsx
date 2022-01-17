@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FC } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -6,7 +6,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Radio from '@mui/material/Radio';
 import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
-import { ReturnTypeFunc } from '../../../app/types';
 
 type MappedObjType = {
   [key: string]: (arg: number) => string | number;
@@ -16,7 +15,7 @@ type MappedObjTypeWithNumberValues = {
   [key: string]: number
 };
 
-type PropsType = {
+type PropType = {
   changeFormikFieldValue: (name: string, value: number | string) => void
 };
 
@@ -59,9 +58,7 @@ const mappedMaxValueByTimeInterval: MappedObjTypeWithNumberValues = {
   year: 3
 };
 
-export const TermField = ({
-  changeFormikFieldValue
-}: PropsType): ReturnTypeFunc => {
+export const TermField: FC<PropType> = ({ changeFormikFieldValue }) => {
   const [localState, changeLocalState] = useState({ timeInterval: 'day', value: 0 });
 
   const handleChangeInterval = (event: ChangeEvent<HTMLInputElement>) => {

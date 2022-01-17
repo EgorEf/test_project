@@ -1,17 +1,18 @@
+import { FC } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
-import { ReturnTypeFunc, PropsType } from '../../../app/types';
+import { PropsType } from '../../../app/types';
 
 type TAmountProps = PropsType & { currency: string };
 
-export const AmountField = ({
+export const AmountField: FC<TAmountProps> = ({
   value,
   currency,
   handleChange
-}: TAmountProps): ReturnTypeFunc => {
+}) => {
   const currencySymbol = getCurrencySymbol(currency);
   const step = (currency === 'rub') ? 1000 : 100;
   const fieldValue = (value === 0) ? '' : value;

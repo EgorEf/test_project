@@ -1,8 +1,7 @@
-import { useState, useMemo, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent, FC } from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { ReturnTypeFunc } from '../../app/types';
 import { PageHeader } from '../../components/PageHeader';
 import {
   useAppSelector as useSelector,
@@ -11,7 +10,7 @@ import {
 } from '../../app/hooks';
 import { selectCurrentUser } from '../Auth/authSlice';
 
-export const DepositList = (): ReturnTypeFunc => {
+export const DepositList: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   const [tab, setTab] = useState('all');
 

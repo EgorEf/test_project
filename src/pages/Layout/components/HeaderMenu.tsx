@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { IconButton } from '@mui/material';
@@ -9,7 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import logo from '../../../images/Logo.png';
-import { ReturnTypeFunc } from '../../../app/types';
 import { selectCurrentUser, logOut } from '../../Auth/authSlice';
 import { CustomNavLink } from './CustomNavLink';
 import {
@@ -36,7 +35,7 @@ const pages: MappedObjType = {
   ]
 };
 
-export const HeaderMenu = (): ReturnTypeFunc => {
+export const HeaderMenu: FC = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
