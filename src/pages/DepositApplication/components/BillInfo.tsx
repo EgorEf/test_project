@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, SetStateAction, Dispatch } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -6,11 +6,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { PageSubtitle } from '../../../components/PageSubtitle';
 import { TextLine } from './TextLine';
-import {
-  TApplication,
-  TBill,
-  TApplicationStatus
-} from '../../../app/types';
+import { TApplication, TBill, TApplicationStatus } from '../../../app/types';
+import { Status } from '../../../app/enums';
 import { useGetBillsQuery } from '../../../services/billsApi';
 
 type PropType = {
@@ -18,7 +15,7 @@ type PropType = {
   userId: number,
   currency: string,
   billNum: string
-  setApplication: any
+  setApplication: Dispatch<SetStateAction<TApplication | null | undefined>>
 };
 
 export const BillInfo: FC<PropType> = ({
@@ -36,16 +33,17 @@ export const BillInfo: FC<PropType> = ({
 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedValue: string = event.target.value;
-    setApplication((prevState: TApplication): TApplication => (
-      { ...prevState, billNum: selectedValue }
-    ));
+    setApplication((prevState): TApplication | null => {
+      if (!prevState) return null;
+      return { ...prevState, billNum: selectedValue };
+    });
   };
 
   return (
     <Box mt={2}>
       <PageSubtitle text="Способ пополнения и возврата средств" />
       {
-        (status === 'draft')
+        (status === Status.DRAFT)
           ? (
             <Box width="300px" py="14px">
               <FormControl fullWidth>
