@@ -5,9 +5,18 @@ import { baseUrl } from '../routes/routes';
 export const applicationsApi = createApi({
   reducerPath: 'applicationsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['Applications'],
   endpoints: (builder) => ({
     getAllApplications: builder.query<TApplication[], void>({
-      query: () => 'applications'
+      query: () => 'applications',
+      providesTags: (result) => (
+        result
+          ? [
+            ...result.map(({ id }) => ({ type: 'Applications' as const, id })),
+            { type: 'Applications', id: 'LIST' }
+          ]
+          : [{ type: 'Applications', id: 'LIST' }]
+      )
     }),
     getApplicationById: builder.query({
       query: (id) => ({
@@ -19,25 +28,35 @@ export const applicationsApi = createApi({
         return application;
       }
     }),
-    getApplicationsByUserId: builder.query({
+    getApplicationsByUserId: builder.query<TApplication[], number>({
       query: (userId) => ({
         url: 'applications',
         params: { userId }
-      })
+      }),
+      providesTags: (result) => (
+        result
+          ? [
+            ...result.map(({ id }) => ({ type: 'Applications' as const, id })),
+            { type: 'Applications', id: 'LIST' }
+          ]
+          : [{ type: 'Applications', id: 'LIST' }]
+      )
     }),
     newApplication: builder.mutation({
       query: (application) => ({
         url: 'applications',
         method: 'POST',
         body: application
-      })
+      }),
+      invalidatesTags: [{ type: 'Applications', id: 'LIST' }]
     }),
     updateApplication: builder.mutation({
       query: (application) => ({
         url: `applications/${application.id}`,
         method: 'PUT',
         body: application
-      })
+      }),
+      invalidatesTags: [{ type: 'Applications', id: 'LIST' }]
     })
   })
 });
