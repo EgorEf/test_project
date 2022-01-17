@@ -14,17 +14,11 @@ export type UserInfo = {
   taxNumber: string
 } | null;
 
-export interface ResponseData extends RequestData {
+export interface TUser extends RequestData {
   id: number,
   role: string,
   info: UserInfo
 }
-
-export type User = ResponseData;
-
-export type UserState = {
-  user: User | null
-};
 
 export type Options = {
   isEarlyRepayment: boolean,
