@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import uniqueId from 'lodash.uniqueid';
 import {
   useGetApplicationByIdQuery,
   useGetAllApplicationsQuery,
   useGetApplicationsByUserIdQuery
 } from '../services/applicationsApi';
-import { TApplication, Product, User } from './types';
+import { TApplication, Product, TUser } from './types';
 import type { RootState, AppDispatch } from './store';
+import { uniqueId } from '../helpers/uniqueId';
 import { ApplicationDate } from '../helpers/ApplicationDate';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
@@ -17,7 +17,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useGetApplication = (
   applicationId: number,
   productId: number,
-  currentUser: User | null,
+  currentUser: TUser | null,
   selectedProduct: Product | null
 ): TApplication | null | undefined => {
   if (applicationId) {
@@ -38,12 +38,10 @@ export const useGetApplication = (
     options
   }: Product = selectedProduct;
 
-  const id = Number(uniqueId());
-
   const applicationDate = new ApplicationDate(term);
 
   const applicationTemplate: TApplication = {
-    id,
+    id: uniqueId(),
     userId: currentUser.id,
     name,
     description,
