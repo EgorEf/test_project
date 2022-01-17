@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { PageHeader } from '../../components/PageHeader';
+import { TableBlock } from './components/TableBlock';
 import {
   useAppSelector as useSelector,
   useGetApplications,
@@ -39,6 +40,7 @@ export const DepositList: FC = () => {
           <Tab value="open" label="Открытые" />
         </Tabs>
       </Box>
+      <TableBlock applications={applicationsByTab} />
     </Box>
   );
 };
