@@ -1,14 +1,14 @@
+import { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import type { ReturnTypeFunc } from '../../app/types';
 import { PageHeader } from '../../components/PageHeader';
 import { CalculatorForm } from './components/CalculatorForm';
 import { Products } from './components/Products';
 import { Loader } from './components/Loader';
 import { useLazyGetProductsQuery } from '../../services/productsApi';
 
-export const DepositCalculator = (): ReturnTypeFunc => {
+export const DepositCalculator: FC = () => {
   const [getProducts, { isFetching }] = useLazyGetProductsQuery();
 
   return (

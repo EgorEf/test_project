@@ -1,12 +1,13 @@
+import { FC } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Tooltip from '@mui/material/Tooltip';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import { ReturnTypeFunc, PropsType } from '../../../app/types';
+import { PropsType } from '../../../app/types';
 
-export const CurrencyField = ({ value, handleChange }: PropsType): ReturnTypeFunc => (
+export const CurrencyField: FC<PropsType> = ({ value, handleChange }) => (
   <FormControl component="fieldset">
     <FormLabel component="legend">Валюта</FormLabel>
     <RadioGroup row name="currency" onChange={handleChange} value={value}>

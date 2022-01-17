@@ -7,11 +7,12 @@ import Box from '@mui/material/Box';
 import { CardHeader } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
 import { getNewDepositApplicationPath } from '../../../routes/routes';
-import { ReturnTypeFunc, Product } from '../../../app/types';
+import { Product } from '../../../app/types';
 
 type PropType = {
   productData: Product
@@ -44,7 +45,7 @@ const getIncomeView = (income: number, currency: string): string => (
 
 const getRateView = (rate: number): string => `${rate} %`;
 
-export const ProductCard = ({ productData }: PropType): ReturnTypeFunc => {
+export const ProductCard: FC<PropType> = ({ productData }) => {
   const {
     id,
     name,
