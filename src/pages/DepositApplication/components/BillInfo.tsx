@@ -16,7 +16,7 @@ type PropType = {
   userId: number,
   currency: string,
   billNum: string
-  setApplication: Dispatch<SetStateAction<TApplication | null | undefined>>
+  setApplication: Dispatch<SetStateAction<TApplication>>
 };
 
 export const BillInfo: FC<PropType> = ({
@@ -34,10 +34,7 @@ export const BillInfo: FC<PropType> = ({
 
   const handleChange = (event: SelectChangeEvent) => {
     const selectedValue: string = event.target.value;
-    setApplication((prevState): TApplication | null => {
-      if (!prevState) return null;
-      return { ...prevState, billNum: selectedValue };
-    });
+    setApplication((prevState): TApplication => ({ ...prevState, billNum: selectedValue }));
   };
 
   return (
