@@ -14,7 +14,7 @@ import {
   useGetCurrentUser,
   useGetSelectedProduct
 } from '../../app/hooks';
-import { TApplication } from '../../app/types';
+import { TApplication } from '../../app/types/applicationTypes';
 import { NavigationLinkBack } from './components/NavigationLinkBack';
 import { Header } from './components/Header';
 import { MainInfo } from './components/MainInfo';

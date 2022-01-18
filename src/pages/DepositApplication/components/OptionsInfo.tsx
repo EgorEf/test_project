@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import type { Options } from '../../../app/types';
+import { TOptions } from '../../../app/types/index';
 import { TextLine } from './TextLine';
 
-type PropType = { options: Options };
+type PropType = { options: TOptions };
 
 type MappedObjType = {
   [key: string]: string
@@ -16,7 +16,7 @@ const mappedOptionsName: MappedObjType = {
   isCapitalization: 'Капитализация процентов'
 };
 
-const getPreparedOptions = (options: Options) => {
+const getPreparedOptions = (options: TOptions) => {
   const optionsEntries = Object.entries(options);
   return optionsEntries.map(([key, value]) => {
     const name = mappedOptionsName[key];

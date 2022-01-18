@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TextLine } from './TextLine';
-import { TApplication } from '../../../app/types';
+import { TApplication } from '../../../app/types/applicationTypes';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
 
 type PropType = {

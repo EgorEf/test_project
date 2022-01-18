@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { getPreparedDataProducts } from './prepareDataProducts';
 import { baseUrl } from '../routes/routes';
-import type { ProductResponse, Product } from '../app/types';
+import { TProductResponse, TProduct } from '../app/types/productTypes';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
@@ -28,10 +28,10 @@ export const productsApi = createApi({
 
         if (!response.data) return { error: response.error as FetchBaseQueryError };
 
-        const { data } = response as { data: ProductResponse[] };
+        const { data } = response as { data: TProductResponse[] };
         return {
           data: getPreparedDataProducts(data, requestParams)
-        } as { data: Product[] };
+        } as { data: TProduct[] };
       }
     })
   })

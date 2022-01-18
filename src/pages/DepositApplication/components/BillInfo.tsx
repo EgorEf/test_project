@@ -6,7 +6,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { PageSubtitle } from '../../../components/PageSubtitle';
 import { TextLine } from './TextLine';
-import { TApplication, TBill, TApplicationStatus } from '../../../app/types';
+import { TApplication, TApplicationStatus } from '../../../app/types/applicationTypes';
+import { TBill } from '../../../app/types/billTypes';
 import { Status } from '../../../app/enums';
 import { useGetBillsQuery } from '../../../services/billsApi';
 

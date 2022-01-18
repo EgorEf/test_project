@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TApplication } from '../app/types';
+import { TApplication } from '../app/types/applicationTypes';
 import { baseUrl } from '../routes/routes';
 
 export const applicationsApi = createApi({

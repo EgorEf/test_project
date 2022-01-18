@@ -4,12 +4,12 @@ import { ProductCard } from './ProductCard';
 import { HelpText } from './HelpText';
 import { selectProducts } from '../productsSlice';
 import { useAppSelector as useSelector } from '../../../app/hooks';
-import { Product } from '../../../app/types';
+import { TProduct } from '../../../app/types/productTypes';
 
 export const Products: FC = () => {
   const accessedProducts = useSelector(selectProducts);
 
-  const renderProductCard = (product: Product) => (
+  const renderProductCard = (product: TProduct) => (
     <ProductCard key={product.id} productData={product} />
   );
 

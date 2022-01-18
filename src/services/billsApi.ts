@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TBill } from '../app/types';
+import { TBill } from '../app/types/billTypes';
 import { baseUrl } from '../routes/routes';
 
 export const billsApi = createApi({

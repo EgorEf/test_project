@@ -12,10 +12,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
 import { getNewDepositApplicationPath } from '../../../routes/routes';
-import { Product } from '../../../app/types';
+import { TProduct } from '../../../app/types/productTypes';
 
 type PropType = {
-  productData: Product
+  productData: TProduct
 };
 
 const CustomCard = styled(Card)`

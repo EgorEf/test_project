@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { productsApi } from '../../services/productsApi';
 import { logOut } from '../Auth/authSlice';
 import type { RootState } from '../../app/store';
-import type { Product } from '../../app/types';
+import type { TProduct } from '../../app/types/productTypes';
 
 type ProductState = {
-  items: Array<Product> | null
+  items: Array<TProduct> | null
 };
 
 const initialState: ProductState = {
@@ -32,11 +32,11 @@ export const productsSlice = createSlice({
   }
 });
 
-export const selectProducts = (state: RootState): Product[] | null => state.products.items;
+export const selectProducts = (state: RootState): TProduct[] | null => state.products.items;
 
 export const selectProduct = (currentId: number) => (
   { products: { items } }: RootState
-): Product | null => {
+): TProduct | null => {
   if (!items) return null;
   const product = items.find(({ id }) => currentId === id) || null;
   return product;

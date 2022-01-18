@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { selectCurrentUser } from '../../Auth/authSlice';
 import { useAppSelector as useSelector } from '../../../app/hooks';
-import { TApplication } from '../../../app/types';
+import { TApplication } from '../../../app/types/applicationTypes';
 import { TableHeader } from './TableHeader';
 
 type PropType = {

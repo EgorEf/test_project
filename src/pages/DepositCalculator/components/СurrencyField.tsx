@@ -5,9 +5,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Tooltip from '@mui/material/Tooltip';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import { PropsType } from '../../../app/types';
+import { TCalculatorPropType } from '../../../app/types';
 
-export const CurrencyField: FC<PropsType> = ({ value, handleChange }) => (
+export const CurrencyField: FC<TCalculatorPropType> = ({ value, handleChange }) => (
   <FormControl component="fieldset">
     <FormLabel component="legend">Валюта</FormLabel>
     <RadioGroup row name="currency" onChange={handleChange} value={value}>

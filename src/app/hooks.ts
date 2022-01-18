@@ -6,7 +6,8 @@ import {
   useGetApplicationsByUserIdQuery
 } from '../services/applicationsApi';
 import { TUser } from './types/authTypes';
-import { TApplication, Product } from './types';
+import { TProduct } from './types/productTypes';
+import { TApplication } from './types/applicationTypes';
 import { Role } from './enums';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
@@ -19,7 +20,7 @@ export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useGetCurrentUser = (): TUser | null => useAppSelector(selectCurrentUser);
-export const useGetSelectedProduct = (productId: number): Product | null => (
+export const useGetSelectedProduct = (productId: number): TProduct | null => (
   useSelector(selectProduct(Number(productId)))
 );
 
@@ -27,7 +28,7 @@ export const useGetApplication = (
   applicationId: number,
   productId: number,
   currentUser: TUser | null,
-  selectedProduct: Product | null
+  selectedProduct: TProduct | null
 ): TApplication | null | undefined => {
   if (applicationId) {
     const { data: uploadedApplication } = useGetApplicationByIdQuery(applicationId);
@@ -45,7 +46,7 @@ export const useGetApplication = (
     amount,
     income,
     options
-  }: Product = selectedProduct;
+  }: TProduct = selectedProduct;
 
   const applicationDate = new ApplicationDate(term);
 

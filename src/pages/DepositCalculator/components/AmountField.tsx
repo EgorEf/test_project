@@ -4,9 +4,9 @@ import FormLabel from '@mui/material/FormLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
-import { PropsType } from '../../../app/types';
+import { TCalculatorPropType } from '../../../app/types';
 
-type TAmountProps = PropsType & { currency: string };
+type TAmountProps = TCalculatorPropType & { currency: string };
 
 export const AmountField: FC<TAmountProps> = ({
   value,

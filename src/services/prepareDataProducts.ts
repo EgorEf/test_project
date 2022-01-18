@@ -1,12 +1,12 @@
 import {
-  ProductRequest,
-  Options,
-  ProductResponse,
-  ProductBase,
-  Product
-} from '../app/types';
+  TProductRequest,
+  TProductResponse,
+  TProductBase,
+  TProduct
+} from '../app/types/productTypes';
+import { TOptions } from '../app/types/index';
 
-type ProductBaseWithIncome = ProductBase & { income: number };
+type TProductBaseWithIncome = TProductBase & { income: number };
 
 const getFixedNum = (num: number, numbersAfterPoint: number): number => (
   Number(num.toFixed(numbersAfterPoint))
@@ -25,7 +25,7 @@ const getRateByTerm = (
   return getFixedNum(resultRate, 2);
 };
 
-const getConfigurabledRateByOptions = (rate: number, options: Options) => {
+const getConfigurabledRateByOptions = (rate: number, options: TOptions) => {
   const { isEarlyRepayment, isPartial } = options;
 
   let negativeRateSum = 0;
@@ -41,15 +41,15 @@ const getConfigurabledRateByOptions = (rate: number, options: Options) => {
   return getFixedNum(resultRate, 2);
 };
 
-const filterByMinAmount = (amount: number) => ({ minAmount }: ProductResponse) => (
+const filterByMinAmount = (amount: number) => ({ minAmount }: TProductResponse) => (
   amount >= minAmount
 );
 
 const filterByEntryInPeriod = (term: number) => (
-  ({ period: [start, end] }: ProductResponse): boolean => (term >= start && term <= end)
+  ({ period: [start, end] }: TProductResponse): boolean => (term >= start && term <= end)
 );
 
-const getRateForProduct = (term: number) => (product: ProductResponse): ProductResponse => {
+const getRateForProduct = (term: number) => (product: TProductResponse): TProductResponse => {
   const {
     period,
     periodStep,
@@ -74,7 +74,7 @@ const getIncomeWithMonthlyCapitalization = (amount: number, term: number, rate: 
 };
 
 const getIncomeForProduct = (amount: number, term: number) => (
-  (product: ProductBase): ProductBaseWithIncome => {
+  (product: TProductBase): TProductBaseWithIncome => {
     const { rate, options: { isCapitalization } } = product;
     const income = (isCapitalization)
       ? getIncomeWithMonthlyCapitalization(amount, term, rate)
@@ -84,7 +84,7 @@ const getIncomeForProduct = (amount: number, term: number) => (
   }
 );
 
-const clearFieldsInProduct = (product: ProductResponse): ProductBase => {
+const clearFieldsInProduct = (product: TProductResponse): TProductBase => {
   const {
     periodStep,
     rateStep,
@@ -95,13 +95,13 @@ const clearFieldsInProduct = (product: ProductResponse): ProductBase => {
 };
 
 const addFieldsInProduct = (amount: number, term: number) => (
-  (product: ProductBaseWithIncome): Product => ({ ...product, amount, term })
+  (product: TProductBaseWithIncome): TProduct => ({ ...product, amount, term })
 );
 
 export const getPreparedDataProducts = (
-  products: ProductResponse[],
-  { amount, term }: ProductRequest
-): Product[] => (
+  products: TProductResponse[],
+  { amount, term }: TProductRequest
+): TProduct[] => (
   products
     .filter(filterByMinAmount(amount))
     .filter(filterByEntryInPeriod(term))

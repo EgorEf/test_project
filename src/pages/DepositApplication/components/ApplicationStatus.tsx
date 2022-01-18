@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Chip from '@mui/material/Chip';
-import { StatusPropType } from '../../../app/types';
+import { TStatusPropType } from '../../../app/types/applicationTypes';
 
 type MappedObject = {
   [key: string]: {
@@ -23,7 +23,7 @@ const mappedChipPropsByStatus: MappedObject = {
   }
 };
 
-export const ApplicationStatus: FC<StatusPropType> = ({ status }) => {
+export const ApplicationStatus: FC<TStatusPropType> = ({ status }) => {
   const chipProps = mappedChipPropsByStatus[status];
   return <Chip {...chipProps} />;
 };

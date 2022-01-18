@@ -4,10 +4,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import Switch from '@mui/material/Switch';
-import type { PropsType, Options } from '../../../app/types';
+import { TOptions, TCalculatorPropType } from '../../../app/types';
 
-export const OptionFields: FC<PropsType> = ({ handleChange, value }) => {
-  const { isEarlyRepayment, isPartial, isCapitalization }: Options = value as Options;
+export const OptionFields: FC<TCalculatorPropType> = ({ handleChange, value }) => {
+  const { isEarlyRepayment, isPartial, isCapitalization } = value as TOptions;
 
   return (
     <FormControl>
