@@ -1,10 +1,6 @@
 import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import {
-  useGetApplicationByIdQuery,
-  useGetAllApplicationsQuery,
-  useGetApplicationsByUserIdQuery
-} from '../services/applicationsApi';
+import { useGetAllApplicationsQuery, useGetApplicationsByUserIdQuery } from '../services/applicationsApi';
 import { TUser } from './types/authTypes';
 import { TProduct } from './types/productTypes';
 import { TApplication } from './types/applicationTypes';
@@ -20,20 +16,14 @@ export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useGetCurrentUser = (): TUser | null => useAppSelector(selectCurrentUser);
+
 export const useGetSelectedProduct = (productId: number): TProduct | null => (
   useSelector(selectProduct(Number(productId)))
 );
 
-export const useGetApplication = (
-  applicationId: number,
-  productId: number,
-  currentUser: TUser | null,
-  selectedProduct: TProduct | null
-): TApplication | null | undefined => {
-  if (applicationId) {
-    const { data: uploadedApplication } = useGetApplicationByIdQuery(applicationId);
-    return uploadedApplication;
-  }
+export const useGetApplicationTemplate = (productId: number): TApplication | null => {
+  const currentUser = useGetCurrentUser();
+  const selectedProduct = useGetSelectedProduct(productId);
 
   if (!currentUser || !selectedProduct) return null;
 
@@ -50,7 +40,7 @@ export const useGetApplication = (
 
   const applicationDate = new ApplicationDate(term);
 
-  const applicationTemplate: TApplication = {
+  return {
     id: uniqueId(),
     userId: currentUser.id,
     name,
@@ -66,8 +56,6 @@ export const useGetApplication = (
     term,
     options
   };
-
-  return applicationTemplate;
 };
 
 export const useGetApplications = (
