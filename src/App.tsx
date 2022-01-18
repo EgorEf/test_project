@@ -14,7 +14,8 @@ import { ProtectedRouter } from './components/ProtectedRouter';
 import { Layout } from './pages/Layout/Layout';
 import { NotFound } from './pages/NotFound/NotFound';
 import { DepositCalculator } from './pages/DepositCalculator/DepositCalculator';
-import { DepositApplication } from './pages/DepositApplication/DepositApplication';
+import { NewApplicationWrapper } from './pages/DepositApplication/NewApplicationWrapper';
+import { UploadedApplicationWrapper } from './pages/DepositApplication/UploadedApplicationWrapper';
 import { DepositList } from './pages/DepositList/DepositList';
 
 export const App: FC = () => {
@@ -46,8 +47,8 @@ export const App: FC = () => {
                     <Route path="depositCalculator" element={<DepositCalculator />} />
                     <Route path="depositList" element={<DepositList />} />
                     <Route path="depositApplication" element={<Outlet />}>
-                      <Route path=":applicationId" element={<DepositApplication />} />
-                      <Route path="new/:productId" element={<DepositApplication />} />
+                      <Route path=":applicationId" element={<UploadedApplicationWrapper />} />
+                      <Route path="new/:productId" element={<NewApplicationWrapper />} />
                     </Route>
                   </>
                 )
