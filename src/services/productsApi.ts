@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { getPreparedDataProducts } from './prepareDataProducts';
-import { baseUrl } from '../routes/routes';
+import { routes } from '../routes';
 import { TProductResponse, TProduct } from '../app/types/productTypes';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({ baseUrl: routes.BASE_URL }),
   endpoints: (builder) => ({
     getProducts: builder.query({
       async queryFn(requestParams, queryApi, extraOptions, fetchWithBQ) {

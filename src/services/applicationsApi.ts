@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TApplication } from '../app/types/applicationTypes';
-import { baseUrl } from '../routes/routes';
+import { routes } from '../routes';
 
 export const applicationsApi = createApi({
   reducerPath: 'applicationsApi',
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({ baseUrl: routes.BASE_URL }),
   tagTypes: ['Applications'],
   endpoints: (builder) => ({
     getAllApplications: builder.query<TApplication[], void>({

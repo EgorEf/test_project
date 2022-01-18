@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { routes } from '../../../routes';
 
 const CustomLink = styled(Link)({
   display: 'flex',
@@ -13,7 +14,7 @@ const CustomLink = styled(Link)({
 });
 
 export const NavigationLinkBack: FC = () => (
-  <CustomLink to="/depositCalculator">
+  <CustomLink to={routes.DEPOSIT_CALCULATOR}>
     <ArrowBackIcon fontSize="small" color="inherit" />
     <Typography variant="subtitle1" ml="3px">Назад</Typography>
   </CustomLink>

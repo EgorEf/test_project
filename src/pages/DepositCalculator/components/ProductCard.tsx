@@ -11,7 +11,7 @@ import { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
-import { getNewDepositApplicationPath } from '../../../routes/routes';
+import { routes } from '../../../routes';
 import { TProduct } from '../../../app/types/productTypes';
 
 type PropType = {
@@ -58,10 +58,7 @@ export const ProductCard: FC<PropType> = ({ productData }) => {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    const path = getNewDepositApplicationPath(id);
-    navigate(path);
-  };
+  const handleClick = () => navigate(routes.DEPOSIT_APPLICATION.NEW(id));
 
   return (
     <CustomCard sx={{ p: '20px' }}>

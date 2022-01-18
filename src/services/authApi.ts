@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TUser } from '../app/types/authTypes';
-import { baseUrl } from '../routes/routes';
+import { routes } from '../routes';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({ baseUrl: routes.BASE_URL }),
   endpoints: (builder) => ({
     login: builder.query({
       query: ({ email, password }) => ({
