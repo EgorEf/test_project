@@ -9,6 +9,7 @@ import {
 import Box from '@mui/material/Box';
 import { useGetCurrentUser } from './app/hooks';
 import { Role } from './app/enums';
+import { routes } from './routes';
 import { AuthPage } from './pages/Auth/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
 import { Layout } from './pages/Layout/Layout';
@@ -37,16 +38,16 @@ export const App: FC = () => {
               (user?.role === Role.ADMIN)
                 ? (
                   <>
-                    <Route index element={<Navigate to="depositList" replace />} />
-                    <Route path="depositList" element={<DepositList />} />
+                    <Route index element={<Navigate to={routes.DEPOSIT_LIST} replace />} />
+                    <Route path={routes.DEPOSIT_LIST} element={<DepositList />} />
                   </>
                 )
                 : (
                   <>
-                    <Route index element={<Navigate to="depositCalculator" replace />} />
-                    <Route path="depositCalculator" element={<DepositCalculator />} />
-                    <Route path="depositList" element={<DepositList />} />
-                    <Route path="depositApplication" element={<Outlet />}>
+                    <Route index element={<Navigate to={routes.DEPOSIT_CALCULATOR} replace />} />
+                    <Route path={routes.DEPOSIT_CALCULATOR} element={<DepositCalculator />} />
+                    <Route path={routes.DEPOSIT_LIST} element={<DepositList />} />
+                    <Route path={routes.DEPOSIT_APPLICATION.PATH} element={<Outlet />}>
                       <Route path=":applicationId" element={<UploadedApplicationWrapper />} />
                       <Route path="new/:productId" element={<NewApplicationWrapper />} />
                     </Route>
@@ -55,7 +56,7 @@ export const App: FC = () => {
             }
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="login" element={<AuthPage />} />
+          <Route path={routes.LOGIN} element={<AuthPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
