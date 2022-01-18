@@ -8,11 +8,12 @@ const MainBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
+  overflowY: 'auto',
   background: '#eeeeee'
 });
 
 const MainContent = styled(Box)({
-  height: '100%',
+  flexGrow: 1,
   background: '#FFFFFF',
   padding: '30px',
   margin: '15px',

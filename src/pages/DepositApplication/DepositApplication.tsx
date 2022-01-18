@@ -88,7 +88,7 @@ export const DepositApplication: FC = () => {
   const isDisabledButton = !billNum || isLoadingAdding || isLoadingUpdate;
 
   return (
-    <Box component="form" sx={{ overflowY: 'auto' }}>
+    <Box component="form">
       <NavigationLinkBack />
       <Header status={status} />
       <MainInfo applicationData={application} />

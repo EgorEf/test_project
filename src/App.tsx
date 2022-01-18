@@ -20,7 +20,7 @@ export const App: FC = () => {
   const user = useSelector(selectCurrentUser);
 
   return (
-    <Box sx={{ height: '100vh' }}>
+    <Box height="100%">
       <HashRouter>
         <Routes>
           <Route
