@@ -3,11 +3,12 @@ import {
   HashRouter,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  Outlet
 } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import { selectCurrentUser } from './pages/Auth/authSlice';
-import { useAppSelector as useSelector } from './app/hooks';
+import { useGetCurrentUser } from './app/hooks';
+import { Role } from './app/enums';
 import { AuthPage } from './pages/Auth/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
 import { Layout } from './pages/Layout/Layout';
@@ -17,7 +18,7 @@ import { DepositApplication } from './pages/DepositApplication/DepositApplicatio
 import { DepositList } from './pages/DepositList/DepositList';
 
 export const App: FC = () => {
-  const user = useSelector(selectCurrentUser);
+  const user = useGetCurrentUser();
 
   return (
     <Box height="100%">
@@ -44,8 +45,10 @@ export const App: FC = () => {
                     <Route index element={<Navigate to="depositCalculator" replace />} />
                     <Route path="depositCalculator" element={<DepositCalculator />} />
                     <Route path="depositList" element={<DepositList />} />
-                    <Route path="depositApplication/:applicationId" element={<DepositApplication />} />
-                    <Route path="depositApplication/new/:productId" element={<DepositApplication />} />
+                    <Route path="depositApplication" element={<Outlet />}>
+                      <Route path=":applicationId" element={<DepositApplication />} />
+                      <Route path="new/:productId" element={<DepositApplication />} />
+                    </Route>
                   </>
                 )
             }
