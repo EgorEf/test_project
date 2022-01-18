@@ -32,7 +32,7 @@ export const App: FC = () => {
             )}
           >
             {
-              (user?.role === 'admin')
+              (user?.role === Role.ADMIN)
                 ? (
                   <>
                     <Route index element={<Navigate to="depositList" replace />} />
