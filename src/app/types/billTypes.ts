@@ -4,3 +4,8 @@ export type TBill = {
   currency: string,
   numBill: string
 };
+
+export type TBillRequest = {
+  userId: number,
+  currency: string
+};
