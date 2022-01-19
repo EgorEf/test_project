@@ -4,7 +4,7 @@ import { useGetAllApplicationsQuery, useGetApplicationsByUserIdQuery } from '../
 import { TUser } from './types/authTypes';
 import { TProduct } from './types/productTypes';
 import { TApplication } from './types/applicationTypes';
-import { Role } from './enums';
+import { Role } from './Roles';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { ApplicationDate } from '../helpers/ApplicationDate';

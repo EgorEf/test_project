@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { useGetCurrentUser } from './app/hooks';
-import { Role } from './app/enums';
+import { Role } from './app/Roles';
 import { routes } from './routes';
 import { AuthPage } from './pages/Auth/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
