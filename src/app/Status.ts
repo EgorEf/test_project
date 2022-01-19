@@ -3,8 +3,3 @@ export enum Status {
   IN_PROCESSING = 'inProcessing',
   OPEN = 'open'
 }
-
-export enum Role {
-  ADMIN = 'admin',
-  USER = 'user'
-}
