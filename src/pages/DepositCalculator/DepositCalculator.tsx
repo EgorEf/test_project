@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -7,9 +7,18 @@ import { CalculatorForm } from './components/CalculatorForm';
 import { Products } from './components/Products';
 import { Loader } from './components/Loader';
 import { useLazyGetProductsQuery } from '../../services/productsApi';
+import { TProduct, TProductRequest } from '../../app/types/productTypes';
 
 export const DepositCalculator: FC = () => {
-  const [getProducts, { isFetching }] = useLazyGetProductsQuery();
+  const [loadProducts, { isFetching }] = useLazyGetProductsQuery();
+
+  const [products, setProducts] = useState<TProduct[] | null>(null);
+
+  const getProducts = async (productRequest: TProductRequest) => {
+    await loadProducts(productRequest)
+      .unwrap()
+      .then((productsList) => setProducts(productsList));
+  };
 
   return (
     <Box>
@@ -34,7 +43,7 @@ export const DepositCalculator: FC = () => {
           {
             isFetching
               ? <Loader />
-              : <Products />
+              : <Products products={products} />
           }
         </Grid>
       </Grid>
