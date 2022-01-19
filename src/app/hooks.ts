@@ -43,6 +43,7 @@ export const useGetApplicationTemplate = (productId: number): TApplication | nul
   return {
     id: uniqueId(),
     userId: currentUser.id,
+    userName: currentUser.info.name,
     name,
     description,
     createdAt: applicationDate.getCreatedAtStrInHumanView(),

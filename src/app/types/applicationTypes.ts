@@ -5,6 +5,7 @@ export type TApplicationStatus = 'draft' | 'inProcessing' | 'open';
 export type TApplication = {
   id: number,
   userId: number,
+  userName: string,
   name: string,
   description: string,
   createdAt: string,
