@@ -1,11 +1,3 @@
-import { LazyQueryTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
-import {
-  QueryDefinition,
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta
-} from '@reduxjs/toolkit/dist/query';
 import { TOptions } from '.';
 
 export type TProductResponse = {
@@ -41,5 +33,3 @@ export type TProductBase = {
 };
 
 export type TProduct = TProductBase & { income: number, amount: number, term: number };
-
-export type TGetProducts = LazyQueryTrigger<QueryDefinition<any, BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, never, TProduct[], string>>;

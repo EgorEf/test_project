@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import { CurrencyField } from './СurrencyField';
 import { AmountField } from './AmountField';
 import { TermField } from './TermField';
-import { TProductRequest, TGetProducts } from '../../../app/types/productTypes';
+import { TProductRequest } from '../../../app/types/productTypes';
 import { OptionFields } from './OptionFields';
 
 const initialValues = {
@@ -18,19 +18,15 @@ const initialValues = {
 };
 
 type PropType = {
-  getProducts: TGetProducts
+  getProducts: (productRequest: TProductRequest) => void
 };
 
 export const CalculatorForm: FC<PropType> = ({ getProducts }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      const product: TProductRequest = values;
-      getProducts(product)
-        .unwrap()
-        .catch((e) => {
-          throw new Error(e);
-        });
+      const productRequest: TProductRequest = values;
+      getProducts(productRequest);
     }
   });
 
