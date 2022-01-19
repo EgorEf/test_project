@@ -46,6 +46,7 @@ export const applicationsApi = createApi({
       query: (application) => ({
         url: 'applications',
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: application
       }),
       invalidatesTags: [{ type: 'Applications', id: 'LIST' }]
@@ -54,6 +55,7 @@ export const applicationsApi = createApi({
       query: (application) => ({
         url: `applications/${application.id}`,
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: application
       }),
       invalidatesTags: [{ type: 'Applications', id: 'LIST' }]
