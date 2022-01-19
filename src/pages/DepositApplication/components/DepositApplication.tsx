@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { Status } from '../../../app/Status';
+import { Status } from '../../../helpers/Status';
 import { routes } from '../../../routes';
 import { TApplication } from '../../../app/types/applicationTypes';
 import { NavigationLinkBack } from './NavigationLinkBack';

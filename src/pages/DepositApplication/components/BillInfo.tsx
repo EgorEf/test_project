@@ -8,7 +8,7 @@ import { PageSubtitle } from '../../../components/PageSubtitle';
 import { TextLine } from './TextLine';
 import { TApplication, TApplicationStatus } from '../../../app/types/applicationTypes';
 import { TBill } from '../../../app/types/billTypes';
-import { Status } from '../../../app/Status';
+import { Status } from '../../../helpers/Status';
 import { useGetBillsQuery } from '../../../services/billsApi';
 
 type PropType = {
