@@ -13,5 +13,5 @@ export type UserInfo = {
 export type TUser = TAuthRequest & {
   id: number,
   role: string,
-  info?: UserInfo
+  info: UserInfo
 };

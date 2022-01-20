@@ -3,7 +3,10 @@
     {
       "id": 1,
       "email": "admin@email.com",
-      "info": null,
+      "info": {
+        "name": "Администратор",
+        "taxNumber": ""
+      },
       "password": "admin",
       "role": "admin"
     },
