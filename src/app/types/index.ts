@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { TApplication } from './applicationTypes';
 
 export type TOptions = {
   isEarlyRepayment: boolean,
@@ -11,6 +12,10 @@ export type TCalculatorPropType = {
   value: string | number | TOptions,
 };
 
+export type TTableRowProp = {
+  dataRow: TApplication
+};
+
 export type TRoutes = {
   BASE_URL: string,
   LOGIN: string,
@@ -21,4 +26,14 @@ export type TRoutes = {
     BY_ID: (id: number) => string
   },
   DEPOSIT_LIST: string
+};
+
+export type TTableConfig = {
+  columns: string[],
+  renderRow: (dataRow: TApplication) => JSX.Element
+  applications?: TApplication[] | null
+};
+
+export type TTableConfigs = {
+  [key: string]: TTableConfig
 };
