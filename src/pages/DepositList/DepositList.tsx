@@ -1,4 +1,6 @@
-import { useState, SyntheticEvent, FC } from 'react';
+import {
+  useState, SyntheticEvent, FC, useMemo
+} from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -9,13 +11,14 @@ import {
   useGetApplications,
   useGetFilteredApplications
 } from '../../app/hooks';
+import { tableConfigs } from './tableConfigs';
 import { selectCurrentUser } from '../Auth/authSlice';
 
 export const DepositList: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const [tab, setTab] = useState('all');
-
   if (!currentUser) return null;
+
+  const [tab, setTab] = useState('all');
 
   const allApplications = useGetApplications(currentUser.role, currentUser.id);
 
@@ -24,6 +27,12 @@ export const DepositList: FC = () => {
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setTab(newValue);
   };
+
+  const tableConfig = useMemo(() => {
+    const currentTableConfig = tableConfigs[currentUser.role];
+    currentTableConfig.applications = applicationsByTab;
+    return currentTableConfig;
+  }, [tab]);
 
   return (
     <Box>
@@ -40,7 +49,7 @@ export const DepositList: FC = () => {
           <Tab value="open" label="Открытые" />
         </Tabs>
       </Box>
-      <TableBlock applications={applicationsByTab} />
+      <TableBlock tableConfig={tableConfig} />
     </Box>
   );
 };
