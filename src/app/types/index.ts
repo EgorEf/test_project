@@ -27,13 +27,3 @@ export type TRoutes = {
   },
   DEPOSIT_LIST: string
 };
-
-export type TTableConfig = {
-  columns: string[],
-  renderRow: (dataRow: TApplication) => JSX.Element
-  applications?: TApplication[] | null
-};
-
-export type TTableConfigs = {
-  [key: string]: TTableConfig
-};
