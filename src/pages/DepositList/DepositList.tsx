@@ -1,5 +1,5 @@
 import {
-  useState, SyntheticEvent, FC, useMemo
+  useState, SyntheticEvent, FC
 } from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -28,11 +28,8 @@ export const DepositList: FC = () => {
     setTab(newValue);
   };
 
-  const tableConfig = useMemo(() => {
-    const currentTableConfig = tableConfigs[currentUser.role];
-    currentTableConfig.applications = applicationsByTab;
-    return currentTableConfig;
-  }, [tab]);
+  const tableConfig = tableConfigs[currentUser.role];
+  tableConfig.rows = applicationsByTab;
 
   return (
     <Box>
