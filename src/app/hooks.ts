@@ -7,7 +7,7 @@ import { TApplication } from './types/applicationTypes';
 import { Role } from '../helpers/Roles';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
-import { ApplicationDate } from '../helpers/ApplicationDate';
+import { date } from '../modules/date';
 import { selectCurrentUser } from '../pages/Auth/authSlice';
 import { selectProduct } from '../pages/DepositCalculator/productsSlice';
 
@@ -38,7 +38,8 @@ export const useGetApplicationTemplate = (productId: number): TApplication | nul
     options
   }: TProduct = selectedProduct;
 
-  const applicationDate = new ApplicationDate(term);
+  const createdAt = date.getCreatedAt();
+  const closedAt = date.getClosedAt(createdAt, term);
 
   return {
     id: uniqueId(),
@@ -46,8 +47,8 @@ export const useGetApplicationTemplate = (productId: number): TApplication | nul
     userName: currentUser.info.name,
     name,
     description,
-    createdAt: applicationDate.getCreatedAtStrInHumanView(),
-    closedAt: applicationDate.getClosedAtStrInHumanView(),
+    createdAt,
+    closedAt,
     amount,
     billNum: null,
     status: 'draft',
