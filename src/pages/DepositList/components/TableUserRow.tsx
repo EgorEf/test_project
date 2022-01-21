@@ -2,6 +2,7 @@ import { FC } from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { getStatusName } from '../../../modules/status';
 import { TTableRowProp } from '../../../app/types';
 
 export const TableUserRow: FC<TTableRowProp> = ({ dataRow }) => {
@@ -19,7 +20,7 @@ export const TableUserRow: FC<TTableRowProp> = ({ dataRow }) => {
       <TableCell>{name}</TableCell>
       <TableCell>{amountValue}</TableCell>
       <TableCell>{closedAt}</TableCell>
-      <TableCell>{status}</TableCell>
+      <TableCell>{getStatusName(status)}</TableCell>
     </TableRow>
   );
 };

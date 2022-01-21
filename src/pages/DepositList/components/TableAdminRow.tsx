@@ -3,6 +3,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { TTableRowProp } from '../../../app/types';
 import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { getStatusName } from '../../../modules/status';
 
 export const TableAdminRow: FC<TTableRowProp> = ({ dataRow }) => {
   const {
@@ -20,7 +21,7 @@ export const TableAdminRow: FC<TTableRowProp> = ({ dataRow }) => {
       <TableCell>{userName}</TableCell>
       <TableCell>{amountValue}</TableCell>
       <TableCell>{closedAt}</TableCell>
-      <TableCell>{status}</TableCell>
+      <TableCell>{getStatusName(status)}</TableCell>
     </TableRow>
   );
 };
