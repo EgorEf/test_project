@@ -1,7 +1,16 @@
 import { TApplication } from '../app/types/applicationTypes';
 import { TOrder, TOrderBy } from '../app/types/depositListTableTypes';
+import { date } from '../modules/date';
 
 const descendingComparator = <T>(a: T, b: T, orderBy: keyof T) => {
+  if (orderBy === 'createdAt' || orderBy === 'closedAt') {
+    const aValue = a[orderBy];
+    const bValue = b[orderBy];
+    return (
+      date.getTimeStampFromDate(String(aValue))
+      - date.getTimeStampFromDate(String(bValue))
+    );
+  }
   if (b[orderBy] < a[orderBy]) return -1;
   if (b[orderBy] > a[orderBy]) return 1;
   return 0;
