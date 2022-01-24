@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { useGetAllApplicationsQuery, useGetApplicationsByUserIdQuery } from '../services/applicationsApi';
+import { useGetApplicationsInProcessingQuery, useGetApplicationsByUserIdQuery } from '../services/applicationsApi';
 import { TUser } from './types/authTypes';
 import { TProduct } from './types/productTypes';
 import { TApplication } from './types/applicationTypes';
@@ -65,8 +65,8 @@ export const useGetApplications = (
   userId: number
 ): TApplication[] | undefined => {
   if (userRole === Role.ADMIN) {
-    const { data: allApplications } = useGetAllApplicationsQuery();
-    return allApplications;
+    const { data: applicationsInProcessing } = useGetApplicationsInProcessingQuery();
+    return applicationsInProcessing;
   }
   const { data: userApplications } = useGetApplicationsByUserIdQuery(userId);
   return userApplications;
@@ -77,7 +77,7 @@ type MappedObj = {
 };
 
 export const useGetFilteredApplications = (
-  tab: string,
+  tab: string | null,
   applications: TApplication[] | undefined
 ): TApplication[] | null => {
   const memoizedStateRef = useRef<MappedObj>({
@@ -88,6 +88,9 @@ export const useGetFilteredApplications = (
   });
 
   if (!applications) return [];
+
+  if (!tab) return applications;
+
   if (!memoizedStateRef.current[tab]) {
     memoizedStateRef.current[tab] = (tab === 'all')
       ? applications
