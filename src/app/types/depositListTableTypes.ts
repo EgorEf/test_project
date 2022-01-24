@@ -7,13 +7,18 @@ export type THandleSort = (property: TOrderBy) => () => void;
 
 export type TColumnCell = {
   id: TOrderBy,
-  label: string
+  label: string,
+  renderCell?: (dataRow: TApplication) => JSX.Element
 }
 
+export type TTabObj = {
+  id: string,
+  label: string
+};
+
 export type TTableConfig = {
-  columns: TColumnCell[],
-  rows: TApplication[] | null,
-  renderRow: (dataRow: TApplication) => JSX.Element
+  tabs?: TTabObj[],
+  columns: TColumnCell[]
 };
 
 export type TTableConfigs = {
