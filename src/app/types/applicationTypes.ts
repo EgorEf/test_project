@@ -23,3 +23,10 @@ export type TApplication = {
 export type TStatusPropType = {
   status: TApplicationStatus
 };
+
+export enum Statuses {
+  DRAFT = 'draft',
+  IN_PROCESSING = 'inProcessing',
+  REJECT = 'reject',
+  OPEN = 'open'
+}
