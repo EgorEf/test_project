@@ -32,7 +32,9 @@ export const DepositList: FC = () => {
           </Box>
         )
       }
-      <TableBlock tableConfig={tableConfig} data={applicationsByTab} />
+      <Box mt={3}>
+        <TableBlock tableConfig={tableConfig} data={applicationsByTab} />
+      </Box>
     </Box>
   );
 };
