@@ -1,6 +1,10 @@
-import { TOptions } from '.';
-
 export type TApplicationStatus = 'draft' | 'inProcessing' | 'reject' | 'open';
+
+export type TOptions = {
+  isEarlyRepayment: boolean,
+  isPartial: boolean,
+  isCapitalization: boolean
+};
 
 export type TApplication = {
   id: number,

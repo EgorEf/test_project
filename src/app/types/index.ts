@@ -1,11 +1,5 @@
 import { ChangeEvent } from 'react';
-import { TApplication } from './applicationTypes';
-
-export type TOptions = {
-  isEarlyRepayment: boolean,
-  isPartial: boolean,
-  isCapitalization: boolean
-};
+import { TApplication, TOptions } from './applicationTypes';
 
 export type TCalculatorPropType = {
   handleChange: (e: ChangeEvent) => void,
@@ -26,4 +20,8 @@ export type TRoutes = {
     BY_ID: (id: number) => string
   },
   DEPOSIT_LIST: string
+};
+
+export type TMappedObjToStr = {
+  [key: string]: string
 };
