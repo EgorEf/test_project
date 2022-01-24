@@ -1,20 +1,19 @@
 import { TableCell } from '@mui/material';
 import { TApplication, TApplicationStatus } from '../../app/types/applicationTypes';
 import { TTableConfigs } from '../../app/types/depositListTableTypes';
-import { getCurrencySymbol } from '../../helpers/currencySymbols';
-import { getStatusName } from '../../modules/status';
-import { Status } from '../../helpers/Status';
+import { currencySymbols } from '../../helpers/currencySymbols';
+import { statusLabels } from '../../helpers/statusLabels';
 import { Roles } from '../../app/types/authTypes';
 import { BadgeStatus } from './components/BadgeStatus';
 import { ConfirmationStatusBlock } from './components/ConfirmationStatusBlock';
 
 const renderAmountCell = ({ amount, currency }: TApplication) => {
-  const amountValue = `${amount} ${getCurrencySymbol(currency)}`;
+  const amountValue = `${amount} ${currencySymbols[currency]}`;
   return <TableCell>{amountValue}</TableCell>;
 };
 
 const renderStatusCell = (status: TApplicationStatus, id: number) => {
-  const statusLabel = getStatusName(status);
+  const statusLabel = statusLabels[status];
 
   return (
     <TableCell key={id}>
