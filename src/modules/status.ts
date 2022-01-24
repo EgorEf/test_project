@@ -1,12 +1,13 @@
 import { Status } from '../helpers/Status';
 
 type TMappedObj = {
-  [key: string]: string;
+  [key: string]: string
 };
 
 const mappedNamesByApplicationStatus: TMappedObj = {
   [Status.DRAFT]: 'Черновик',
   [Status.IN_PROCESSING]: 'В рассмотрении',
+  [Status.REJECT]: 'Отклонен',
   [Status.OPEN]: 'Открыт'
 };
 

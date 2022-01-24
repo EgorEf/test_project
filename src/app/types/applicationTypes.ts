@@ -1,6 +1,6 @@
 import { TOptions } from '.';
 
-export type TApplicationStatus = 'draft' | 'inProcessing' | 'open';
+export type TApplicationStatus = 'draft' | 'inProcessing' | 'reject' | 'open';
 
 export type TApplication = {
   id: number,
