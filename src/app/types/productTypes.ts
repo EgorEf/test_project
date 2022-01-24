@@ -1,4 +1,4 @@
-import { TOptions } from '.';
+import { TOptions } from './applicationTypes';
 
 export type TProductResponse = {
   id: number,
