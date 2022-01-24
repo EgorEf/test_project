@@ -10,14 +10,16 @@ import { stableSort, getComparator } from '../../../helpers/sort';
 import {
   TTableConfig, TOrder, TOrderBy, THandleSort
 } from '../../../app/types/depositListTableTypes';
+import { TApplication } from '../../../app/types/applicationTypes';
 
 type PropType = {
   tableConfig: TTableConfig
+  data: TApplication[] | null
 };
 
-export const TableBlock: FC<PropType> = ({ tableConfig }) => {
-  const { columns, renderRow, rows } = tableConfig;
-  if (!rows) return null;
+export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
+  const { columns } = tableConfig;
+  if (!data) return null;
 
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<TOrderBy>('createdAt');
@@ -28,7 +30,16 @@ export const TableBlock: FC<PropType> = ({ tableConfig }) => {
     setOrderBy(property);
   };
 
-  const sortedRows = stableSort(rows, getComparator(order, orderBy));
+  const renderRow = (rowData: TApplication) => (
+    <TableRow>
+      {columns.map(({ id, renderCell }) => {
+        if (renderCell) return renderCell(rowData);
+        return <TableCell key={id}>{rowData[id]}</TableCell>;
+      })}
+    </TableRow>
+  );
+
+  const sortedRows = stableSort(data, getComparator(order, orderBy));
 
   return (
     <TableContainer>
