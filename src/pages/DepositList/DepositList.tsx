@@ -1,10 +1,7 @@
-import {
-  useState, SyntheticEvent, FC
-} from 'react';
+import { useState, FC } from 'react';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import { PageHeader } from '../../components/PageHeader';
+import { TableTabs } from './components/TableTabs';
 import { TableBlock } from './components/TableBlock';
 import {
   useAppSelector as useSelector,
@@ -24,29 +21,19 @@ export const DepositList: FC = () => {
 
   const applicationsByTab = useGetFilteredApplications(tab, allApplications);
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
-    setTab(newValue);
-  };
-
   const tableConfig = tableConfigs[currentUser.role];
-  tableConfig.rows = applicationsByTab;
 
   return (
     <Box>
       <PageHeader text="Список депозитных заявок" />
-      <Box mt={3}>
-        <Tabs
-          value={tab}
-          onChange={handleChange}
-          aria-label="wrapped label tabs"
-        >
-          <Tab value="all" label="Все депозиты" />
-          <Tab value="draft" label="Черновики" />
-          <Tab value="inProcessing" label="В рассмотрении" />
-          <Tab value="open" label="Открытые" />
-        </Tabs>
-      </Box>
-      <TableBlock tableConfig={tableConfig} />
+      {
+        tableConfigs.tabs && (
+          <Box mt={3}>
+            <TableTabs tab={tab} tabs={tableConfig.tabs} setTab={setTab} />
+          </Box>
+        )
+      }
+      <TableBlock tableConfig={tableConfig} data={applicationsByTab} />
     </Box>
   );
 };
