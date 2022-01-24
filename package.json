@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.5.1",
+    "@mui/base": "^5.0.0-alpha.65",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.2",
     "@mui/styled-engine-sc": "^5.1.0",
