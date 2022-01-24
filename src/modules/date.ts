@@ -1,4 +1,4 @@
-const moment = require('moment');  // eslint-disable-line
+import moment from 'moment';
 
 const FORMAT_TIME = 'DD.MM.YYYY';
 
