@@ -1,10 +1,6 @@
-type MappedObjWithSymbols = {
-  [key: string]: string;
-};
+import { TMappedObjToStr } from '../app/types';
 
-const mappedSymbolsByCurrency: MappedObjWithSymbols = {
+export const currencySymbols: TMappedObjToStr = {
   rub: '₽',
   usd: '$'
 };
-
-export const getCurrencySymbol = (key: string): string => mappedSymbolsByCurrency[key];
