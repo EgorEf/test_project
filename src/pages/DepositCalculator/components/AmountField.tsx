@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import { OutlinedInputWithoutArrows } from './OutlinedInputWithoutArrows';
-import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { currencySymbols } from '../../../helpers/currencySymbols';
 import { TCalculatorPropType } from '../../../app/types';
 
 type TAmountProps = TCalculatorPropType & { currency: string };
@@ -13,7 +13,7 @@ export const AmountField: FC<TAmountProps> = ({
   currency,
   handleChange
 }) => {
-  const currencySymbol = getCurrencySymbol(currency);
+  const currencySymbol = currencySymbols[currency];
   const step = (currency === 'rub') ? 1000 : 100;
   const fieldValue = (value === 0) ? '' : value;
 

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { TextLine } from './TextLine';
 import { TApplication } from '../../../app/types/applicationTypes';
-import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { currencySymbols } from '../../../helpers/currencySymbols';
 
 type PropType = {
   applicationData: TApplication
@@ -21,7 +21,7 @@ export const MainInfo: FC<PropType> = ({ applicationData }) => {
     rate
   } = applicationData;
   const rateValue = `${rate} %`;
-  const currencySymbol = getCurrencySymbol(currency);
+  const currencySymbol = currencySymbols[currency];
   const amountValue = `${amount} ${currencySymbol}`;
   const incomeValue = `${income} ${currencySymbol}`;
 

@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { getCurrencySymbol } from '../../../helpers/currencySymbols';
+import { currencySymbols } from '../../../helpers/currencySymbols';
 import { routes } from '../../../routes';
 import { TProduct } from '../../../app/types/productTypes';
 
@@ -40,7 +40,7 @@ const getPeriodView = ([start, end]: number[]): string => {
 };
 
 const getIncomeView = (income: number, currency: string): string => (
-  `${income} ${getCurrencySymbol(currency)}`
+  `${income} ${currencySymbols[currency]}`
 );
 
 const getRateView = (rate: number): string => `${rate} %`;
