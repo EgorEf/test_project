@@ -1,7 +1,7 @@
 export type TAuthRequest = {
   email: string,
   password: string
-}
+};
 
 export type TAuthState = TAuthRequest & { isRemember: boolean };
 
@@ -15,3 +15,8 @@ export type TUser = TAuthRequest & {
   role: string,
   info: UserInfo
 };
+
+export enum Roles {
+  ADMIN = 'admin',
+  USER = 'user'
+}
