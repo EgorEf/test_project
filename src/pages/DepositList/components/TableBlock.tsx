@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import Table from '@mui/material/Table';
+import Paper from '@mui/material/Paper';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { TableHeader } from './TableHeader';
 import { stableSort, getComparator } from '../../../helpers/sort';
@@ -42,16 +42,18 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   const sortedRows = stableSort(data, getComparator(order, orderBy));
 
   return (
-    <TableContainer>
-      <Table
-        sx={{ minWidth: 750 }}
-        aria-labelledby="tableTitle"
-      >
-        <TableHeader columns={columns} order={order} orderBy={orderBy} handleSort={handleSort} />
-        <TableBody>
-          {sortedRows.map(renderRow)}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Paper variant="outlined" square>
+      <TableContainer>
+        <Table
+          sx={{ minWidth: 750 }}
+          aria-labelledby="tableTitle"
+        >
+          <TableHeader columns={columns} order={order} orderBy={orderBy} handleSort={handleSort} />
+          <TableBody>
+            {sortedRows.map(renderRow)}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 };
