@@ -15,13 +15,13 @@ export const DepositList: FC = () => {
   const currentUser = useSelector(selectCurrentUser);
   if (!currentUser) return null;
 
-  const [tab, setTab] = useState('all');
+  const tableConfig = tableConfigs[currentUser.role];
+
+  const [tab, setTab] = useState<string | null>(tableConfig.tabs ? 'all' : null);
 
   const allApplications = useGetApplications(currentUser.role, currentUser.id);
 
   const applicationsByTab = useGetFilteredApplications(tab, allApplications);
-
-  const tableConfig = tableConfigs[currentUser.role];
 
   return (
     <Box>
