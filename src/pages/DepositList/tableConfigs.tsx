@@ -3,20 +3,37 @@ import { TApplication, TApplicationStatus } from '../../app/types/applicationTyp
 import { TTableConfigs } from '../../app/types/depositListTableTypes';
 import { getCurrencySymbol } from '../../helpers/currencySymbols';
 import { getStatusName } from '../../modules/status';
+import { Status } from '../../helpers/Status';
 import { Role } from '../../helpers/Roles';
 import { BadgeStatus } from './components/BadgeStatus';
+import { ConfirmationStatusBlock } from './components/ConfirmationStatusBlock';
 
 const renderAmountCell = ({ amount, currency }: TApplication) => {
   const amountValue = `${amount} ${getCurrencySymbol(currency)}`;
   return <TableCell>{amountValue}</TableCell>;
 };
 
-const renderStatusCell = (status: TApplicationStatus) => {
+const renderStatusCell = (status: TApplicationStatus, id: number) => {
   const statusLabel = getStatusName(status);
 
   return (
-    <TableCell>
+    <TableCell key={id}>
       <BadgeStatus status={status} label={statusLabel} />
+    </TableCell>
+  );
+};
+
+const renderAdminStatusCell = (dataRow: TApplication) => {
+  const { status, id } = dataRow;
+  const statusLabel = getStatusName(status);
+  console.log(status);
+  return (
+    <TableCell key={id}>
+      {
+        status === Status.IN_PROCESSING
+          ? <ConfirmationStatusBlock dataRow={dataRow} />
+          : <BadgeStatus status={status} label={statusLabel} />
+      }
     </TableCell>
   );
 };
@@ -29,7 +46,7 @@ export const tableConfigs: TTableConfigs = {
       { id: 'name', label: 'Вид депозита' },
       { id: 'amount', label: 'Сумма', renderCell: (dataRow) => renderAmountCell(dataRow) },
       { id: 'closedAt', label: 'Срок' },
-      { id: 'status', label: 'Статус', renderCell: ({ status }) => renderStatusCell(status) }
+      { id: 'status', label: 'Статус', renderCell: (dataRow) => renderAdminStatusCell(dataRow) }
     ]
   },
   [Role.USER]: {
@@ -44,7 +61,7 @@ export const tableConfigs: TTableConfigs = {
       { id: 'name', label: 'Вид депозита' },
       { id: 'amount', label: 'Сумма', renderCell: (dataRow) => renderAmountCell(dataRow) },
       { id: 'closedAt', label: 'Срок' },
-      { id: 'status', label: 'Статус', renderCell: ({ status }) => renderStatusCell(status) }
+      { id: 'status', label: 'Статус', renderCell: ({ status, id }) => renderStatusCell(status, id) }
     ]
   }
 };
