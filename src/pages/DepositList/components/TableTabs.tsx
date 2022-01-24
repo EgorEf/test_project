@@ -10,11 +10,13 @@ import { TTabObj } from '../../../app/types/depositListTableTypes';
 
 type TPropType = {
   tab: string,
-  tabs: TTabObj[],
+  tabs: TTabObj[] | undefined,
   setTab: Dispatch<SetStateAction<string>>
 };
 
 export const TableTabs: FC<TPropType> = ({ tab, tabs, setTab }) => {
+  if (!tabs) return null;
+
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setTab(newValue);
   };
