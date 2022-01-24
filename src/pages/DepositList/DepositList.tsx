@@ -4,15 +4,14 @@ import { PageHeader } from '../../components/PageHeader';
 import { TableTabs } from './components/TableTabs';
 import { TableBlock } from './components/TableBlock';
 import {
-  useAppSelector as useSelector,
+  useGetCurrentUser,
   useGetApplications,
   useGetFilteredApplications
 } from '../../app/hooks';
 import { tableConfigs } from './tableConfigs';
-import { selectCurrentUser } from '../Auth/authSlice';
 
 export const DepositList: FC = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useGetCurrentUser();
   if (!currentUser) return null;
 
   const tableConfig = tableConfigs[currentUser.role];
