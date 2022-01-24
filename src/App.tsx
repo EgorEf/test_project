@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { useGetCurrentUser } from './app/hooks';
-import { Role } from './helpers/Roles';
+import { Roles } from './app/types/authTypes';
 import { routes } from './routes';
 import { AuthPage } from './pages/Auth/AuthPage';
 import { ProtectedRouter } from './components/ProtectedRouter';
@@ -35,7 +35,7 @@ export const App: FC = () => {
             )}
           >
             {
-              (user?.role === Role.ADMIN)
+              (user?.role === Roles.ADMIN)
                 ? (
                   <>
                     <Route index element={<Navigate to={routes.DEPOSIT_LIST} replace />} />

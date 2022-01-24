@@ -4,7 +4,7 @@ import { TTableConfigs } from '../../app/types/depositListTableTypes';
 import { getCurrencySymbol } from '../../helpers/currencySymbols';
 import { getStatusName } from '../../modules/status';
 import { Status } from '../../helpers/Status';
-import { Role } from '../../helpers/Roles';
+import { Roles } from '../../app/types/authTypes';
 import { BadgeStatus } from './components/BadgeStatus';
 import { ConfirmationStatusBlock } from './components/ConfirmationStatusBlock';
 
@@ -39,7 +39,7 @@ const renderAdminStatusCell = (dataRow: TApplication) => {
 };
 
 export const tableConfigs: TTableConfigs = {
-  [Role.ADMIN]: {
+  [Roles.ADMIN]: {
     columns: [
       { id: 'createdAt', label: 'Создан' },
       { id: 'userName', label: 'Клиент' },
@@ -49,7 +49,7 @@ export const tableConfigs: TTableConfigs = {
       { id: 'status', label: 'Статус', renderCell: (dataRow) => renderAdminStatusCell(dataRow) }
     ]
   },
-  [Role.USER]: {
+  [Roles.USER]: {
     tabs: [
       { id: 'all', label: 'Все депозиты' },
       { id: 'draft', label: 'Черновики' },

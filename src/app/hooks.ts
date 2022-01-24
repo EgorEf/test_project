@@ -1,10 +1,9 @@
 import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useGetApplicationsInProcessingQuery, useGetApplicationsByUserIdQuery } from '../services/applicationsApi';
-import { TUser } from './types/authTypes';
+import { TUser, Roles } from './types/authTypes';
 import { TProduct } from './types/productTypes';
 import { TApplication } from './types/applicationTypes';
-import { Role } from '../helpers/Roles';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { date } from '../modules/date';
@@ -64,7 +63,7 @@ export const useGetApplications = (
   userRole: string,
   userId: number
 ): TApplication[] | undefined => {
-  if (userRole === Role.ADMIN) {
+  if (userRole === Roles.ADMIN) {
     const { data: applicationsInProcessing } = useGetApplicationsInProcessingQuery();
     return applicationsInProcessing;
   }
