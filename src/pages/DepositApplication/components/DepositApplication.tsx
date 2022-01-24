@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { Status } from '../../../helpers/Status';
 import { routes } from '../../../routes';
-import { TApplication } from '../../../app/types/applicationTypes';
+import { TApplication, Statuses } from '../../../app/types/applicationTypes';
 import { NavigationLinkBack } from './NavigationLinkBack';
 import { Header } from './Header';
 import { MainInfo } from './MainInfo';
@@ -69,7 +68,7 @@ export const DepositApplication: FC<PropType> = ({ application, isNew }) => {
       <ClientInfo />
       <Stack direction="row" spacing={4} mt={5}>
         {isNew && <Button variant="outlined" onClick={saveApplication} disabled={isDisabledButton}>Сохранить</Button>}
-        {(status === Status.DRAFT) && (
+        {(status === Statuses.DRAFT) && (
           <Button variant="contained" onClick={sendApplication} disabled={isDisabledButton}>Отправить</Button>
         )}
       </Stack>

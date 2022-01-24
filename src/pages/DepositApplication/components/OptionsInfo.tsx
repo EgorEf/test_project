@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { TOptions } from '../../../app/types/index';
+import { TOptions } from '../../../app/types/applicationTypes';
 import { TextLine } from './TextLine';
 
 type PropType = { options: TOptions };

@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TApplication } from '../app/types/applicationTypes';
-import { Status } from '../helpers/Status';
+import { TApplication, Statuses } from '../app/types/applicationTypes';
 import { routes } from '../routes';
 
 export const applicationsApi = createApi({
@@ -9,7 +8,7 @@ export const applicationsApi = createApi({
   tagTypes: ['Applications'],
   endpoints: (builder) => ({
     getApplicationsInProcessing: builder.query<TApplication[], void>({
-      query: () => ({ url: 'applications', params: { status: Status.IN_PROCESSING } }),
+      query: () => ({ url: 'applications', params: { status: Statuses.IN_PROCESSING } }),
       providesTags: (result) => (
         result
           ? [

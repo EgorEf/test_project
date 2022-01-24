@@ -4,7 +4,7 @@ import {
   TProductBase,
   TProduct
 } from '../app/types/productTypes';
-import { TOptions } from '../app/types/index';
+import { TOptions } from '../app/types/applicationTypes';
 
 type TProductBaseWithIncome = TProductBase & { income: number };
 

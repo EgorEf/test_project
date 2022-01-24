@@ -6,9 +6,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { PageSubtitle } from '../../../components/PageSubtitle';
 import { TextLine } from './TextLine';
-import { TApplication, TApplicationStatus } from '../../../app/types/applicationTypes';
+import { TApplication, TApplicationStatus, Statuses } from '../../../app/types/applicationTypes';
 import { TBill } from '../../../app/types/billTypes';
-import { Status } from '../../../helpers/Status';
 import { useGetBillsQuery } from '../../../services/billsApi';
 
 type PropType = {
@@ -41,7 +40,7 @@ export const BillInfo: FC<PropType> = ({
     <Box mt={2}>
       <PageSubtitle text="Способ пополнения и возврата средств" />
       {
-        (status === Status.DRAFT)
+        (status === Statuses.DRAFT)
           ? (
             <Box width="300px" py="14px">
               <FormControl fullWidth>

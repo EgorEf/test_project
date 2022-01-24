@@ -3,8 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import { TApplication, TApplicationStatus } from '../../../app/types/applicationTypes';
-import { Status } from '../../../helpers/Status';
+import { TApplication, TApplicationStatus, Statuses } from '../../../app/types/applicationTypes';
 import { useUpdateApplicationMutation } from '../../../services/applicationsApi';
 
 type TPropType = {
@@ -21,10 +20,10 @@ export const ConfirmationStatusBlock: FC<TPropType> = ({ dataRow }) => {
 
   return (
     <Stack spacing={1} direction="row">
-      <Button variant="text" onClick={handleClick(Status.OPEN)}>
+      <Button variant="text" onClick={handleClick(Statuses.OPEN)}>
         <CheckIcon color="success" />
       </Button>
-      <Button variant="text" onClick={handleClick(Status.REJECT)}>
+      <Button variant="text" onClick={handleClick(Statuses.REJECT)}>
         <CloseIcon color="error" />
       </Button>
     </Stack>

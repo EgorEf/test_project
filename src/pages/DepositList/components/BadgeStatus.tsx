@@ -8,8 +8,7 @@ import {
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
-import { Status } from '../../../helpers/Status';
-import { TApplicationStatus } from '../../../app/types/applicationTypes';
+import { TApplicationStatus, Statuses } from '../../../app/types/applicationTypes';
 
 const CustomBadge = styled(BadgeUnstyled)`
   position: relative;
@@ -32,16 +31,16 @@ const CustomBadge = styled(BadgeUnstyled)`
     border-radius: 100%;
     box-shadow: 0 0 0 1px #fff;
 
-    &.color-${Status.DRAFT}-status {
+    &.color-${Statuses.DRAFT}-status {
       background: ${grey[500]}
     }
-    &.color-${Status.IN_PROCESSING}-status {
+    &.color-${Statuses.IN_PROCESSING}-status {
       background: ${blue[500]}
     }
-    &.color-${Status.REJECT}-status {
+    &.color-${Statuses.REJECT}-status {
       background: ${red[500]}
     }
-    &.color-${Status.OPEN}-status {
+    &.color-${Statuses.OPEN}-status {
       background: ${green[500]}
     }
   }
