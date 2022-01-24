@@ -31,7 +31,7 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   };
 
   const renderRow = (rowData: TApplication) => (
-    <TableRow>
+    <TableRow key={rowData.id}>
       {columns.map(({ id, renderCell }) => {
         if (renderCell) return renderCell(rowData);
         return <TableCell key={id}>{rowData[id]}</TableCell>;
