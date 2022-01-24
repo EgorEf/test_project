@@ -9,13 +9,13 @@ import Tab from '@mui/material/Tab';
 import { TTabObj } from '../../../app/types/depositListTableTypes';
 
 type TPropType = {
-  tab: string,
+  tab: string | null,
   tabs: TTabObj[] | undefined,
-  setTab: Dispatch<SetStateAction<string>>
+  setTab: Dispatch<SetStateAction<string | null>>
 };
 
 export const TableTabs: FC<TPropType> = ({ tab, tabs, setTab }) => {
-  if (!tabs) return null;
+  if (!tabs || !tab) return null;
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setTab(newValue);
