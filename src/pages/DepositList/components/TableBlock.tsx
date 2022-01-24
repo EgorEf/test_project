@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, ChangeEvent, useState } from 'react';
 import Table from '@mui/material/Table';
+import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -23,6 +24,17 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
 
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<TOrderBy>('createdAt');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   const handleSort: THandleSort = (property) => () => {
     const isAsc = (orderBy === property) && order === 'asc';
@@ -40,6 +52,7 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   );
 
   const sortedRows = stableSort(data, getComparator(order, orderBy));
+  const rowsForPage = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
     <Paper variant="outlined" square>
@@ -50,10 +63,19 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
         >
           <TableHeader columns={columns} order={order} orderBy={orderBy} handleSort={handleSort} />
           <TableBody>
-            {sortedRows.map(renderRow)}
+            {rowsForPage.map(renderRow)}
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={sortedRows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Paper>
   );
 };
