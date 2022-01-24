@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ruRU } from '@mui/material/locale';
 import './index.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -11,11 +13,18 @@ import { App } from './App';
 import { store, persistor } from './app/store';
 import * as serviceWorker from './serviceWorker';
 
+const theme = createTheme(
+  {},
+  ruRU
+);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
