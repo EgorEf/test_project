@@ -22,20 +22,11 @@ const renderStatusCell = (status: TApplicationStatus, id: number) => {
   );
 };
 
-const renderAdminStatusCell = (dataRow: TApplication) => {
-  const { status, id } = dataRow;
-  const statusLabel = getStatusName(status);
-  console.log(status);
-  return (
-    <TableCell key={id}>
-      {
-        status === Status.IN_PROCESSING
-          ? <ConfirmationStatusBlock dataRow={dataRow} />
-          : <BadgeStatus status={status} label={statusLabel} />
-      }
-    </TableCell>
-  );
-};
+const renderAdminStatusCell = (dataRow: TApplication) => (
+  <TableCell key={dataRow.id}>
+    <ConfirmationStatusBlock dataRow={dataRow} />
+  </TableCell>
+);
 
 export const tableConfigs: TTableConfigs = {
   [Roles.ADMIN]: {
