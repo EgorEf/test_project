@@ -9,11 +9,11 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import logo from '../../../images/Logo.png';
-import { selectCurrentUser, logOut } from '../../Auth/authSlice';
+import { logOut } from '../../Auth/authSlice';
 import { CustomNavLink } from './CustomNavLink';
 import {
   useAppDispatch as useDispatch,
-  useAppSelector as useSelector
+  useGetCurrentUser
 } from '../../../app/hooks';
 
 type RouteObj = {
@@ -37,7 +37,7 @@ const pages: MappedObjType = {
 
 export const HeaderMenu: FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectCurrentUser);
+  const user = useGetCurrentUser();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
 
