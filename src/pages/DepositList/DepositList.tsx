@@ -27,7 +27,7 @@ export const DepositList: FC = () => {
     <Box>
       <PageHeader text="Список депозитных заявок" />
       {
-        tableConfigs.tabs && (
+        tableConfig.tabs && (
           <Box mt={3}>
             <TableTabs tab={tab} tabs={tableConfig.tabs} setTab={setTab} />
           </Box>
