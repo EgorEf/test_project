@@ -1,4 +1,6 @@
 import { FC, ChangeEvent, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { blue } from '@mui/material/colors';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
@@ -12,6 +14,12 @@ import {
   TTableConfig, TOrder, TOrderBy, THandleSort
 } from '../../../app/types/depositListTableTypes';
 import { TApplication } from '../../../app/types/applicationTypes';
+
+const CustomTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover
+  }
+}));
 
 type PropType = {
   tableConfig: TTableConfig
@@ -43,12 +51,12 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   };
 
   const renderRow = (rowData: TApplication) => (
-    <TableRow key={rowData.id}>
+    <CustomTableRow key={rowData.id}>
       {columns.map(({ id, renderCell }) => {
         if (renderCell) return renderCell(rowData);
         return <TableCell key={id}>{rowData[id]}</TableCell>;
       })}
-    </TableRow>
+    </CustomTableRow>
   );
 
   const sortedRows = stableSort(data, getComparator(order, orderBy));
