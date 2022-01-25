@@ -55,7 +55,7 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   const rowsForPage = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Paper variant="outlined" square>
+    <Paper variant="outlined" sx={{ borderRadius: 5 }} square>
       <TableContainer>
         <Table
           sx={{ minWidth: 750 }}
