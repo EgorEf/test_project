@@ -1,4 +1,6 @@
-import { FC, ChangeEvent, useState } from 'react';
+import {
+  FC, ChangeEvent, useState, Fragment
+} from 'react';
 import { styled } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Table from '@mui/material/Table';
@@ -9,6 +11,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { TableHeader } from './TableHeader';
+import { TableModal } from './TableModal';
 import { stableSort, getComparator } from '../../../helpers/sort';
 import {
   TTableConfig, TOrder, TOrderBy, THandleSort
@@ -17,24 +20,25 @@ import { TApplication } from '../../../app/types/applicationTypes';
 
 const MIN_HEIGHT_ROW = 53;
 
-const CustomTableRow = styled(TableRow)(({ theme }) => ({
+const CustomTableRow = styled(TableRow)(({
   minHeight: MIN_HEIGHT_ROW,
   '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover
+    backgroundColor: blue[50]
   }
 }));
 
-type PropType = {
+type TPropType = {
   tableConfig: TTableConfig
   data: TApplication[] | null
 };
 
-export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
+export const TableBlock: FC<TPropType> = ({ tableConfig, data }) => {
   const { columns } = tableConfig;
   if (!data) return null;
 
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<TOrderBy>('createdAt');
+  const [selectedRow, setSelectedRow] = useState<TApplication | null>(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -53,10 +57,19 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
     setOrderBy(property);
   };
 
+  const handleSelectRow = (selectedId: number) => () => {
+    const currentApplication = data.find(({ id }) => selectedId === id) || null;
+    setSelectedRow(currentApplication);
+  };
+
   const renderRow = (rowData: TApplication) => (
-    <CustomTableRow key={rowData.id}>
+    <CustomTableRow key={rowData.id} onClick={handleSelectRow(rowData.id)} hover>
       {columns.map(({ id, renderCell }) => {
-        if (renderCell) return renderCell(rowData);
+        if (renderCell) {
+          return (
+            <Fragment key={id}>{renderCell(rowData)}</Fragment>
+          );
+        }
         return <TableCell key={id}>{rowData[id]}</TableCell>;
       })}
     </CustomTableRow>
@@ -69,37 +82,38 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
     : 0;
 
   return (
-    <Paper variant="outlined" sx={{ borderRadius: 5, overflow: 'hidden' }} square>
-      <TableContainer>
-        <Table
-          sx={{ minWidth: 750 }}
-          aria-labelledby="tableTitle"
-        >
-          <TableHeader columns={columns} order={order} orderBy={orderBy} handleSort={handleSort} />
-          <TableBody>
-            {rowsForPage.map(renderRow)}
-            {emptyRows > 0 && (
-              <CustomTableRow
-                style={{
-                  height: MIN_HEIGHT_ROW * emptyRows
-                }}
-              >
-                <TableCell colSpan={6} />
-              </CustomTableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={sortedRows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        sx={{ background: blue[100] }}
-      />
-    </Paper>
+    <>
+      <Paper variant="outlined" sx={{ borderRadius: 5, overflow: 'hidden' }} square>
+        <TableContainer>
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+            <TableHeader
+              columns={columns}
+              order={order}
+              orderBy={orderBy}
+              handleSort={handleSort}
+            />
+            <TableBody>
+              {rowsForPage.map(renderRow)}
+              {emptyRows > 0 && (
+                <CustomTableRow style={{ height: MIN_HEIGHT_ROW * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </CustomTableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={sortedRows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          sx={{ background: blue[100] }}
+        />
+      </Paper>
+      {selectedRow && <TableModal data={selectedRow} setSelectedRow={setSelectedRow} />}
+    </>
   );
 };
