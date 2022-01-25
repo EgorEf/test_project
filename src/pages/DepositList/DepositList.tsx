@@ -18,9 +18,9 @@ export const DepositList: FC = () => {
 
   const [tab, setTab] = useState<string | null>(tableConfig.tabs ? 'all' : null);
 
-  const allApplications = useGetApplications(currentUser.role, currentUser.id);
+  const { applications, isFetching } = useGetApplications(currentUser.role, currentUser.id);
 
-  const applicationsByTab = useGetFilteredApplications(tab, allApplications);
+  const applicationsByTab = useGetFilteredApplications(tab, applications);
 
   return (
     <Box>
@@ -33,7 +33,7 @@ export const DepositList: FC = () => {
         )
       }
       <Box mt={3}>
-        <TableBlock tableConfig={tableConfig} data={applicationsByTab} />
+        <TableBlock tableConfig={tableConfig} data={applicationsByTab} isFetching={isFetching} />
       </Box>
     </Box>
   );
