@@ -1,31 +1,17 @@
-import {
-  FC, ChangeEvent, useState, Fragment
-} from 'react';
-import { styled } from '@mui/material/styles';
+import { FC, ChangeEvent, useState } from 'react';
 import { blue } from '@mui/material/colors';
 import Table from '@mui/material/Table';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
 import { TableHeader } from './TableHeader';
+import { TableCustomBody as TableBody } from './TableCustomBody';
 import { TableModal } from './TableModal';
 import { stableSort, getComparator } from '../../../helpers/sort';
 import {
   TTableConfig, TOrder, TOrderBy, THandleSort
 } from '../../../app/types/depositListTableTypes';
 import { TApplication } from '../../../app/types/applicationTypes';
-
-const MIN_HEIGHT_ROW = 53;
-
-const CustomTableRow = styled(TableRow)(({
-  minHeight: MIN_HEIGHT_ROW,
-  '&:nth-of-type(odd)': {
-    backgroundColor: blue[50]
-  }
-}));
 
 type TPropType = {
   tableConfig: TTableConfig
@@ -57,24 +43,6 @@ export const TableBlock: FC<TPropType> = ({ tableConfig, data }) => {
     setOrderBy(property);
   };
 
-  const handleSelectRow = (selectedId: number) => () => {
-    const currentApplication = data.find(({ id }) => selectedId === id) || null;
-    setSelectedRow(currentApplication);
-  };
-
-  const renderRow = (rowData: TApplication) => (
-    <CustomTableRow key={rowData.id} onClick={handleSelectRow(rowData.id)} hover>
-      {columns.map(({ id, renderCell }) => {
-        if (renderCell) {
-          return (
-            <Fragment key={id}>{renderCell(rowData)}</Fragment>
-          );
-        }
-        return <TableCell key={id}>{rowData[id]}</TableCell>;
-      })}
-    </CustomTableRow>
-  );
-
   const sortedRows = stableSort(data, getComparator(order, orderBy));
   const rowsForPage = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   const emptyRows = (page > 0)
@@ -92,14 +60,12 @@ export const TableBlock: FC<TPropType> = ({ tableConfig, data }) => {
               orderBy={orderBy}
               handleSort={handleSort}
             />
-            <TableBody>
-              {rowsForPage.map(renderRow)}
-              {emptyRows > 0 && (
-                <CustomTableRow style={{ height: MIN_HEIGHT_ROW * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </CustomTableRow>
-              )}
-            </TableBody>
+            <TableBody
+              rows={rowsForPage}
+              emptyRows={emptyRows}
+              columns={columns}
+              setSelectedRow={setSelectedRow}
+            />
           </Table>
         </TableContainer>
         <TablePagination
