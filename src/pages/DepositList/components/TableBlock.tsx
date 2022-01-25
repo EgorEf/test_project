@@ -16,9 +16,10 @@ import { TApplication } from '../../../app/types/applicationTypes';
 type TPropType = {
   tableConfig: TTableConfig
   data: TApplication[] | null
+  isFetching: boolean
 };
 
-export const TableBlock: FC<TPropType> = ({ tableConfig, data }) => {
+export const TableBlock: FC<TPropType> = ({ tableConfig, data, isFetching }) => {
   const { columns } = tableConfig;
   if (!data) return null;
 
@@ -64,6 +65,7 @@ export const TableBlock: FC<TPropType> = ({ tableConfig, data }) => {
               rows={rowsForPage}
               emptyRows={emptyRows}
               columns={columns}
+              isFetching={isFetching}
               setSelectedRow={setSelectedRow}
             />
           </Table>
