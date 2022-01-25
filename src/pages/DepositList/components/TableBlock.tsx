@@ -55,7 +55,7 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
   const rowsForPage = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
   return (
-    <Paper variant="outlined" sx={{ borderRadius: 5 }} square>
+    <Paper variant="outlined" sx={{ borderRadius: 5, overflow: 'hidden' }} square>
       <TableContainer>
         <Table
           sx={{ minWidth: 750 }}
@@ -75,6 +75,7 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{ background: blue[100] }}
       />
     </Paper>
   );

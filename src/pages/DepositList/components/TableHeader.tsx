@@ -3,6 +3,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import { blue } from '@mui/material/colors';
 import {
   TOrder, TColumnCell, TOrderBy, THandleSort
 } from '../../../app/types/depositListTableTypes';
@@ -17,7 +18,7 @@ type PropType = {
 export const TableHeader: FC<PropType> = ({
   columns, order, orderBy, handleSort
 }) => (
-  <TableHead>
+  <TableHead sx={{ background: blue[100] }}>
     <TableRow>
       {columns.map(({ id, label, width }) => (
         <TableCell key={id} sortDirection={orderBy === id ? order : false} sx={{ width }}>
