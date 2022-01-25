@@ -15,7 +15,10 @@ import {
 } from '../../../app/types/depositListTableTypes';
 import { TApplication } from '../../../app/types/applicationTypes';
 
+const MIN_HEIGHT_ROW = 53;
+
 const CustomTableRow = styled(TableRow)(({ theme }) => ({
+  minHeight: MIN_HEIGHT_ROW,
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover
   }
@@ -61,6 +64,9 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
 
   const sortedRows = stableSort(data, getComparator(order, orderBy));
   const rowsForPage = sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  const emptyRows = (page > 0)
+    ? Math.max(0, (1 + page) * rowsPerPage - sortedRows.length)
+    : 0;
 
   return (
     <Paper variant="outlined" sx={{ borderRadius: 5, overflow: 'hidden' }} square>
@@ -72,6 +78,15 @@ export const TableBlock: FC<PropType> = ({ tableConfig, data }) => {
           <TableHeader columns={columns} order={order} orderBy={orderBy} handleSort={handleSort} />
           <TableBody>
             {rowsForPage.map(renderRow)}
+            {emptyRows > 0 && (
+              <CustomTableRow
+                style={{
+                  height: MIN_HEIGHT_ROW * emptyRows
+                }}
+              >
+                <TableCell colSpan={6} />
+              </CustomTableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
