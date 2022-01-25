@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { PageHeader } from '../../components/PageHeader';
 import { CalculatorForm } from './components/CalculatorForm';
 import { Products } from './components/Products';
-import { Loader } from './components/Loader';
+import { Loader } from '../../components/Loader';
 import { useLazyGetProductsQuery } from '../../services/productsApi';
 import { TProduct, TProductRequest } from '../../app/types/productTypes';
 
