@@ -19,8 +19,8 @@ export const TableHeader: FC<PropType> = ({
 }) => (
   <TableHead>
     <TableRow>
-      {columns.map(({ id, label }) => (
-        <TableCell key={id} sortDirection={orderBy === id ? order : false}>
+      {columns.map(({ id, label, width }) => (
+        <TableCell key={id} sortDirection={orderBy === id ? order : false} sx={{ width }}>
           <TableSortLabel
             active={orderBy === id}
             direction={orderBy === id ? order : 'asc'}
