@@ -8,6 +8,7 @@ export type THandleSort = (property: TOrderBy) => () => void;
 export type TColumnCell = {
   id: TOrderBy,
   label: string,
+  width: string,
   renderCell?: (dataRow: TApplication) => JSX.Element
 }
 

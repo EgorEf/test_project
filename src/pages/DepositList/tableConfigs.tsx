@@ -31,12 +31,16 @@ const renderAdminStatusCell = (dataRow: TApplication) => (
 export const tableConfigs: TTableConfigs = {
   [Roles.ADMIN]: {
     columns: [
-      { id: 'createdAt', label: 'Создан' },
-      { id: 'userName', label: 'Клиент' },
-      { id: 'name', label: 'Вид депозита' },
-      { id: 'amount', label: 'Сумма', renderCell: (dataRow) => renderAmountCell(dataRow) },
-      { id: 'closedAt', label: 'Срок' },
-      { id: 'status', label: 'Статус', renderCell: (dataRow) => renderAdminStatusCell(dataRow) }
+      { id: 'createdAt', label: 'Создан', width: '15%' },
+      { id: 'userName', label: 'Клиент', width: '20%' },
+      { id: 'name', label: 'Вид депозита', width: '20%' },
+      {
+        id: 'amount', label: 'Сумма', width: '15%', renderCell: (dataRow) => renderAmountCell(dataRow)
+      },
+      { id: 'closedAt', label: 'Срок', width: '15%' },
+      {
+        id: 'status', label: 'Статус', width: '15%', renderCell: (dataRow) => renderAdminStatusCell(dataRow)
+      }
     ]
   },
   [Roles.USER]: {
@@ -47,11 +51,15 @@ export const tableConfigs: TTableConfigs = {
       { id: 'open', label: 'Открытые' }
     ],
     columns: [
-      { id: 'createdAt', label: 'Создан' },
-      { id: 'name', label: 'Вид депозита' },
-      { id: 'amount', label: 'Сумма', renderCell: (dataRow) => renderAmountCell(dataRow) },
-      { id: 'closedAt', label: 'Срок' },
-      { id: 'status', label: 'Статус', renderCell: ({ status, id }) => renderStatusCell(status, id) }
+      { id: 'createdAt', label: 'Создан', width: '15%' },
+      { id: 'name', label: 'Вид депозита', width: '30%' },
+      {
+        id: 'amount', label: 'Сумма', width: '20%', renderCell: (dataRow) => renderAmountCell(dataRow)
+      },
+      { id: 'closedAt', label: 'Срок', width: '15%' },
+      {
+        id: 'status', label: 'Статус', width: '20%', renderCell: ({ status, id }) => renderStatusCell(status, id)
+      }
     ]
   }
 };
