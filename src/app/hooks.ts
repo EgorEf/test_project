@@ -59,16 +59,21 @@ export const useGetApplicationTemplate = (productId: number): TApplication | nul
   };
 };
 
+type TReturnGetApplicationsHook = {
+  applications: TApplication[] | undefined,
+  isFetching: boolean
+};
+
 export const useGetApplications = (
   userRole: string,
   userId: number
-): TApplication[] | undefined => {
+): TReturnGetApplicationsHook => {
   if (userRole === Roles.ADMIN) {
-    const { data: applicationsInProcessing } = useGetApplicationsInProcessingQuery();
-    return applicationsInProcessing;
+    const { data: applicationsInProcessing, isFetching } = useGetApplicationsInProcessingQuery();
+    return { applications: applicationsInProcessing, isFetching };
   }
-  const { data: userApplications } = useGetApplicationsByUserIdQuery(userId);
-  return userApplications;
+  const { data: userApplications, isFetching } = useGetApplicationsByUserIdQuery(userId);
+  return { applications: userApplications, isFetching };
 };
 
 type MappedObj = {
