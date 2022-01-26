@@ -2,6 +2,7 @@ import { useState, FC } from 'react';
 import Box from '@mui/material/Box';
 import { PageHeader } from '../../components/PageHeader';
 import { TableTabs } from './components/TableTabs';
+import { TableFilter } from './components/TableFilter';
 import { TableBlock } from './components/TableBlock';
 import {
   useGetCurrentUser,
@@ -25,6 +26,9 @@ export const DepositList: FC = () => {
   return (
     <Box>
       <PageHeader text="Список депозитных заявок" />
+      <Box mt={3}>
+        <TableFilter />
+      </Box>
       {
         tableConfig.tabs && (
           <Box mt={3}>
