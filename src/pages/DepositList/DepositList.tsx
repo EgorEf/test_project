@@ -17,7 +17,8 @@ export const DepositList: FC = () => {
 
   const tableConfig = tableConfigs[currentUser.role];
 
-  const [tab, setTab] = useState<string | null>(tableConfig.tabs ? 'all' : null);
+  const [tab, setTab] = useState(tableConfig.filters.tab);
+  const [filter, setFilter] = useState(tableConfig.filters);
 
   const { applications, isFetching } = useGetApplications(currentUser.role, currentUser.id);
 
@@ -27,7 +28,7 @@ export const DepositList: FC = () => {
     <Box>
       <PageHeader text="Список депозитных заявок" />
       <Box mt={3}>
-        <TableFilter />
+        <TableFilter filter={filter} setFilter={setFilter} placeholder={tableConfig.placeholder} />
       </Box>
       {
         tableConfig.tabs && (
