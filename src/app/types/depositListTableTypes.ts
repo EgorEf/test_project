@@ -1,4 +1,5 @@
-import { TApplication } from './applicationTypes';
+import { Dispatch, SetStateAction } from 'react';
+import { TApplication, TOptions } from './applicationTypes';
 
 export type TOrder = 'asc' | 'desc';
 export type TOrderBy = 'createdAt' | 'userName' | 'name' | 'amount' | 'closedAt' | 'status';
@@ -17,7 +18,19 @@ export type TTabObj = {
   label: string
 };
 
+export type TFilterSettings = {
+  options: TOptions
+};
+
+export type TTableFilter = {
+  tab: string | null,
+  searchLine: string,
+  settings?: TFilterSettings
+};
+
 export type TTableConfig = {
+  placeholder: string,
+  filters: TTableFilter,
   tabs?: TTabObj[],
   columns: TColumnCell[]
 };

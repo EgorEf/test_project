@@ -30,6 +30,11 @@ const renderAdminStatusCell = (dataRow: TApplication) => (
 
 export const tableConfigs: TTableConfigs = {
   [Roles.ADMIN]: {
+    placeholder: 'Поиск по названию, имени клиента, номеру счёта',
+    filters: {
+      tab: null,
+      searchLine: ''
+    },
     columns: [
       { id: 'createdAt', label: 'Создан', width: '15%' },
       { id: 'userName', label: 'Клиент', width: '20%' },
@@ -44,6 +49,18 @@ export const tableConfigs: TTableConfigs = {
     ]
   },
   [Roles.USER]: {
+    placeholder: 'Поиск по названию, номеру счета',
+    filters: {
+      tab: 'all',
+      searchLine: '',
+      settings: {
+        options: {
+          isEarlyRepayment: false,
+          isPartial: false,
+          isCapitalization: false
+        }
+      }
+    },
     tabs: [
       { id: 'all', label: 'Все депозиты' },
       { id: 'draft', label: 'Черновики' },
