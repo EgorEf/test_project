@@ -1,24 +1,19 @@
-import {
-  FC,
-  SyntheticEvent,
-  Dispatch,
-  SetStateAction
-} from 'react';
+import { FC, SyntheticEvent } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { TTabObj } from '../../../app/types/depositListTableTypes';
+import { TTabObj, TSetFilter } from '../../../app/types/depositListTableTypes';
 
 type TPropType = {
   tab: string | null,
   tabs: TTabObj[] | undefined,
-  setTab: Dispatch<SetStateAction<string | null>>
+  setFilter: TSetFilter
 };
 
-export const TableTabs: FC<TPropType> = ({ tab, tabs, setTab }) => {
+export const TableTabs: FC<TPropType> = ({ tab, tabs, setFilter }) => {
   if (!tabs || !tab) return null;
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
-    setTab(newValue);
+    setFilter((prevState) => ({ ...prevState, tab: newValue }));
   };
 
   return (
