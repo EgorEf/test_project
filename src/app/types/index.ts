@@ -25,3 +25,5 @@ export type TRoutes = {
 export type TMappedObjToStr = {
   [key: string]: string
 };
+
+export type TAnchorEl = HTMLButtonElement | null
