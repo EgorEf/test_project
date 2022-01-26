@@ -7,7 +7,7 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { Loader } from '../../../components/Loader';
 import { TApplication } from '../../../app/types/applicationTypes';
 import { TColumnCell } from '../../../app/types/depositListTableTypes';
