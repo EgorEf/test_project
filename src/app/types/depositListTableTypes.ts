@@ -25,3 +25,5 @@ export type TTableConfig = {
 export type TTableConfigs = {
   [key: string]: TTableConfig
 };
+
+export type TSetFilter = Dispatch<SetStateAction<TTableFilter>>
