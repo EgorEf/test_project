@@ -110,7 +110,7 @@ export const useGetFilteredApplications = (
   filter: TTableFilter,
   applications: TApplication[] | undefined
 ): TApplication[] => {
-  const { tab, searchLine } = filter;
+  const { tab, searchLine, settings } = filter;
 
   const filteredApplicationsByTab = useGetFilteredApplicationsByTab(tab, applications);
 
@@ -122,5 +122,15 @@ export const useGetFilteredApplications = (
       if (searchLine.length === 0) return true;
       if (role === Roles.USER) return normalizeName.includes(searchLine);
       return normalizeName.includes(searchLine) || normalizeUserName.includes(searchLine);
+    })
+    .filter(({ options }) => {
+      if (!settings) return true;
+      const { options: filterOptions } = settings;
+
+      const settingsEntries = Object.entries(filterOptions);
+      const isInitOptionsFilter = settingsEntries.every(([, value]) => !value);
+
+      if (isInitOptionsFilter) return true;
+      return settingsEntries.find(([key, value]) => (value && options[key] === value));
     });
 };

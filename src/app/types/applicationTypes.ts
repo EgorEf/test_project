@@ -1,6 +1,7 @@
 export type TApplicationStatus = 'draft' | 'inProcessing' | 'reject' | 'open';
 
 export type TOptions = {
+  [key: string]: boolean,
   isEarlyRepayment: boolean,
   isPartial: boolean,
   isCapitalization: boolean
