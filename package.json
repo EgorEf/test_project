@@ -35,8 +35,8 @@
     "tsc": "./node_modules/.bin/tsc",
     "createDb": "copy ./localServer/dbTemplate.json ./localServer/db.json",
     "serve": "npm run createDb | npx json-server -w ./localServer/db.json --port 3001 -d 1000",
-    "start": "npm run serve | craco --openssl-legacy-provider start",
-    "build": "craco --openssl-legacy-provider build",
+    "start": "npm run serve | craco start",
+    "build": "craco build",
     "deploy": "npm run build && gh-pages -d build",
     "test": "craco test",
     "eject": "react-scripts eject"
