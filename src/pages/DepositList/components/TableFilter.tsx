@@ -15,7 +15,7 @@ export const TableFilter: FC<TPropType> = ({ filter, setFilter, placeholder }) =
   const { settings } = filter;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const searchLine = event.target.value;
+    const searchLine = event.target.value.toLowerCase();
     setFilter((prevState) => ({ ...prevState, searchLine }));
   };
 

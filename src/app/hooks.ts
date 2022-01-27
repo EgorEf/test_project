@@ -4,6 +4,7 @@ import { useGetApplicationsInProcessingQuery, useGetApplicationsByUserIdQuery } 
 import { TUser, Roles } from './types/authTypes';
 import { TProduct } from './types/productTypes';
 import { TApplication } from './types/applicationTypes';
+import { TTableFilter } from './types/depositListTableTypes';
 import type { RootState, AppDispatch } from './store';
 import { uniqueId } from '../helpers/uniqueId';
 import { date } from '../modules/date';
@@ -80,10 +81,10 @@ type MappedObj = {
   [key: string]: TApplication[] | null
 };
 
-export const useGetFilteredApplications = (
+const useGetFilteredApplicationsByTab = (
   tab: string | null,
   applications: TApplication[] | undefined
-): TApplication[] | null => {
+): TApplication[] => {
   const memoizedStateRef = useRef<MappedObj>({
     all: null,
     draft: null,
@@ -92,7 +93,6 @@ export const useGetFilteredApplications = (
   });
 
   if (!applications) return [];
-
   if (!tab) return applications;
 
   if (!memoizedStateRef.current[tab]) {
@@ -101,5 +101,26 @@ export const useGetFilteredApplications = (
       : applications.filter(({ status }) => status === tab);
   }
 
-  return memoizedStateRef.current[tab];
+  const applicationByTab = memoizedStateRef.current[tab];
+  return (!applicationByTab) ? [] : applicationByTab;
+};
+
+export const useGetFilteredApplications = (
+  role: string,
+  filter: TTableFilter,
+  applications: TApplication[] | undefined
+): TApplication[] => {
+  const { tab, searchLine } = filter;
+
+  const filteredApplicationsByTab = useGetFilteredApplicationsByTab(tab, applications);
+
+  return filteredApplicationsByTab
+    .filter(({ name, userName }) => {
+      const normalizeName = name.toLowerCase();
+      const normalizeUserName = userName.toLowerCase();
+
+      if (searchLine.length === 0) return true;
+      if (role === Roles.USER) return normalizeName.includes(searchLine);
+      return normalizeName.includes(searchLine) || normalizeUserName.includes(searchLine);
+    });
 };

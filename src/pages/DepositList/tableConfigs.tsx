@@ -30,7 +30,7 @@ const renderAdminStatusCell = (dataRow: TApplication) => (
 
 export const tableConfigs: TTableConfigs = {
   [Roles.ADMIN]: {
-    placeholder: 'Поиск по названию, имени клиента, номеру счёта',
+    placeholder: 'Поиск по названию, имени клиента...',
     filters: {
       tab: null,
       searchLine: ''
@@ -49,7 +49,7 @@ export const tableConfigs: TTableConfigs = {
     ]
   },
   [Roles.USER]: {
-    placeholder: 'Поиск по названию, номеру счета',
+    placeholder: 'Поиск по названию...',
     filters: {
       tab: 'all',
       searchLine: '',

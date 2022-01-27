@@ -21,7 +21,7 @@ export const DepositList: FC = () => {
 
   const { applications, isFetching } = useGetApplications(currentUser.role, currentUser.id);
 
-  const filteredApplications = useGetFilteredApplications(filter.tab, applications);
+  const filteredApplications = useGetFilteredApplications(currentUser.role, filter, applications);
 
   return (
     <Box>
