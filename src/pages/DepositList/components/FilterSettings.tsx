@@ -5,11 +5,12 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import Typography from '@mui/material/Typography';
 import { FilterPopover } from './FilterPopover';
 import { TAnchorEl } from '../../../app/types';
-import { TFilterSettings, TSetFilter } from '../../../app/types/depositListTableTypes';
+import { TFilterSettings, TSetFilter, TSetLoad } from '../../../app/types/depositListTableTypes';
 
 type TPropType = {
-  settings: TFilterSettings,
-  setFilter: TSetFilter
+  settings: TFilterSettings | undefined,
+  setFilter: TSetFilter,
+  setLoad: TSetLoad
 };
 
 export const FilterSettings: FC<TPropType> = ({ settings, setFilter, setLoad }) => {
@@ -35,6 +36,7 @@ export const FilterSettings: FC<TPropType> = ({ settings, setFilter, setLoad }) 
         anchorEl={anchorEl}
         setAnchorEl={setAnchorEl}
         setFilter={setFilter}
+        setLoad={setLoad}
         settings={settings}
       />
       <Typography variant="body1" color="primary" sx={{ cursor: 'default' }}>
