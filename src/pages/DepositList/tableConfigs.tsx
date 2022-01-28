@@ -58,6 +58,10 @@ export const tableConfigs: TTableConfigs = {
           isEarlyRepayment: false,
           isPartial: false,
           isCapitalization: false
+        },
+        amount: {
+          start: '',
+          end: ''
         }
       }
     },

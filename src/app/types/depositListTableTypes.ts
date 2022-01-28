@@ -19,7 +19,11 @@ export type TTabObj = {
 };
 
 export type TFilterSettings = {
-  options: TOptions
+  options: TOptions,
+  amount: {
+    start: string,
+    end: string
+  }
 };
 
 export type TTableFilter = {
