@@ -44,3 +44,4 @@ export type TTableConfigs = {
 };
 
 export type TSetFilter = Dispatch<SetStateAction<TTableFilter>>
+export type TSetLoad = Dispatch<SetStateAction<boolean>>
