@@ -22,7 +22,6 @@ export const DepositList: FC = () => {
   const [filter, setFilter] = useState(tableConfig.filters);
   const [isFilterLoading, setLoad] = useState(false);
 
-  console.log(filter);
   const { applications, isFetching } = useGetApplications(currentUser.role, currentUser.id);
 
   const filteredApplications = useGetFilteredApplications(currentUser.role, filter, applications);
@@ -40,7 +39,7 @@ export const DepositList: FC = () => {
         />
         <FilterSettings settings={filter.settings} setFilter={setFilter} setLoad={setLoad} />
       </Stack>
-      <TableTabs tab={filter.tab} tabs={tableConfig.tabs} setFilter={setFilter} />
+            <TableTabs tab={filter.tab} tabs={tableConfig.tabs} setFilter={setFilter} />
       <Box mt={3}>
         <TableBlock tableConfig={tableConfig} data={filteredApplications} isFetching={isLoading} />
       </Box>
