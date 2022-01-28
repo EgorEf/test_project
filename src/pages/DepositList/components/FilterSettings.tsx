@@ -12,7 +12,9 @@ type TPropType = {
   setFilter: TSetFilter
 };
 
-export const FilterSettings: FC<TPropType> = ({ settings, setFilter }) => {
+export const FilterSettings: FC<TPropType> = ({ settings, setFilter, setLoad }) => {
+  if (!settings) return null;
+
   const [anchorEl, setAnchorEl] = useState<TAnchorEl>(null);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
