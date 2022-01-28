@@ -114,6 +114,8 @@ export const useGetFilteredApplications = (
 
   const filteredApplicationsByTab = useGetFilteredApplicationsByTab(tab, applications);
 
+  if (!settings) return filteredApplicationsByTab;
+
   return filteredApplicationsByTab
     .filter(({ name, userName }) => {
       const normalizeName = name.toLowerCase();
@@ -124,7 +126,6 @@ export const useGetFilteredApplications = (
       return normalizeName.includes(searchLine) || normalizeUserName.includes(searchLine);
     })
     .filter(({ options }) => {
-      if (!settings) return true;
       const { options: filterOptions } = settings;
 
       const settingsEntries = Object.entries(filterOptions);
@@ -132,5 +133,11 @@ export const useGetFilteredApplications = (
 
       if (isInitOptionsFilter) return true;
       return settingsEntries.find(([key, value]) => (value && options[key] === value));
+    })
+    .filter(({ amount }) => {
+      const { amount: { start, end } } = settings;
+      const startValue = (start.length === 0) ? 0 : Number(start);
+      const endValue = (end.length === 0) ? Infinity : Number(end);
+      return (startValue <= amount && endValue >= amount);
     });
 };

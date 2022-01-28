@@ -4,10 +4,13 @@ import {
   SetStateAction,
   ChangeEvent
 } from 'react';
+import set from 'lodash.set';
 import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import FormLabel from '@mui/material/FormLabel';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -35,20 +38,24 @@ export const FilterPopover: FC<TPropType> = (props) => {
     settings
   } = props;
 
-  const { options } = settings;
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const optionName = event.target.name;
-    const optionValue = event.target.checked;
+  const handleChangeOptions = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
 
     setFilter((prevState) => {
-      const prevOptions = prevState.settings?.options;
-      if (!prevOptions) return prevState;
-      const newOptions = { ...prevOptions, [optionName]: optionValue };
-      return {
-        ...prevState,
-        settings: { options: newOptions }
-      };
+      const { settings: filterSettings } = prevState;
+      if (!filterSettings) return prevState;
+      const copyState = { ...prevState };
+      return set(copyState, ['settings', 'options', name], checked);
+    });
+  };
+
+  const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFilter((prevState) => {
+      const { settings: filterSettings } = prevState;
+      if (!filterSettings) return prevState;
+      const copyState = { ...prevState };
+      return set(copyState, ['settings', 'amount', name], value);
     });
   };
 
@@ -57,6 +64,7 @@ export const FilterPopover: FC<TPropType> = (props) => {
   };
 
   const renderOptions = () => {
+    const { options } = settings;
     const optionsColl = Object.entries(options);
     return optionsColl.map(([key, value]) => {
       const name = mappedOptions[key];
@@ -64,7 +72,7 @@ export const FilterPopover: FC<TPropType> = (props) => {
         <FormControlLabel
           key={key}
           control={
-            <Checkbox checked={value} name={key} onChange={handleChange} />
+            <Checkbox checked={value} name={key} onChange={handleChangeOptions} />
           }
           label={name}
         />
@@ -91,6 +99,27 @@ export const FilterPopover: FC<TPropType> = (props) => {
             {renderOptions()}
           </FormGroup>
         </FormControl>
+        <Stack>
+          <InputLabel>Сумма</InputLabel>
+          <Stack direction="row" spacing={2}>
+            <OutlinedInput
+              name="start"
+              size="small"
+              type="number"
+              defaultValue={settings.amount.start}
+              placeholder="От"
+              onChange={handleAmountChange}
+            />
+            <OutlinedInput
+              name="end"
+              size="small"
+              type="number"
+              defaultValue={settings.amount.end}
+              placeholder="До"
+              onChange={handleAmountChange}
+            />
+          </Stack>
+        </Stack>
       </Stack>
     </Popover>
   );
