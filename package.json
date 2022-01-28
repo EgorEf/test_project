@@ -21,6 +21,7 @@
     "@types/react-router-dom": "^5.3.2",
     "formik": "^2.2.9",
     "lodash.debounce": "^4.0.8",
+    "lodash.set": "^4.3.2",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -33,7 +34,7 @@
   },
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
-    "createDb": "copy ./localServer/dbTemplate.json ./localServer/db.json",
+    "createDb": "cp ./localServer/dbTemplate.json ./localServer/db.json",
     "serve": "npm run createDb | npx json-server -w ./localServer/db.json --port 3001 -d 1000",
     "start": "npm run serve | craco start",
     "build": "craco build",
@@ -59,6 +60,7 @@
   "devDependencies": {
     "@craco/craco": "latest",
     "@types/lodash.debounce": "^4.0.6",
+    "@types/lodash.set": "^4.3.6",
     "@types/styled-components": "^5.1.16",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
