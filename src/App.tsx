@@ -39,14 +39,15 @@ export const App: FC = () => {
                 ? (
                   <>
                     <Route index element={<Navigate to={routes.DEPOSIT_LIST} replace />} />
-                    <Route path={routes.DEPOSIT_LIST} element={<DepositList />} />
+                    <Route path={routes.DEPOSIT_APPLICATION.PATH} element={<Outlet />}>
+                      <Route path=":applicationId" element={<UploadedApplicationWrapper />} />
+                    </Route>
                   </>
                 )
                 : (
                   <>
                     <Route index element={<Navigate to={routes.DEPOSIT_CALCULATOR} replace />} />
                     <Route path={routes.DEPOSIT_CALCULATOR} element={<DepositCalculator />} />
-                    <Route path={routes.DEPOSIT_LIST} element={<DepositList />} />
                     <Route path={routes.DEPOSIT_APPLICATION.PATH} element={<Outlet />}>
                       <Route path=":applicationId" element={<UploadedApplicationWrapper />} />
                       <Route path="new/:productId" element={<NewApplicationWrapper />} />
@@ -54,6 +55,7 @@ export const App: FC = () => {
                   </>
                 )
             }
+            <Route path={routes.DEPOSIT_LIST} element={<DepositList />} />
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route path={routes.LOGIN} element={<AuthPage />} />
