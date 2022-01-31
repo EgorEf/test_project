@@ -4,7 +4,7 @@ import {
   Dispatch,
   SetStateAction
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Modal from '@mui/material/Modal';
@@ -39,6 +39,7 @@ type TPropType = {
 };
 
 export const TableModal: FC<TPropType> = ({ data, setSelectedRow }) => {
+  const location = useLocation();
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -81,7 +82,7 @@ export const TableModal: FC<TPropType> = ({ data, setSelectedRow }) => {
           <TextLine name="Капитализация" value={getOptionValue(isCapitalization)} />
         </Box>
         <Box mt={2}>
-          <CustomLink to={routes.DEPOSIT_APPLICATION.BY_ID(id)}>
+          <CustomLink to={routes.DEPOSIT_APPLICATION.BY_ID(id)} state={location}>
             Перейти
             <ArrowForwardIcon color="primary" />
           </CustomLink>
