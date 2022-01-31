@@ -15,6 +15,7 @@ import { TColumnCell } from '../../../app/types/depositListTableTypes';
 const MIN_HEIGHT_ROW = 53;
 
 const CustomTableRow = styled(TableRow)(({
+  cursor: 'pointer',
   minHeight: MIN_HEIGHT_ROW,
   '&:nth-of-type(odd)': {
     backgroundColor: blue[50]
