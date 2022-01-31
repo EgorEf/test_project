@@ -34,12 +34,12 @@ export const DepositApplication: FC<PropType> = ({ application, isNew }) => {
   } = applicationState;
 
   const saveApplication = async () => {
-    await addNewApplication(application).unwrap();
+    await addNewApplication(applicationState).unwrap();
     navigate(routes.DEPOSIT_LIST);
   };
 
   const sendApplication = async () => {
-    const updatedApplication = { ...application, status: 'inProcessing' };
+    const updatedApplication = { ...applicationState, status: 'inProcessing' };
 
     if (isNew) {
       await addNewApplication(updatedApplication).unwrap();
