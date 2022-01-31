@@ -39,7 +39,7 @@ export const DepositList: FC = () => {
         />
         <FilterSettings settings={filter.settings} setFilter={setFilter} setLoad={setLoad} />
       </Stack>
-        <TableTabs tab={filter.tab} tabs={tableConfig.tabs} setFilter={setFilter} />
+      <TableTabs tab={filter.tab} tabs={tableConfig.tabs} setFilter={setFilter} />
       <Box mt={3}>
         <TableBlock tableConfig={tableConfig} data={filteredApplications} isFetching={isLoading} />
       </Box>
