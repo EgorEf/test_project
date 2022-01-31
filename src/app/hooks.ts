@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import isEqual from 'lodash.isequal';
 import { useGetApplicationsInProcessingQuery, useGetApplicationsByUserIdQuery } from '../services/applicationsApi';
 import { TUser, Roles } from './types/authTypes';
 import { TProduct } from './types/productTypes';
@@ -141,3 +142,10 @@ export const useGetFilteredApplications = (
       return (startValue <= amount && endValue >= amount);
     });
 };
+
+export const useHasFilterChanged = (
+  initialFilter: TTableFilter,
+  currentFilter: TTableFilter
+): boolean => (
+  isEqual(initialFilter.settings, currentFilter.settings)
+);
