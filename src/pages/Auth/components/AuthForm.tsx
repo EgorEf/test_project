@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { TAuthRequest, TAuthState } from '../../../app/types/authTypes';
 import { useLazyLoginQuery } from '../../../services/authApi';
 import { persistor } from '../../../app/store';
+import { routes } from '../../../routes';
 
 type TTarget = {
   target: {
@@ -62,7 +63,7 @@ export const AuthForm: FC = () => {
     getAuthUser(requestData)
       .unwrap()
       .then(() => {
-        const from = location.state?.from?.pathname || '/';
+        const from = location.state?.from?.pathname || routes.DEPOSIT_CALCULATOR;
         navigate(from, { replace: true });
       })
       .catch((e) => (
