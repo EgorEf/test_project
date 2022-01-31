@@ -26,7 +26,8 @@ export const applicationsApi = createApi({
       transformResponse: (response: TApplication[]):TApplication => {
         const [application] = response;
         return application;
-      }
+      },
+      providesTags: (result, error, id) => [{ type: 'Applications', id }]
     }),
     getApplicationsByUserId: builder.query<TApplication[], number>({
       query: (userId) => ({
@@ -58,7 +59,7 @@ export const applicationsApi = createApi({
         headers: { 'Content-Type': 'application/json' },
         body: application
       }),
-      invalidatesTags: [{ type: 'Applications', id: 'LIST' }]
+      invalidatesTags: ['Applications']
     })
   })
 });
