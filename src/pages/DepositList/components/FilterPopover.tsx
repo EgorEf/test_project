@@ -53,6 +53,7 @@ export const FilterPopover: FC<TPropType> = (props) => {
   const handleClose = () => setAnchorEl(null);
 
   const handleClick = (newSettings: TFilterSettings) => {
+    handleClose();
     setFilter((prevState) => set({ ...prevState }, 'settings', newSettings));
     setLoad(false);
   };
