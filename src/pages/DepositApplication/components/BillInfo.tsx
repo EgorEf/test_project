@@ -1,7 +1,9 @@
 import { FC, SetStateAction, Dispatch } from 'react';
+import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Typography from '@mui/material/Typography';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { PageSubtitle } from '../../../components/PageSubtitle';
@@ -42,19 +44,32 @@ export const BillInfo: FC<PropType> = ({
       {
         (status === Statuses.DRAFT)
           ? (
-            <Box width="300px" py="14px">
-              <FormControl fullWidth>
-                <InputLabel id="select-label">Выберите счет</InputLabel>
-                <Select
-                  labelId="select-label"
-                  value={billNum}
-                  label="Выберите счет"
-                  onChange={handleChange}
-                >
-                  {data?.map(renderItem)}
-                </Select>
-              </FormControl>
-            </Box>
+            <TextLine name="Номер счёта" value={null}>
+              <Box width="300px">
+                <FormControl fullWidth>
+                  <Select
+                    displayEmpty
+                    labelId="select-label"
+                    value={billNum}
+                    input={<OutlinedInput />}
+                    renderValue={(selected) => {
+                      if (selected.length === 0) {
+                        return <Typography color={grey[500]}>Выберите счёт</Typography>;
+                      }
+                      return selected;
+                    }}
+                    size="small"
+                    onChange={handleChange}
+                    inputProps={{ 'aria-label': 'Without label' }}
+                  >
+                    <MenuItem disabled value="">
+                      <em>Выберите счёт</em>
+                    </MenuItem>
+                    {data?.map(renderItem)}
+                  </Select>
+                </FormControl>
+              </Box>
+            </TextLine>
           )
           : <TextLine name="Номер счёта" value={billNum} />
       }
